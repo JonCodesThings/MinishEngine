@@ -28,6 +28,11 @@ namespace minish
             ~State();
 
             /*!
+            \brief Returns the state's id.
+            */
+            std::string getID();
+
+            /*!
             \brief Pure virtual function used to initialise resources for the state.
             */
             virtual bool init() = 0;

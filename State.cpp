@@ -9,4 +9,9 @@ namespace minish
     {
         shutdown();
     }
+
+    std::string State::getID()
+    {
+        return m_id;
+    }
 }
