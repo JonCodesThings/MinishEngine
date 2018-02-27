@@ -1,3 +1,6 @@
+#ifndef MINISH_TILESET_H
+#define MINISH_TILESET_H
+
 #include <vector>
 #include <SFML/Graphics/Rect.hpp>
 
@@ -14,7 +17,7 @@ namespace minish
     */
     struct Tile
     {
-        Tile( bool collidable, sf::IntRect texture_rect) : 
+        Tile(bool collidable, sf::IntRect texture_rect) : 
             m_collidable(collidable), m_texture_rect(texture_rect) {};
         unsigned int m_tile_id;
         bool m_collidable;
@@ -64,3 +67,5 @@ namespace minish
             int m_tile_count = 0;
     };
 }
+
+#endif
