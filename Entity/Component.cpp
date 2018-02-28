@@ -1,0 +1,6 @@
+namespace minish
+{
+	Component::~Component()
+	{
+	}
+}
