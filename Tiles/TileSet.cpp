@@ -11,9 +11,14 @@ namespace minish
                 return;
             }
         }
+        tile.m_tile_id = m_tiles.size();
         m_tiles.push_back(tile);
-        tile.m_tile_id = m_tile_count;
-        m_tile_count++;
+        
+    }
+
+    unsigned int TileSet::getTileCount()
+    {
+        return m_tiles.size();
     }
 
     sf::Texture* const TileSet::getTexture()
@@ -28,8 +33,7 @@ namespace minish
             if ((*m_tiles_iter).m_tile_id == tile_id)
             {
                 m_tiles.erase(m_tiles_iter);
-                m_tile_count--;
-               return;
+                return;
             }
         }
     }

@@ -37,6 +37,11 @@ namespace minish
             void addTile(Tile& tile);
 
             /*!
+            \brief Returns the number of tiles in the tileset.
+            */
+            unsigned int getTileCount();
+
+            /*!
             \brief Returns a const pointer to the texture used by the tileset. Will return nullptr if one hasn't been set yet.
             */
             sf::Texture* const getTexture();
@@ -60,11 +65,6 @@ namespace minish
             \brief Pointer to the tileset's texture.
             */
             sf::Texture* m_texture = nullptr;
-
-            /*!
-            \brief Stores the number of tiles in the tileset.
-            */
-            int m_tile_count = 0;
     };
 }
 
