@@ -16,6 +16,18 @@ namespace minish
         
     }
 
+    Tile* const TileSet::getTile(const unsigned int tile_id)
+    {
+        for (auto& tile_ : m_tiles)
+        {
+            if (tile_.m_tile_id == tile_id)
+            {
+                return &tile_;
+            }
+        }
+        return nullptr;
+    }
+
     unsigned int TileSet::getTileCount()
     {
         return m_tiles.size();

@@ -21,7 +21,7 @@ namespace minish
             m_collidable(collidable), m_texture_rect(texture_rect) {};
         unsigned int m_tile_id;
         bool m_collidable;
-        sf::IntRect m_texture_rect;
+        sf::FloatRect m_texture_rect;
     };
 
     /*!
@@ -35,6 +35,11 @@ namespace minish
             \brief Function to add a tile to the tileset.
             */
             void addTile(Tile& tile);
+
+            /*!
+            \brief Returns a pointer to the tile with the given id. Returns nullptr if it can't find it.
+            */
+            Tile* const getTile(const unsigned int tile_id);
 
             /*!
             \brief Returns the number of tiles in the tileset.

@@ -10,6 +10,14 @@ namespace minish
     class Action
     {
         public:
+            /*!
+            \brief Virtual destructor for abstract class.
+            */
+            virtual ~Action();
+
+            /*!
+            \brief Pure virtual function called when something happens.
+            */
             virtual void onAction() = 0;
     };
 }
