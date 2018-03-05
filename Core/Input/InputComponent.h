@@ -3,13 +3,14 @@
 
 #include <SFML/System/Vector2.hpp>
 
-#include "Entity/Component.h"
+#include "Core/Entity/Component.h"
 
 namespace minish
 {
     class InputComponent : public Component
     {
-        virtual ~InputComponent();
+        public:
+            virtual ~InputComponent();
     };
 }
 
