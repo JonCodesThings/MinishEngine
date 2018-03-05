@@ -6,8 +6,8 @@
 #include <SFML/Graphics/VertexArray.hpp>
 #include <SFML/System/Vector2.hpp>
 
-#include "Entity/Component.h"
-#include "Physics/AABB.h"
+#include "Core/Entity/Component.h"
+#include "Core/Physics/AABB.h"
 
 namespace minish
 {
@@ -16,11 +16,11 @@ namespace minish
         public:
             GraphicsComponent();
             GraphicsComponent(sf::Texture& texture, sf::IntRect& texture_rect, sf::Vector2u& size);
-            void render(sf::RenderWindow* hwnd);
+            virtual void render(sf::RenderWindow* hwnd);
             void setSize(sf::Vector2u& size);
             void setTexture(sf::Texture& texture);
             void setTextureRect(sf::IntRect& texture_rect);
-            void update(const float dt);
+            virtual void update(const float dt);
         private:
             virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
