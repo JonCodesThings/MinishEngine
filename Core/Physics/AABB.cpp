@@ -2,7 +2,7 @@
 
 namespace minish
 {
-    bool Collision::getAABBCollision(AABB box1, AABB box2)
+    bool Collision::getAABBCollision(AABB& box1, AABB& box2)
     {
         if (box1.left + box1.width < box2.left)
             return false;
