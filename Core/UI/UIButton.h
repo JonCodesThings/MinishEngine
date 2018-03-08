@@ -13,6 +13,7 @@ namespace minish
         public:
             const AABB& getAABB();
             void bindAction(Action& action);
+            void onAction();
             void unbindAction();
         private:
             AABB m_AABB;

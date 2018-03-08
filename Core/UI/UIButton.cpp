@@ -1,5 +1,7 @@
 #include "UIButton.h"
 
+#include "Core/System/Action.h"
+
 namespace minish
 {
     const AABB& UIButton::getAABB()
@@ -13,6 +15,12 @@ namespace minish
             unbindAction();
 
         m_action = &action;
+    }
+
+    void UIButton::onAction()
+    {
+        if (m_action)
+            m_action->onAction();
     }
 
     void UIButton::unbindAction()
