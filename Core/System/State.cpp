@@ -7,7 +7,6 @@ namespace minish
 
     State::~State()
     {
-        shutdown();
     }
 
     std::string State::getID()

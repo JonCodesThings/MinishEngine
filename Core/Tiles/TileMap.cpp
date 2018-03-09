@@ -26,7 +26,7 @@ namespace minish
             return m_generated;
         }
 
-        if (m_tileset.getTileCount() == 0 || m_tileset.getTexture == nullptr)
+        if (m_tileset.getTileCount() == 0 || m_tileset.getTexture() == nullptr)
         {
             return m_generated;
         }
