@@ -1,13 +1,14 @@
 PROJECT_OUT := minish.a
 SRC_FILES := $(wildcard */*/*.cpp)
-OBJ_FILES := $(wildcard *.o)
+OBJ_FILES = $(wildcard *.o)
 
-$(PROJECT_OUT): clean, objects
+$(PROJECT_OUT): objects
 	ar rcs $(PROJECT_OUT) $(OBJ_FILES)
 
-.PHONY: clean, objects
+.PHONY: clean objects
 clean:
-	rm *.o *.a
+	rm -f *.o *.a
 
-objects:
+objects: clean
 	g++ -c -I. $(SRC_FILES)
+	$(eval OBJ_FILES := *.o)
