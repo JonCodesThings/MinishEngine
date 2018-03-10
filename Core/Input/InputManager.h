@@ -23,27 +23,27 @@ namespace minish
             InputManager(sf::RenderWindow* hwnd);
 
             /*!
-            \brief Function to return the given controller axis' position.
+            \brief Class method to return the given controller axis' position.
             */
             float getControllerAxis(const int code);
 
             /*!
-            \brief Function to return the mouse's position.
+            \brief Class method to return the mouse's position.
             */
             sf::Vector2i getMousePosition();
 
             /*!
-            \brief Function to return the state of a controller button.
+            \brief Class method to return the state of a controller button.
             */
             bool isControllerButtonPressed(const int code);
 
             /*!
-            \brief Function to return the state of a key.
+            \brief Class method to return the state of a key.
             */
             bool isKeyPressed(const int code);
 
             /*!
-            \brief Function to return the state of a mouse button.
+            \brief Class method to return the state of a mouse button.
             */
             bool isMouseButtonPressed(const int code);
 

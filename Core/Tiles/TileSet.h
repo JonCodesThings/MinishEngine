@@ -32,7 +32,7 @@ namespace minish
     {
         public:
             /*!
-            \brief Function to add a tile to the tileset.
+            \brief Class method to add a tile to the tileset.
             */
             void addTile(Tile& tile);
 
@@ -52,7 +52,7 @@ namespace minish
             sf::Texture* const getTexture();
 
             /*!
-            \brief Function to remove a tile from the tileset.
+            \brief Class method to remove a tile from the tileset.
             */
             void removeTile(const unsigned int tile_id);
 

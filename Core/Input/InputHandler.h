@@ -14,47 +14,47 @@ namespace minish
     {
         public:
             /*!
-            \brief Function that binds an action to a controller axis.
+            \brief Class method that binds an action to a controller axis.
             */
             void bindActionToControllerAxis(Action& action, const int code);
 
             /*!
-            \brief Function that binds an action to a controller button.
+            \brief Class method that binds an action to a controller button.
             */
             void bindActionToControllerButton(Action& action, const int code);
 
             /*!
-            \brief Function that binds an action to a key.
+            \brief Class method that binds an action to a key.
             */
             void bindActionToKey(Action& action, const int code);
 
             /*!
-            \brief Function that binds an action to a mouse button.
+            \brief Class method that binds an action to a mouse button.
             */
             void bindActionToMouseButton(Action& action, const int code);
 
             /*!
-            \brief Function that sets the input manager to receive input from.
+            \brief Class method that sets the input manager to receive input from.
             */
             void setInputManager(InputManager* const input_manager);
 
             /*!
-            \brief Function that unbinds an action from a controller axis.
+            \brief Class method that unbinds an action from a controller axis.
             */
             void unbindActionFromControllerAxis(const int code);
 
             /*!
-            \brief Function that unbinds an action from a controller button.
+            \brief Class method that unbinds an action from a controller button.
             */
             void unbindActionFromControllerButton(const int code);
 
             /*!
-            \brief Function that unbinds an action from a key.
+            \brief Class method that unbinds an action from a key.
             */
             void unbindActionFromKey(const int code);
 
             /*!
-            \brief Function that unbinds an action from a mouse button.
+            \brief Class method that unbinds an action from a mouse button.
             */
             void unbindActionFromMouseButton(const int code);
 

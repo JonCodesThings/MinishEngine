@@ -7,13 +7,31 @@
 
 namespace minish
 {
+    /*!
+    * \brief Class for handling texture storage.
+    * \author Jonathan Duncanson
+    */
     class TextureManager
     {
         public:
+            /*!
+        	\brief Class method that gets a texture from storage by name.
+        	*/
             const sf::Texture& getTexture(std::string& name);
+
+            /*!
+        	\brief Class method that loads and stores a texture by name.
+        	*/
             bool loadTexture(std::string& name, std::string& filepath);
+
+            /*!
+        	\brief Class method that removes a texture from memory.
+        	*/
             void removeTexture(std::string& name);
         private:
+            /*!
+        	\brief Map used to store textures.
+        	*/
             std::unordered_map<std::string, sf::Texture> m_textures;
     };
 }

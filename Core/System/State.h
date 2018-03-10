@@ -23,7 +23,7 @@ namespace minish
             State(sf::RenderWindow& hwnd, std::string& id);
 
             /*!
-            \brief Default destructor, calls shutdown function to free resources.
+            \brief Default destructor, calls shutdown class method to free resources.
             */
             ~State();
 
@@ -33,32 +33,32 @@ namespace minish
             std::string getID();
 
             /*!
-            \brief Pure virtual function used to initialise resources for the state.
+            \brief Pure virtual class method used to initialise resources for the state.
             */
             virtual bool init() = 0;
 
             /*!
-            \brief Pure virtual function used to deinitialise resources for the state.
+            \brief Pure virtual class method used to deinitialise resources for the state.
             */
             virtual bool deinit() = 0;
 
             /*!
-            \brief Pure virtual function used to start the state for the first time.
+            \brief Pure virtual class method used to start the state for the first time.
             */
             virtual bool startup() = 0;
 
             /*!
-            \brief Pure virtual function used to free state resources. Should only be called on object destruction.
+            \brief Pure virtual class method used to free state resources. Should only be called on object destruction.
             */
             virtual bool shutdown() = 0;
 
             /*!
-            \brief Pure virtual function used to render state objects.
+            \brief Pure virtual class method used to render state objects.
             */
             virtual void render() = 0;
 
             /*!
-            \brief Pure virtual function used to update state objects.
+            \brief Pure virtual class method used to update state objects.
             */
             virtual void update(const float dt) = 0;
         private:

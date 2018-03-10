@@ -21,17 +21,17 @@ namespace minish
     {
         public:
             /*!
-            \brief Function that adds a state to the manager.
+            \brief Class method that adds a state to the manager.
             */
             void addState(State& state);
 
             /*!
-            \brief Function that changes the current state.
+            \brief Class method that changes the current state.
             */
             void changeState(std::string& id);
 
             /*!
-            \brief Function that removes a state from the manager.
+            \brief Class method that removes a state from the manager.
             */
             void removeState(std::string& id);
 

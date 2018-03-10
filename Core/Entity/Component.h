@@ -24,12 +24,12 @@ namespace minish
 			virtual ~Component();
 
 			/*!
-        	\brief Virtual function called to render a component. Empty by default.
+        	\brief Virtual class method called to render a component. Empty by default.
         	*/
 			virtual void render(sf::RenderWindow* hwnd) {};
 
 			/*!
-        	\brief Pure virtual function called when a component is updated.
+        	\brief Pure virtual class method called when a component is updated.
         	*/
 			virtual void update(const float dt) = 0;
 		private:
@@ -38,6 +38,9 @@ namespace minish
         	*/
 			void setEntity(Entity* entity);
 
+			/*!
+        	\brief Pointer to the component's entity.
+        	*/
 			Entity* m_entity = nullptr;
 	};
 }
