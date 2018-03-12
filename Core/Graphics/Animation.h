@@ -55,7 +55,7 @@ namespace minish
             /*!
         	\brief Class method that updates the animation.
         	*/
-            const sf::IntRect& update(const float dt);
+            const sf::IntRect update(const float dt);
         private:
             /*!
         	\brief Rect that stores the size of a frame.

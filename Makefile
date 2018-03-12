@@ -2,6 +2,8 @@ PROJECT_OUT := minish
 SRC_FILES := $(wildcard */*/*.cpp)
 OBJ_FILES = $(wildcard *.o)
 
+all: static dynamic
+
 static: objects
 	ar rcs $(PROJECT_OUT).a $(OBJ_FILES)
 

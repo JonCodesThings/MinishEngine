@@ -41,7 +41,7 @@ namespace minish
         m_current_frame = 0;
     }
 
-    const sf::IntRect& Animation::update(float dt)
+    const sf::IntRect Animation::update(float dt)
     {
         if (m_playing)
         {
