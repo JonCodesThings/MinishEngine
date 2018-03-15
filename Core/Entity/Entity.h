@@ -2,6 +2,7 @@
 #define MINISH_ENTITY_H
 
 #include "Component.h"
+#include "DataComponent.h"
 
 namespace minish
 {
@@ -36,6 +37,7 @@ namespace minish
         	\brief Array of pointers to components associated with the entity.
         	*/
             Component* m_components[4] { nullptr };
+            DataComponent m_data;
     };
 }
 
