@@ -9,6 +9,7 @@
 #include <SFML/System/Clock.hpp>
 
 #include "StateManager.h"
+#include "Subsystem.h"
 
 namespace minish
 {
