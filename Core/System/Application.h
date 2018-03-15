@@ -16,6 +16,7 @@ namespace minish
     {
         public:
             Application(unsigned int thread_count);
+            void addThreadableSubsystem(std::thread& thread);
             virtual void render() = 0;
             void run();
             virtual void shutdown();
@@ -23,10 +24,12 @@ namespace minish
             virtual void update(const float dt) = 0;
         protected:
             void syncThreads();
+            sf::RenderWindow m_wnd;
         private:
+            void post_render();
+            void pre_render();
             std::mutex m_sync_mutex;
             std::vector<std::thread*> m_threads;
-            sf::RenderWindow m_wnd;
             sf::Clock m_deltaTimer;
             StateManager m_state_manager;
             bool m_running = false;
