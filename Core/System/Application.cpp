@@ -43,6 +43,7 @@ namespace minish
         m_deltaTimer.restart();
         while(m_running)
         {
+            toggleSubsystemFlags();
             m_running = update(m_deltaTimer.getElapsedTime().asSeconds());
             syncThreads();
             render();
@@ -53,7 +54,25 @@ namespace minish
 
     void Application::syncSubsystems()
     {
-     //TODO
+        while(m_running)
+        {
+            if (m_subsystemsync < std::distance(m_subsystems.begin(), m_subsystems.end()))
+            {
+                Subsystem* subsystem = nullptr;
+                m_subsystem_mutex.lock();
+                subsystem = getNextSubsystem();
+                subsystem->toggleUpdateFlag();
+                m_subsystemsync++;
+                m_subsystem_mutex.unlock();
+                if (subsystem)
+                    subsystem->update(m_deltaTimer.getElapsedTime().asSeconds());
+            }
+            else
+            {
+                syncThreads();
+            }
+        }
+        
     }
 
     void Application::syncThreads() //basic thread barrier
@@ -67,6 +86,17 @@ namespace minish
         }
     }
 
+    Subsystem* Application::getNextSubsystem()
+    {
+        for (auto& subsystem_ : m_subsystems)
+        {
+            if (!subsystem_->getUpdateFlag())
+            {
+                return subsystem_;
+            }
+        }
+    }
+
     void Application::post_render()
     {
         m_wnd.clear(sf::Color::Black);
@@ -75,5 +105,13 @@ namespace minish
     void Application::pre_render()
     {
         m_wnd.display();
+    }
+
+    void Application::toggleSubsystemFlags()
+    {
+        for (auto& subsystem_ : m_subsystems)
+        {
+            subsystem_->toggleUpdateFlag();
+        }
     }
 }

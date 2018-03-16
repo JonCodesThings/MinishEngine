@@ -56,22 +56,79 @@ namespace minish
         	*/ 
             virtual void startup() = 0;
 
+            /*!
+        	\brief Pure virtual class member that runs update functions on non-threadable subsystems and the state manager.
+        	*/ 
             virtual bool update(const float dt) = 0;
         protected:
+            /*!
+        	\brief Class member that runs update functions on threadable subsystems and makes sure all subsystems are updated.
+        	*/ 
             void syncSubsystems();
+            /*!
+        	\brief Class member that makes sure all threads are synced. Also known as a barrier.
+        	*/ 
             void syncThreads();
+
+            /*!
+        	\brief Application SFML window.
+        	*/ 
             sf::RenderWindow m_wnd;
         private:
+            /*!
+        	\brief Returns the next subsystem that requires updating.
+        	*/ 
+            Subsystem* getNextSubsystem();
+
+            /*!
+        	\brief Class member that is called after render().
+        	*/
             void post_render();
+
+            /*!
+        	\brief Class member that is called before render().
+        	*/
             void pre_render();
-            std::mutex m_sync_mutex;
+
+            /*!
+        	\brief Class member that toggles all subsystem update flags.
+        	*/
+            void toggleSubsystemFlags();
+
+            /*!
+        	\brief Mutexes used to handle threading related issues.
+        	*/
+            std::mutex m_sync_mutex, m_subsystem_mutex;
+
+            /*!
+        	\brief Application threads.
+        	*/
             std::vector<std::thread*> m_threads;
+
+            /*!
+        	\brief Singly linked list of subsystems.
+        	*/
             std::forward_list<Subsystem*> m_subsystems;
+
+            /*!
+        	\brief Timer used to measure delta time.
+        	*/
             sf::Clock m_deltaTimer;
+
+            /*!
+        	\brief Gamestate manager.
+        	*/
             StateManager m_state_manager;
+
+            /*!
+        	\brief Boolean that stores whether or not the application is running.
+        	*/
             bool m_running;
-            int m_threadsync;
-            int m_subsystemsync;
+
+            /*!
+        	\brief Variables used to sync threads and subsystems.
+        	*/
+            int m_threadsync, m_subsystemsync;
             
     };
 }
