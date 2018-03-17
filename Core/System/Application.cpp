@@ -2,6 +2,8 @@
 
 #include <chrono>
 
+#include <SFML/Window/Event.hpp>
+
 namespace minish
 {
     Application::Application(unsigned int thread_count, unsigned int window_width, unsigned int window_height, std::string app_title) 
@@ -48,6 +50,13 @@ namespace minish
             syncThreads();
             render();
             m_deltaTimer.restart();
+
+            sf::Event ev;
+            if (m_wnd.pollEvent(ev) && ev.type == sf::Event::Closed)
+            {
+                m_wnd.close();
+                m_running = false;
+            }
         }
         shutdown();
     }
