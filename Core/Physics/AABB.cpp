@@ -15,4 +15,18 @@ namespace minish
 
         return true;
     }
+
+	bool Collision::getAABBPointCollision(sf::Vector2f& point, AABB& box)
+	{
+		if (point.x < box.left)
+			return false;
+		if (point.x > box.left + box.width)
+			return false;
+		if (point.y < box.top)
+			return false;
+		if (point.y > box.top + box.height)
+			return false;
+
+		return true;
+	}
 }

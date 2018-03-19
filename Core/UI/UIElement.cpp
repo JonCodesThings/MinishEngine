@@ -25,6 +25,11 @@ namespace minish
         m_parent = &element;
     }
 
+	sf::Vector2u& UIElement::getSize()
+	{
+		return m_size;
+	}
+
     void UIElement::removeChild(UIElement& element)
     {
         for (auto& child_ : m_children)

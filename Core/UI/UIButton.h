@@ -15,10 +15,11 @@ namespace minish
     class UIButton : public UIElement
     {
         public:
+			UIButton();
             /*!
             \brief Returns the button's AABB.
             */
-            const AABB& getAABB();
+            AABB& getAABB();
 
             /*!
             \brief Bind's an action to the button.
@@ -29,6 +30,8 @@ namespace minish
             \brief Call's the bound action's onAction() class method.
             */
             void onAction();
+
+			void setSize(sf::Vector2u& size);
 
             /*!
             \brief Bind's the action from the button.

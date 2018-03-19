@@ -36,6 +36,8 @@ namespace minish
             */
             void addParent(UIElement& element);
 
+			sf::Vector2u& getSize();
+
             /*!
             \brief Renders an element and all of its children.
             */
@@ -44,7 +46,7 @@ namespace minish
             /*!
             \brief Sets the size of the element.
             */
-            void setSize(sf::Vector2u& size);
+            virtual void setSize(sf::Vector2u& size);
 
             /*!
             \brief Removes a child from the element.
@@ -55,7 +57,12 @@ namespace minish
             \brief Removes the parent from the element.
             */
             void removeParent();
-        private:
+	protected:
+			/*!
+			\brief Stores the vertices of the element.
+			*/
+			sf::VertexArray m_vertices;
+	private:
             /*!
         	\brief SFML draw function.
         	*/
@@ -65,11 +72,6 @@ namespace minish
         	\brief Stores the size of the element.
         	*/
             sf::Vector2u m_size;
-
-            /*!
-        	\brief Stores the vertices of the element.
-        	*/
-            sf::VertexArray m_vertices;
 
             /*!
         	\brief Stores a pointer to the parent of the element.
