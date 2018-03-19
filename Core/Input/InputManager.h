@@ -37,15 +37,27 @@ namespace minish
             */
             bool isControllerButtonPressed(const int code);
 
+			bool isControllerButtonReleased(const int code);
+
             /*!
             \brief Class method to return the state of a key.
             */
             bool isKeyPressed(const int code);
 
+			/*!
+			\brief Class method to return if a key has been released.
+			*/
+			bool isKeyReleased(const int code);
+
             /*!
             \brief Class method to return the state of a mouse button.
             */
             bool isMouseButtonPressed(const int code);
+
+			/*!
+			\brief Class method to return if a mouse button has been released.
+			*/
+			bool isMouseButtonReleased(const int code);
 
             /*!
             \brief Updates the class member variables with data from SFML.
@@ -82,10 +94,20 @@ namespace minish
             */
             bool m_keys[128]{false};
 
+			/*!
+			\brief Stores the previous key states.
+			*/
+			bool m_prev_keys[128]{false};
+
             /*!
             \brief Stores the mouse button states.
             */
             bool m_mouse_buttons[5]{false};
+
+			/*!
+			\brief Stores the previous mouse button states.
+			*/
+			bool m_prev_mouse_buttons[5]{false};
 
             /*!
             \brief Stores the mouse position.
@@ -96,6 +118,11 @@ namespace minish
             \brief Stores the controller button states.
             */
             bool m_controller_buttons[32]{false};
+
+			/*!
+			\brief Stores the previous controller button states.
+			*/
+			bool m_prev_controller_buttons[32]{ false };
 
             /*!
             \brief Stores axis positions of the controller.

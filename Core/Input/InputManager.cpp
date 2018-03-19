@@ -25,15 +25,30 @@ namespace minish
         return m_controller_buttons[code];
     }
 
+	bool InputManager::isControllerButtonReleased(const int code)
+	{
+		return !m_controller_buttons[code] && m_prev_controller_buttons[code];
+	}
+
     bool InputManager::isKeyPressed(const int code)
     {
         return m_keys[code];
     }
 
+	bool InputManager::isKeyReleased(const int code)
+	{
+		return !m_keys[code] && m_prev_keys[code];
+	}
+
     bool InputManager::isMouseButtonPressed(const int code)
     {
         return m_mouse_buttons[code];
     }
+
+	bool InputManager::isMouseButtonReleased(const int code)
+	{
+		return !m_mouse_buttons[code] && m_prev_mouse_buttons[code];
+	}
 
     void InputManager::update()
     {
@@ -49,8 +64,10 @@ namespace minish
             //checks for any changes in button states and updates the button states as needed
             for (int button = 0; button < sf::Joystick::getButtonCount(0); button++)
             {
+				m_prev_controller_buttons[button] = m_controller_buttons[button];
+
                 if (sf::Joystick::isButtonPressed(0, button) != m_controller_buttons[button])
-                {
+				{	
                     m_controller_buttons[button] = sf::Joystick::isButtonPressed(0, button);
                 }
             }
@@ -59,6 +76,8 @@ namespace minish
         //checks the key states and updates them as needed
         for (int key = 0; key < 128; key++)
         {
+			m_prev_keys[key] = m_keys[key];
+
             if (sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(key)) != m_keys[key])
             {
                 setKeyState(key, sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(key)));
@@ -77,6 +96,8 @@ namespace minish
         //updates the mouse button states as needed
         for (int mouse_button = 0; mouse_button < 5; mouse_button++)
         {
+			m_prev_mouse_buttons[mouse_button] = m_mouse_buttons[mouse_button];
+
             if (sf::Mouse::isButtonPressed(static_cast<sf::Mouse::Button>(mouse_button)) != m_mouse_buttons[mouse_button])
             {
                 m_mouse_buttons[mouse_button] = sf::Mouse::isButtonPressed(static_cast<sf::Mouse::Button>(mouse_button));

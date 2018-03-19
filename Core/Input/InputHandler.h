@@ -19,19 +19,34 @@ namespace minish
             void bindActionToControllerAxis(Action& action, const int code);
 
             /*!
-            \brief Class method that binds an action to a controller button.
+            \brief Class method that binds an action to a controller button when pressed.
             */
-            void bindActionToControllerButton(Action& action, const int code);
+            void bindActionToControllerButtonPressed(Action& action, const int code);
+
+			/*!
+			\brief Class method that binds an action to a controller button when released.
+			*/
+			void bindActionToControllerButtonReleased(Action& action, const int code);
 
             /*!
-            \brief Class method that binds an action to a key.
+            \brief Class method that binds an action to a key when pressed.
             */
-            void bindActionToKey(Action& action, const int code);
+            void bindActionToKeyPressed(Action& action, const int code);
+
+			/*!
+			\brief Class method that binds an action to a key when released.
+			*/
+			void bindActionToKeyReleased(Action& action, const int code);
 
             /*!
-            \brief Class method that binds an action to a mouse button.
+            \brief Class method that binds an action to a mouse button when pressed.
             */
-            void bindActionToMouseButton(Action& action, const int code);
+            void bindActionToMouseButtonPressed(Action& action, const int code);
+
+			/*!
+			\brief Class method that binds an action to a mouse button when released.
+			*/
+			void bindActionToMouseButtonReleased(Action& action, const int code);
 
             /*!
             \brief Class method that sets the input manager to receive input from.
@@ -46,17 +61,32 @@ namespace minish
             /*!
             \brief Class method that unbinds an action from a controller button.
             */
-            void unbindActionFromControllerButton(const int code);
+            void unbindActionFromControllerButtonPressed(const int code);
+
+			/*!
+			\brief Class method that unbinds an action from a controller button.
+			*/
+			void unbindActionFromControllerButtonReleased(const int code);
 
             /*!
             \brief Class method that unbinds an action from a key.
             */
-            void unbindActionFromKey(const int code);
+            void unbindActionFromKeyPressed(const int code);
+
+			/*!
+			\brief Class method that unbinds an action from a key.
+			*/
+			void unbindActionFromKeyReleased(const int code);
 
             /*!
             \brief Class method that unbinds an action from a mouse button.
             */
-            void unbindActionFromMouseButton(const int code);
+            void unbindActionFromMouseButtonPressed(const int code);
+
+			/*!
+			\brief Class method that unbinds an action from a mouse button.
+			*/
+			void unbindActionFromMouseButtonReleased(const int code);
 
             /*!
             \brief Updates and calls bound actions based on input from the current input manager.
@@ -70,19 +100,34 @@ namespace minish
             InputManager* m_input_manager = nullptr;
 
             /*!
-            \brief Stores pointers to all actions bound to the keyboard.
+            \brief Stores pointers to all actions bound to the keyboard on key pressed.
             */
-            Action* m_keys[128]{nullptr};
+            Action* m_keys_pressed[128]{nullptr};
+
+			/*!
+			\brief Stores pointers to all actions bound to the keyboard on key released.
+			*/
+			Action* m_keys_released[128]{ nullptr };
 
             /*!
-            \brief Stores pointers to all actions bound to the mouse buttons.
+            \brief Stores pointers to all actions bound to the mouse buttons when pressed.
             */
-            Action* m_mouse_buttons[5]{nullptr};
+            Action* m_mouse_buttons_pressed[5]{nullptr};
+
+			/*!
+			\brief Stores pointers to all actions bound to the mouse buttons when released.
+			*/
+			Action* m_mouse_buttons_released[5]{ nullptr };
 
             /*!
-            \brief Stores pointers to all actions bound to the controller buttons.
+            \brief Stores pointers to all actions bound to the controller buttons when pressed.
             */
-            Action* m_controller_buttons[32]{nullptr};
+            Action* m_controller_buttons_pressed[32]{nullptr};
+
+			/*!
+			\brief Stores pointers to all actions bound to the controller buttons when released.
+			*/
+			Action* m_controller_buttons_released[32]{ nullptr };
 
             /*!
             \brief Stores pointers to all actions bound to the controller axes.
