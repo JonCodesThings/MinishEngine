@@ -74,6 +74,12 @@ namespace minish
         	\brief Application SFML window.
         	*/ 
             sf::RenderWindow m_wnd;
+
+			/*!
+			\brief Gamestate manager.
+			*/
+			StateManager m_state_manager;
+
         private:
             /*!
         	\brief Returns the next subsystem that requires updating.
@@ -114,11 +120,6 @@ namespace minish
         	\brief Timer used to measure delta time.
         	*/
             sf::Clock m_deltaTimer;
-
-            /*!
-        	\brief Gamestate manager.
-        	*/
-            StateManager m_state_manager;
 
             /*!
         	\brief Boolean that stores whether or not the application is running.
