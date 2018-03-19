@@ -13,7 +13,7 @@ namespace minish
             /*!
             \brief Virtual destructor for abstract class.
             */
-            virtual ~Action();
+			virtual ~Action() {};
 
             /*!
             \brief Pure virtual function called when something happens.

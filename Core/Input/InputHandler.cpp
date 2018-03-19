@@ -78,7 +78,9 @@ namespace minish
             {
                 if (m_prev_controller_axis_vals[axis] != m_input_manager->getControllerAxis(axis))
                 {
-                    m_controller_axis[axis]->onAction();
+					if (m_controller_axis[axis])
+						m_controller_axis[axis]->onAction();
+
                     m_prev_controller_axis_vals[axis] = m_input_manager->getControllerAxis(axis);
                 }
             }
@@ -88,7 +90,8 @@ namespace minish
             {
                 if (m_input_manager->isControllerButtonPressed(button))
                 {
-                    m_controller_buttons[button]->onAction();
+					if (m_controller_buttons[button])
+						m_controller_buttons[button]->onAction();
                 }
             }
 
@@ -97,7 +100,8 @@ namespace minish
             {
                 if (m_input_manager->isKeyPressed(key))
                 {
-                    m_keys[key]->onAction();
+					if (m_keys[key])
+						m_keys[key]->onAction();
                 }
             }
         }

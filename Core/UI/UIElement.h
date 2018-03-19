@@ -22,9 +22,9 @@ namespace minish
     {
         public:
             /*!
-            \brief Virtual destructor.
+            \brief Default destructor.
             */
-            virtual ~UIElement();
+            ~UIElement();
 
             /*!
             \brief Add a child element.
@@ -39,7 +39,7 @@ namespace minish
             /*!
             \brief Renders an element and all of its children.
             */
-            void render(sf::RenderWindow* hwnd, sf::RenderStates states);
+            virtual void render(sf::RenderWindow* hwnd, sf::RenderStates states=sf::RenderStates::Default);
 
             /*!
             \brief Sets the size of the element.

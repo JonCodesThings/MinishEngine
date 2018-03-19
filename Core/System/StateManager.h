@@ -20,6 +20,11 @@ namespace minish
     class StateManager
     {
         public:
+			/*!
+			\brief Default constructor.
+			*/
+			StateManager();
+
             /*!
             \brief Class method that adds a state to the manager.
             */

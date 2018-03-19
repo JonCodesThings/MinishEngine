@@ -48,7 +48,9 @@ namespace minish
             toggleSubsystemFlags();
             m_running = update(m_deltaTimer.getElapsedTime().asSeconds());
             syncThreads();
+			pre_render();
             render();
+			post_render();
             m_deltaTimer.restart();
 
             sf::Event ev;
@@ -108,12 +110,12 @@ namespace minish
 
     void Application::post_render()
     {
-        m_wnd.clear(sf::Color::Black);
+		m_wnd.display();
     }
 
     void Application::pre_render()
-    {
-        m_wnd.display();
+    {   
+		m_wnd.clear(sf::Color::Black);
     }
 
     void Application::toggleSubsystemFlags()

@@ -61,11 +61,14 @@ namespace minish
             \brief Pure virtual class method used to update state objects.
             */
             virtual void update(const float dt) = 0;
+
+		protected:
+
+			/*!
+			\brief Pointer to SFML window instance.
+			*/
+			sf::RenderWindow* m_hwnd;
         private:
-            /*!
-            \brief Pointer to SFML window instance.
-            */
-            sf::RenderWindow* m_hwnd;
 
             /*!
             \brief String used to identify the state.

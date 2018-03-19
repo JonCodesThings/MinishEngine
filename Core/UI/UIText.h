@@ -15,16 +15,31 @@ namespace minish
     class UIText : public UIElement
     {
         public:
+
+			void render(sf::RenderWindow* hwnd, sf::RenderStates states=sf::RenderStates::Default);
+
             /*!
             \brief Sets the text's font.
             */
             void setFont(sf::Font& font);
+
+			void setPosition(sf::Vector2f position);
+
+			/*!
+			\brief Sets the text's font size in pixels.
+			*/
+			void setTextSize(unsigned int size);
 
             /*!
             \brief Sets the text's string.
             */
             void setTextString(std::string& text_string);
         private:
+			/*!
+			\brief SFML draw function.
+			*/
+			virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+
             /*!
             \brief Stores the text's font.
             */

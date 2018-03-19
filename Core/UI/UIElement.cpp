@@ -4,6 +4,11 @@
 
 namespace minish
 {
+	UIElement::~UIElement()
+	{
+
+	}
+
     void UIElement::addChild(UIElement& element)
     {
         element.addParent(*this);
@@ -37,9 +42,11 @@ namespace minish
         m_parent = nullptr;
     }
 
+
     void UIElement::render(sf::RenderWindow* hwnd, sf::RenderStates states)
     {
         hwnd->draw(*this, states);
+		states.transform *= getTransform();
 
         for (auto& child_ : m_children)
         {

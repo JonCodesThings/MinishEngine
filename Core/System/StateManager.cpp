@@ -3,6 +3,11 @@
 
 namespace minish
 {
+	StateManager::StateManager() : m_current_state(nullptr)
+	{
+
+	}
+
     void StateManager::addState(State& state)
     {
         for (auto& state_ : m_states)
