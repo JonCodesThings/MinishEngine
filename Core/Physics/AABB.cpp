@@ -2,7 +2,7 @@
 
 namespace minish
 {
-    bool Collision::getAABBCollision(AABB& box1, AABB& box2)
+    bool Collision::getAABBCollision(const AABB& box1, const AABB& box2)
     {
         if (box1.left + box1.width < box2.left)
             return false;
@@ -16,7 +16,7 @@ namespace minish
         return true;
     }
 
-	bool Collision::getAABBPointCollision(sf::Vector2f& point, AABB& box)
+	bool Collision::getAABBPointCollision(const sf::Vector2f& point, const AABB& box)
 	{
 		if (point.x < box.left)
 			return false;

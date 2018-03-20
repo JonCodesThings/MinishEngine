@@ -59,7 +59,7 @@ namespace minish
         }
     }
 
-    void UIElement::setSize(sf::Vector2u& size)
+    void UIElement::setSize(const sf::Vector2u& size)
     {
         m_size = size;
     }

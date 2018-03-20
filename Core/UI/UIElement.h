@@ -46,7 +46,7 @@ namespace minish
             /*!
             \brief Sets the size of the element.
             */
-            virtual void setSize(sf::Vector2u& size);
+            virtual void setSize(const sf::Vector2u& size);
 
             /*!
             \brief Removes a child from the element.

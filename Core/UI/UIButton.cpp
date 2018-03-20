@@ -36,7 +36,7 @@ namespace minish
             m_action->onAction();
     }
 
-	void UIButton::setSize(sf::Vector2u& size)
+	void UIButton::setSize(const sf::Vector2u& size)
 	{
 		UIElement::setSize(size);
 		m_vertices[0].position = sf::Vector2f(0, 0);

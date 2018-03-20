@@ -15,5 +15,5 @@ clean:
 	rm -f *.o *.a *.so
 
 objects: clean
-	g++ -fPIC -c -I. $(SRC_FILES)
+	g++ -fPIC -c -I. $(SRC_FILES) -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-system
 	$(eval OBJ_FILES := *.o)

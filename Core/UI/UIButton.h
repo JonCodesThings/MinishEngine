@@ -31,7 +31,7 @@ namespace minish
             */
             void onAction();
 
-			void setSize(sf::Vector2u& size);
+			void setSize(const sf::Vector2u& size);
 
             /*!
             \brief Bind's the action from the button.

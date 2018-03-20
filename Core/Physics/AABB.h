@@ -16,9 +16,9 @@ namespace minish
         /*!
         \brief Static class method that checks if there is a collision between two AABBs.
         */
-        static bool getAABBCollision(AABB& box1, AABB& box2);
+        static bool getAABBCollision(const AABB& box1, const AABB& box2);
 
-		static bool getAABBPointCollision(sf::Vector2f& point, AABB& box);
+		static bool getAABBPointCollision(const sf::Vector2f& point, const AABB& box);
     };
 }
 
