@@ -28,6 +28,8 @@ namespace minish
         	*/
             GraphicsComponent(sf::Texture& texture, sf::IntRect& texture_rect, sf::Vector2u& size);
 
+            virtual ~GraphicsComponent() {};
+
             /*!
         	\brief Class method that pauses the animation and puts it back to the first frame.
         	*/

@@ -16,12 +16,16 @@ namespace minish
             /*!
             \brief Virtual destructor.
             */
-            virtual ~PhysicsComponent();
+            virtual ~PhysicsComponent() {};
 
             /*!
             \brief Class method that returns the AABB.
             */
             const AABB& getAABB();
+
+            sf::Vector2f getPosition();
+
+            sf::Vector2u getSize();
 
             /*!
             \brief Class method that sets the AABB.

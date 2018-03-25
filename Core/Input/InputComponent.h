@@ -15,7 +15,7 @@ namespace minish
             /*!
             \brief Virtual destructor.
             */
-            virtual ~InputComponent();
+            virtual ~InputComponent() {};
     };
 }
 

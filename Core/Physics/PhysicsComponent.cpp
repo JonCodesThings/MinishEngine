@@ -7,6 +7,16 @@ namespace minish
         return m_AABB;
     }
 
+    sf::Vector2f PhysicsComponent::getPosition()
+    {
+        return sf::Vector2f(m_AABB.left, m_AABB.top);
+    }
+
+    sf::Vector2u PhysicsComponent::getSize()
+    {
+        return sf::Vector2u(m_AABB.width, m_AABB.height);
+    }
+
     void PhysicsComponent::setAABB(AABB& aabb)
     {
         m_AABB = aabb;

@@ -10,7 +10,7 @@ namespace minish
     */
     typedef sf::FloatRect AABB;
 
-    class Collision
+    class CollisionDetection
     {	
 	public:
         /*!
