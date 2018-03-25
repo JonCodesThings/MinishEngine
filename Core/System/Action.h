@@ -3,12 +3,14 @@
 
 namespace minish
 {
+    class InputManager;
     /*!
     * \brief Abstact class to handle actions. For more details see: http://gameprogrammingpatterns.com/command.html
     * \author Jonathan Duncanson
-    */
+    */    
     class Action
     {
+        friend class InputManager;
         public:
             /*!
             \brief Virtual destructor for abstract class.
