@@ -10,10 +10,10 @@ namespace minish
 		m_text.setFont(m_font);
     }
 
-	void UIText::render(sf::RenderWindow* hwnd, sf::RenderStates states)
+	void UIText::render(sf::RenderTarget& target, sf::RenderStates states)
 	{
-		hwnd->draw(m_text, states);
-		UIElement::render(hwnd, states);
+		target.draw(m_text, states);
+		UIElement::render(target, states);
 	}
 
 	void UIText::setTextSize(unsigned int size)

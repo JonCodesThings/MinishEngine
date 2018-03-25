@@ -34,11 +34,11 @@ namespace minish
         }
     }
 
-    void Entity::render(sf::RenderWindow* hwnd)
+    void Entity::render(sf::RenderTarget& target)
     {
         for (auto& component_ : m_components)
         {
-            component_->render(hwnd);
+            component_->render(target);
         }
     }
 

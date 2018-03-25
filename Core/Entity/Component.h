@@ -3,7 +3,7 @@
 
 namespace sf
 {
-	class RenderWindow;
+	class RenderTarget;
 }
 
 namespace minish
@@ -26,7 +26,7 @@ namespace minish
 			/*!
         	\brief Virtual class method called to render a component. Empty by default.
         	*/
-			virtual void render(sf::RenderWindow* hwnd) {};
+			virtual void render(sf::RenderTarget& target) {};
 
 			/*!
         	\brief Pure virtual class method called when a component is updated.

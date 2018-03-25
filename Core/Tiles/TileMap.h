@@ -1,3 +1,6 @@
+#ifndef MINISH_TILEMAP_H
+#define MINISH_TILEMAP_H
+
 #include <string>
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Transformable.hpp>
@@ -26,7 +29,7 @@ namespace minish
             /*!
             \brief Renders the tilemap.
             */
-            void render(sf::RenderWindow* hwnd);
+            void render(sf::RenderTarget& target);
 
             /*!
             \brief Sets the size of the tilemap.
@@ -106,3 +109,5 @@ namespace minish
             sf::VertexArray m_vertices;
     };
 }
+
+#endif

@@ -26,7 +26,7 @@ namespace minish
             /*!
         	\brief Class member that renders all components associated with the entity.
         	*/
-            void render(sf::RenderWindow* hwnd);
+            void render(sf::RenderTarget& target);
 
             /*!
         	\brief Class member that updates all components associated with the entity.

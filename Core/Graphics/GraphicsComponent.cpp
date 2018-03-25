@@ -15,9 +15,9 @@ namespace minish
         m_vertices.resize(4);
     }
 
-    void GraphicsComponent::render(sf::RenderWindow* hwnd)
+    void GraphicsComponent::render(sf::RenderTarget& target)
     {
-        hwnd->draw(*this);
+        target.draw(*this);
     }
 
     void GraphicsComponent::setSize(sf::Vector2u& size)

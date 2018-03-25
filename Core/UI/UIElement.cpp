@@ -48,14 +48,14 @@ namespace minish
     }
 
 
-    void UIElement::render(sf::RenderWindow* hwnd, sf::RenderStates states)
+    void UIElement::render(sf::RenderTarget& target, sf::RenderStates states)
     {
-        hwnd->draw(*this, states);
+        target.draw(*this, states);
 		states.transform *= getTransform();
 
         for (auto& child_ : m_children)
         {
-            child_->render(hwnd, states);
+            child_->render(target, states);
         }
     }
 

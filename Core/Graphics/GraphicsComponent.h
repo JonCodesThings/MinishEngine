@@ -33,7 +33,7 @@ namespace minish
             /*!
         	\brief Class method that pauses the animation and puts it back to the first frame.
         	*/
-            virtual void render(sf::RenderWindow* hwnd);
+            virtual void render(sf::RenderTarget& target);
 
             /*!
         	\brief Sets the size of the graphics component on screen.

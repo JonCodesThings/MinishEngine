@@ -77,9 +77,9 @@ namespace minish
         return m_generated;
     }
 
-    void TileMap::render(sf::RenderWindow* hwnd)
+    void TileMap::render(sf::RenderTarget& target)
     {
-        hwnd->draw(*this);
+        target.draw(*this);
     }
 
     void TileMap::setMapSize(const unsigned int tilemap_width, const unsigned int tilemap_height)

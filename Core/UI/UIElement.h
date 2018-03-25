@@ -41,7 +41,7 @@ namespace minish
             /*!
             \brief Renders an element and all of its children.
             */
-            virtual void render(sf::RenderWindow* hwnd, sf::RenderStates states=sf::RenderStates::Default);
+            virtual void render(sf::RenderTarget& target, sf::RenderStates states=sf::RenderStates::Default);
 
             /*!
             \brief Sets the size of the element.
