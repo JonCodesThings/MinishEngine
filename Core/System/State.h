@@ -1,6 +1,8 @@
 #ifndef MINISH_STATE_H
 #define MINISH_STATE_H
 
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <Core/Graphics/Frame.h>
 #include <Core/Input/InputManager.h>
 #include <string>
 
@@ -21,7 +23,7 @@ namespace minish
             /*!
             \brief Default constructor, passes in reference to window and string id for state switching purposes.
             */
-            State(sf::RenderWindow& hwnd, std::string& id, InputManager& input);
+            State(Frame& frame, std::string& id, InputManager& input);
 
             /*!
             \brief Default destructor, calls shutdown class method to free resources.
@@ -66,9 +68,9 @@ namespace minish
 		protected:
 
 			/*!
-			\brief Pointer to SFML window instance.
+			\brief Pointer to frame instance.
 			*/
-			sf::RenderWindow* m_hwnd;
+			Frame* m_frame;
 
 			InputManager* m_input;
         private:

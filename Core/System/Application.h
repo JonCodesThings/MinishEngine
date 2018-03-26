@@ -9,6 +9,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Clock.hpp>
 
+#include <Core/Graphics/Frame.h>
 #include "StateManager.h"
 #include "Subsystem.h"
 
@@ -22,9 +23,9 @@ namespace minish
     {
         public:
             /*!
-        	\brief Default constructor. Sets the number of threads, window dimensions and window title.
+        	\brief Default constructor. Sets the number of threads, window dimensions, target dimensions and window title.
         	*/  
-            Application(unsigned int thread_count, unsigned int window_width, unsigned int window_height, std::string app_title);
+            Application(unsigned int thread_count, const sf::Vector2u& window_dimensions, const sf::Vector2u& target_dimensions, std::string app_title);
 
             /*!
         	\brief Class member that adds a threadable subsystem.
@@ -74,6 +75,11 @@ namespace minish
         	\brief Application SFML window.
         	*/ 
             sf::RenderWindow m_wnd;
+
+            /*!
+        	\brief Application frame.
+        	*/ 
+            Frame m_frame;
 
 			/*!
 			\brief Gamestate manager.

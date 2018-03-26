@@ -6,12 +6,14 @@
 
 namespace minish
 {
-    Application::Application(unsigned int thread_count, unsigned int window_width, unsigned int window_height, std::string app_title) 
+    Application::Application(unsigned int thread_count, const sf::Vector2u& window_dimensions, const sf::Vector2u& target_dimensions, std::string app_title) 
     : 
     m_running(true), m_subsystemsync(0), m_threadsync(0)
     {
         m_threads.resize(thread_count - 1); //takes into account main execution thread
-        m_wnd.create(sf::VideoMode(window_width, window_height), app_title, sf::Style::Close);
+        m_wnd.create(sf::VideoMode(window_dimensions.x, window_dimensions.y), app_title, sf::Style::Close);
+        m_frame.init(target_dimensions, m_wnd);
+        m_frame.setPosition(0, 0);
     }
 
     void Application::addThreadableSubsystem(Subsystem& subsystem)
@@ -110,12 +112,15 @@ namespace minish
 
     void Application::post_render()
     {
+        m_frame.post_render();
+        m_wnd.draw(m_frame);
 		m_wnd.display();
     }
 
     void Application::pre_render()
     {   
 		m_wnd.clear(sf::Color::Black);
+        m_frame.pre_render();
     }
 
     void Application::toggleSubsystemFlags()
