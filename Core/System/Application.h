@@ -136,7 +136,11 @@ namespace minish
         	\brief Variables used to sync threads and subsystems.
         	*/
             int m_threadsync, m_subsystemsync;
-            
+
+            /*!
+        	\brief Variables used for multi-resolution support.
+        	*/
+            float m_target_aspect_ratio;
     };
 }
 

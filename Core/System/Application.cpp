@@ -1,6 +1,7 @@
 #include "Application.h"
 
 #include <chrono>
+#include <iostream>
 
 #include <SFML/Window/Event.hpp>
 
@@ -8,12 +9,26 @@ namespace minish
 {
     Application::Application(unsigned int thread_count, const sf::Vector2u& window_dimensions, const sf::Vector2u& target_dimensions, std::string app_title) 
     : 
-    m_running(true), m_subsystemsync(0), m_threadsync(0)
+    m_running(true), m_subsystemsync(0), m_threadsync(0), m_target_aspect_ratio(((float)target_dimensions.x / (float)target_dimensions.y))
     {
         m_threads.resize(thread_count - 1); //takes into account main execution thread
         m_wnd.create(sf::VideoMode(window_dimensions.x, window_dimensions.y), app_title, sf::Style::Close);
         m_frame.init(target_dimensions, m_wnd);
-        m_frame.setPosition(0, 0);
+        if (window_dimensions == target_dimensions)
+        {
+            m_frame.setPosition(0, 0);
+        }
+        else if (((float)window_dimensions.x / (float)window_dimensions.y) == m_target_aspect_ratio)
+        {
+            m_frame.setPosition(0, 0);
+            std::cout << "dank memes" << std::endl;
+            std::cout << ((float)window_dimensions.x / (float)target_dimensions.x) << std::endl;
+            m_frame.setScale(((float)window_dimensions.x / (float)target_dimensions.x), ((float)window_dimensions.y / (float)target_dimensions.y));
+        }
+        else
+        {
+            m_frame.setPosition(0, 0);
+        }
     }
 
     void Application::addThreadableSubsystem(Subsystem& subsystem)
