@@ -21,13 +21,28 @@ namespace minish
         else if (((float)window_dimensions.x / (float)window_dimensions.y) == m_target_aspect_ratio)
         {
             m_frame.setPosition(0, 0);
-            std::cout << "dank memes" << std::endl;
-            std::cout << ((float)window_dimensions.x / (float)target_dimensions.x) << std::endl;
             m_frame.setScale(((float)window_dimensions.x / (float)target_dimensions.x), ((float)window_dimensions.y / (float)target_dimensions.y));
         }
         else
         {
-            m_frame.setPosition(0, 0);
+            float actual_aspect = ((float)window_dimensions.x / (float)window_dimensions.y);
+            if (actual_aspect > m_target_aspect_ratio)
+            {
+                if (actual_aspect < 1.59f)
+                {
+                    float x_pos = ((float)window_dimensions.x - ((float)window_dimensions.y * (float)4/3)) / 2;
+                    m_frame.setPosition(x_pos, 0);
+                }
+                else
+                {
+                    float y_pos = ((float)window_dimensions.y - ((float)window_dimensions.x * m_target_aspect_ratio)) /2;
+                    m_frame.setPosition(0, y_pos);
+                }
+            }
+            else
+            {
+               //TODO
+            }
         }
     }
 
