@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include <SFML/Window/Event.hpp>
+#include <SFML/Window/VideoMode.hpp>
 
 namespace minish
 {
@@ -78,12 +79,12 @@ namespace minish
         while(m_running)
         {
             toggleSubsystemFlags();
-            m_running = update(m_deltaTimer.getElapsedTime().asSeconds());
+            m_running = update(m_dt);
             syncThreads();
 			pre_render();
             render();
 			post_render();
-            m_deltaTimer.restart();
+            m_dt = m_deltaTimer.restart().asSeconds();
 
             sf::Event ev;
             if (m_wnd.pollEvent(ev) && ev.type == sf::Event::Closed)
@@ -108,7 +109,7 @@ namespace minish
                 m_subsystemsync++;
                 m_subsystem_mutex.unlock();
                 if (subsystem)
-                    subsystem->update(m_deltaTimer.getElapsedTime().asSeconds());
+                    subsystem->update(m_dt);
             }
             else
             {

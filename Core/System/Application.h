@@ -138,9 +138,9 @@ namespace minish
             int m_threadsync, m_subsystemsync;
 
             /*!
-        	\brief Variables used for multi-resolution support.
+        	\brief Variables used for multi-resolution support and to store deltatime.
         	*/
-            float m_target_aspect_ratio;
+            float m_target_aspect_ratio, m_dt;
     };
 }
 
