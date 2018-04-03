@@ -6,6 +6,8 @@
 
 namespace minish
 {
+    static int ENTITY_COUNT = 0;
+
     /*!
     * \brief Class to represent Entities with Components.
     * \author Jonathan Duncanson
@@ -13,31 +15,27 @@ namespace minish
     class Entity
     {
         public:
+            Entity();
             /*!
         	\brief Class member that adds a component to the entity.
         	*/
             void addComponent(Component* component);
 
+            const DataComponent& getDataComponent();
+
+            const unsigned int getID();
+
             /*!
         	\brief Class member that removes a component from the entity.
         	*/
             void removeComponent(Component* component);
-
-            /*!
-        	\brief Class member that renders all components associated with the entity.
-        	*/
-            void render(sf::RenderTarget& target);
-
-            /*!
-        	\brief Class member that updates all components associated with the entity.
-        	*/
-            void update(const float dt);
         private:
             /*!
         	\brief Array of pointers to components associated with the entity.
         	*/
             Component* m_components[4] { nullptr };
             DataComponent m_data;
+            unsigned int m_id;
     };
 }
 

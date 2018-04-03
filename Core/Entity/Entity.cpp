@@ -2,6 +2,11 @@
 
 namespace minish
 {
+    Entity::Entity() : m_id(ENTITY_COUNT)
+    {
+        ENTITY_COUNT++;
+    }
+
     void Entity::addComponent(Component* component)
     {
         for (auto component_ : m_components)
@@ -11,7 +16,7 @@ namespace minish
                 return;
             }
         }
-        for (auto component_ : m_components)
+        for (auto& component_ : m_components)
         {
             if (component_ == nullptr)
             {
@@ -22,31 +27,25 @@ namespace minish
         return;
     }
 
+    const unsigned int Entity::getID()
+    {
+        return m_id;
+    }
+
+    const DataComponent& Entity::getDataComponent()
+    {
+        return m_data;
+    }
+
     void Entity::removeComponent(Component* component)
     {
-        for (auto component_ : m_components)
+        for (auto& component_ : m_components)
         {
             if (component_ == component)
             {
                 component_ = nullptr;
                 return;
             }
-        }
-    }
-
-    void Entity::render(sf::RenderTarget& target)
-    {
-        for (auto& component_ : m_components)
-        {
-            component_->render(target);
-        }
-    }
-
-    void Entity::update(const float dt)
-    {
-        for (auto& component_ : m_components)
-        {
-            component_->update(dt);
         }
     }
 }

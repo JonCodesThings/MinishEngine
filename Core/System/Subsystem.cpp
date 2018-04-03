@@ -32,7 +32,7 @@ namespace minish
             do 
             {
                 std::this_thread::sleep_for(std::chrono::microseconds(10));
-            } while (dependency->getSubsystemState() != NOT_UPDATED);
+            } while (dependency->getSubsystemState() != SUBSYSTEM_STATE::NOT_UPDATED);
         }
         updateSubsystem(dt);
         m_state = SUBSYSTEM_STATE::UPDATED;

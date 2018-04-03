@@ -53,7 +53,7 @@ namespace minish
             /*!
         	\brief Stores the state of the subsystem.
         	*/
-            SUBSYSTEM_STATE m_state = NOT_UPDATED;
+            SUBSYSTEM_STATE m_state = SUBSYSTEM_STATE::NOT_UPDATED;
 
             /*!
         	\brief A list of the subsystem's dependencies.
