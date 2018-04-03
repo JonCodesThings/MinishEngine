@@ -21,11 +21,12 @@ namespace minish
 
     void Subsystem::resetSubsystemState()
     {
-        m_state = NOT_UPDATED;
+        m_state = SUBSYSTEM_STATE::NOT_UPDATED;
     }
 
     void Subsystem::update(const float dt)
     {
+        m_state = SUBSYSTEM_STATE::UPDATING;
         for (auto dependency : m_dependencies)
         {
             do 
@@ -34,5 +35,6 @@ namespace minish
             } while (dependency->getSubsystemState() != NOT_UPDATED);
         }
         updateSubsystem(dt);
+        m_state = SUBSYSTEM_STATE::UPDATED;
     }
 }

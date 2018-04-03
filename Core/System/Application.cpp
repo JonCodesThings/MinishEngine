@@ -105,7 +105,6 @@ namespace minish
                 Subsystem* subsystem = nullptr;
                 m_subsystem_mutex.lock();
                 subsystem = getNextSubsystem();
-                subsystem->toggleUpdateFlag();
                 m_subsystemsync++;
                 m_subsystem_mutex.unlock();
                 if (subsystem)
@@ -134,7 +133,7 @@ namespace minish
     {
         for (auto& subsystem_ : m_subsystems)
         {
-            if (!subsystem_->getUpdateFlag())
+            if (subsystem_->getSubsystemState() == SUBSYSTEM_STATE::NOT_UPDATED)
             {
                 return subsystem_;
             }
@@ -158,7 +157,7 @@ namespace minish
     {
         for (auto& subsystem_ : m_subsystems)
         {
-            subsystem_->toggleUpdateFlag();
+            subsystem_->resetSubsystemState();
         }
     }
 }
