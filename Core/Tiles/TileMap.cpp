@@ -50,7 +50,7 @@ namespace minish
 
         for (int width = 0; width < m_map_size.x; width++)
         {
-            for (int height = 0; height < m_map_size.y; height)
+            for (int height = 0; height < m_map_size.y; height++)
             {
                 Tile* tile_data = m_tileset.getTile(m_tilemap.at(width + height * m_map_size.x));
 
