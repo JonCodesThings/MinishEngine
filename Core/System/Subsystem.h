@@ -23,7 +23,7 @@ namespace minish
             /*!
         	\brief Virtual destructor.
         	*/
-            virtual ~Subsystem();
+            virtual ~Subsystem() {};
 
             void addDependency(Subsystem& dependency);
 

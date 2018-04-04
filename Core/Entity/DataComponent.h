@@ -1,12 +1,24 @@
 #ifndef MINISH_DATACOMPONENT_H
 #define MINISH_DATACOMPONENT_H
 
+#include <string>
 #include <unordered_map>
 
 #include "Component.h"
 
 namespace minish
 {
+    union Data
+    {
+        int integer;
+        float floating_point;
+        double double_precision;
+        bool boolean;
+        char character;
+        void* custom_data;
+    };
+
+
     /*!
     * \brief Class to store Entity data.
     * \author Jonathan Duncanson
@@ -17,12 +29,12 @@ namespace minish
             /*!
         	\brief Class member that returns data from the component. Returns nullptr if there is no data for the requested id.
         	*/
-            void* getData(std::string data_id);
+            Data getData(std::string data_id);
 
             /*!
         	\brief Class member that sets the data value in the requested id.
         	*/
-            void setData(std::string data_id, void* data);
+            void setData(std::string data_id, Data& data);
 
             /*!
         	\brief Dummy class member that does nothing.
@@ -32,7 +44,7 @@ namespace minish
             /*!
         	\brief Unordered map to store the data in.
         	*/
-            std::unordered_map<std::string, void*> m_data;
+            std::unordered_map<std::string, Data> m_data;
     };
 }
 

@@ -36,7 +36,7 @@ namespace minish
 			/*!
         	\brief Sets the entity the component is attached to.
         	*/
-			void setEntity(Entity* entity);
+			virtual void setEntity(Entity* entity);
 
 			/*!
         	\brief Pointer to the component's entity.

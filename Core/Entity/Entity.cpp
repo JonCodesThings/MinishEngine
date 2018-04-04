@@ -32,7 +32,7 @@ namespace minish
         return m_id;
     }
 
-    const DataComponent& Entity::getDataComponent()
+    DataComponent& Entity::getDataComponent()
     {
         return m_data;
     }

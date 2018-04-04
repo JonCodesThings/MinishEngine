@@ -2,19 +2,20 @@
 
 namespace minish
 {
-    const sf::Texture* TextureManager::getTexture(std::string& name)
+    sf::Texture& TextureManager::getTexture(std::string& name)
     {
         std::unordered_map<std::string, sf::Texture>::iterator it = m_textures.find(name);
 
         if (it == m_textures.end())
         {
-            return nullptr;
+            sf::Texture texture;
+            return texture;
         }
 
-        return &m_textures[name];
+        return m_textures[name];
     }
 
-    bool TextureManager::loadTexture(std::string& name, std::string& filepath)
+    bool TextureManager::loadTexture(std::string& name, std::string filepath)
     {
         std::unordered_map<std::string, sf::Texture>::iterator it = m_textures.find(name);
 

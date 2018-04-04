@@ -21,7 +21,7 @@ namespace minish
         	*/
             void addComponent(Component* component);
 
-            const DataComponent& getDataComponent();
+            DataComponent& getDataComponent();
 
             const unsigned int getID();
 

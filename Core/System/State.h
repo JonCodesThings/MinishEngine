@@ -23,7 +23,7 @@ namespace minish
             /*!
             \brief Default constructor, passes in reference to window and string id for state switching purposes.
             */
-            State(Frame& frame, std::string& id, InputManager& input);
+            State(minish::Frame& frame, std::string id, InputManager& input);
 
             /*!
             \brief Default destructor, calls shutdown class method to free resources.
@@ -70,7 +70,7 @@ namespace minish
 			/*!
 			\brief Pointer to frame instance.
 			*/
-			Frame* m_frame;
+		    Frame* m_frame;
 
 			InputManager* m_input;
         private:

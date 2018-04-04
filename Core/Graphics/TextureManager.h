@@ -17,12 +17,12 @@ namespace minish
             /*!
         	\brief Class method that gets a texture from storage by name.
         	*/
-            const sf::Texture* getTexture(std::string& name);
+            sf::Texture& getTexture(std::string& name);
 
             /*!
         	\brief Class method that loads and stores a texture by name.
         	*/
-            bool loadTexture(std::string& name, std::string& filepath);
+            bool loadTexture(std::string& name, std::string filepath);
 
             /*!
         	\brief Class method that removes a texture from memory.

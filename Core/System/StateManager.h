@@ -6,7 +6,7 @@
 
 namespace sf
 {
-    class RenderWindow;
+    class RenderTarget;
 }
 
 namespace minish
