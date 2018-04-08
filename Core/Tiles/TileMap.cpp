@@ -48,9 +48,9 @@ namespace minish
 
         m_AABB.reserve(AABB_count);
 
-        for (int width = 0; width < m_map_size.x; width++)
+        for (int height = 0; height < m_map_size.x; height++)
         {
-            for (int height = 0; height < m_map_size.y; height++)
+            for (int width = 0; width < m_map_size.y; width++)
             {
                 Tile* tile_data = m_tileset.getTile(m_tilemap.at(width + height * m_map_size.x));
 
@@ -75,6 +75,11 @@ namespace minish
 
         m_generated = true;
         return m_generated;
+    }
+
+    std::vector<sf::FloatRect>& TileMap::getAABBs()
+    {
+        return m_AABB;
     }
 
     void TileMap::render(sf::RenderTarget& target)

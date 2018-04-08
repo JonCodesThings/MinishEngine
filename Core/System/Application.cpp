@@ -122,11 +122,14 @@ namespace minish
     {
         if (m_threadsync < m_threads.size() + 1) //takes into account main execution thread
         {
-            std::this_thread::yield();
             m_sync_mutex.lock();
             m_threadsync++;
             m_sync_mutex.unlock();
         }
+        do
+        {
+            std::this_thread::yield();
+        } while (m_threadsync < m_threads.size() + 1);
     }
 
     Subsystem* Application::getNextSubsystem()

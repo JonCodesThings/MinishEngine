@@ -26,6 +26,8 @@ namespace minish
             */
             bool generateTileMap();
 
+            std::vector<sf::FloatRect>& getAABBs();
+
             /*!
             \brief Renders the tilemap.
             */
