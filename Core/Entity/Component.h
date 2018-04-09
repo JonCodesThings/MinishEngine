@@ -23,6 +23,8 @@ namespace minish
         	*/
 			virtual ~Component();
 
+			Entity* const getEntity();
+
 			/*!
         	\brief Virtual class method called to render a component. Empty by default.
         	*/
