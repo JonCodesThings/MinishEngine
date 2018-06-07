@@ -10,7 +10,7 @@ namespace minish
 {
     Application::Application(unsigned int thread_count, const sf::Vector2u& window_dimensions, const sf::Vector2u& target_dimensions, std::string app_title) 
     : 
-    m_running(true), m_subsystemsync(0), m_threadsync(0), m_target_aspect_ratio(((float)target_dimensions.x / (float)target_dimensions.y))
+    m_running(true), m_tasksync(0), m_threadsync(0), m_target_aspect_ratio(((float)target_dimensions.x / (float)target_dimensions.y))
     {
         m_threads.resize(thread_count - 1); //takes into account main execution thread
         m_wnd.create(sf::VideoMode(window_dimensions.x, window_dimensions.y), app_title, sf::Style::Close);
@@ -47,26 +47,26 @@ namespace minish
         }
     }
 
-    void Application::addThreadableSubsystem(Subsystem& subsystem)
+    void Application::addTask(Task& task)
     {
-        for (auto& subsystem_ : m_subsystems)
+        for (auto& task_ : m_tasks)
         {
-            if (subsystem_ == &subsystem)
+            if (task_ == &task)
             {
                 return;
             }
         }
-        m_subsystems.push_front(&subsystem);
+        m_tasks.push_front(&task);
     }
 
-    void Application::removeThreadableSubsystem(Subsystem& subsystem)
+    void Application::removeTask(Task& task)
     {
-        std::forward_list<Subsystem*>::iterator it;
-        while (it != m_subsystems.end())
+        std::forward_list<Task*>::iterator it;
+        while (it != m_tasks.end())
         {
-            if (*it == &subsystem)
+            if (*it == &task)
             {
-                m_subsystems.erase_after(it);
+                m_tasks.erase_after(it);
                 return;
             }
         }
@@ -78,7 +78,7 @@ namespace minish
         m_deltaTimer.restart();
         while(m_running)
         {
-            toggleSubsystemFlags();
+            toggleTaskFlags();
             m_running = update(m_dt);
             syncThreads();
 			pre_render();
@@ -96,19 +96,19 @@ namespace minish
         shutdown();
     }
 
-    void Application::syncSubsystems()
+    void Application::syncTasks()
     {
         while(m_running)
         {
-            if (m_subsystemsync < std::distance(m_subsystems.begin(), m_subsystems.end()))
+            if (m_tasksync < std::distance(m_tasks.begin(), m_tasks.end()))
             {
-                Subsystem* subsystem = nullptr;
-                m_subsystem_mutex.lock();
-                subsystem = getNextSubsystem();
-                m_subsystemsync++;
-                m_subsystem_mutex.unlock();
-                if (subsystem)
-                    subsystem->update(m_dt);
+                Task* task = nullptr;
+                m_task_mutex.lock();
+                task = getNextTask();
+                m_tasksync++;
+                m_task_mutex.unlock();
+                if (task)
+                    task->update(m_dt);
             }
             else
             {
@@ -132,13 +132,13 @@ namespace minish
         } while (m_threadsync < m_threads.size() + 1);
     }
 
-    Subsystem* Application::getNextSubsystem()
+    Task* Application::getNextTask()
     {
-        for (auto& subsystem_ : m_subsystems)
+        for (auto& task_ : m_tasks)
         {
-            if (subsystem_->getSubsystemState() == SUBSYSTEM_STATE::NOT_UPDATED)
+            if (task_->getTaskState() == TASK_STATE::NOT_UPDATED)
             {
-                return subsystem_;
+                return task_;
             }
         }
     }
@@ -156,11 +156,11 @@ namespace minish
         m_frame.pre_render();
     }
 
-    void Application::toggleSubsystemFlags()
+    void Application::toggleTaskFlags()
     {
-        for (auto& subsystem_ : m_subsystems)
+        for (auto& task_ : m_tasks)
         {
-            subsystem_->resetSubsystemState();
+            task_->resetTaskState();
         }
     }
 }

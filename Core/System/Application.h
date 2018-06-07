@@ -11,7 +11,7 @@
 
 #include <Core/Graphics/Frame.h>
 #include "StateManager.h"
-#include "Subsystem.h"
+#include "Task.h"
 
 namespace minish
 {
@@ -30,12 +30,12 @@ namespace minish
             /*!
         	\brief Class member that adds a threadable subsystem.
         	*/  
-            void addThreadableSubsystem(Subsystem& subsystem);
+            void addTask(Task& task);
 
             /*!
         	\brief Class member that removes a threadable subsystem.
         	*/  
-            void removeThreadableSubsystem(Subsystem& subsystem);
+            void removeTask(Task& task);
 
             /*!
         	\brief Pure virtual class member for rendering.
@@ -63,9 +63,9 @@ namespace minish
             virtual bool update(const float dt) = 0;
         protected:
             /*!
-        	\brief Class member that runs update functions on threadable subsystems and makes sure all subsystems are updated.
+        	\brief Class member that runs update functions on threadable tasks and makes sure all tasks are updated.
         	*/ 
-            void syncSubsystems();
+            void syncTasks();
             /*!
         	\brief Class member that makes sure all threads are synced. Also known as a barrier.
         	*/ 
@@ -90,7 +90,7 @@ namespace minish
             /*!
         	\brief Returns the next subsystem that requires updating.
         	*/ 
-            Subsystem* getNextSubsystem();
+            Task* getNextTask();
 
             /*!
         	\brief Class member that is called after render().
@@ -105,12 +105,12 @@ namespace minish
             /*!
         	\brief Class member that toggles all subsystem update flags.
         	*/
-            void toggleSubsystemFlags();
+            void toggleTaskFlags();
 
             /*!
         	\brief Mutexes used to handle threading related issues.
         	*/
-            std::mutex m_sync_mutex, m_subsystem_mutex;
+            std::mutex m_sync_mutex, m_task_mutex;
 
             /*!
         	\brief Application threads.
@@ -118,9 +118,9 @@ namespace minish
             std::vector<std::thread*> m_threads;
 
             /*!
-        	\brief Singly linked list of subsystems.
+        	\brief Singly linked list of tasks.
         	*/
-            std::forward_list<Subsystem*> m_subsystems;
+            std::forward_list<Task*> m_tasks;
 
             /*!
         	\brief Timer used to measure delta time.
@@ -135,7 +135,7 @@ namespace minish
             /*!
         	\brief Variables used to sync threads and subsystems.
         	*/
-            int m_threadsync, m_subsystemsync;
+            int m_threadsync, m_tasksync;
 
             /*!
         	\brief Variables used for multi-resolution support and to store deltatime.
