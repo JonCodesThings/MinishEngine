@@ -1,6 +1,7 @@
 #ifndef MINISH_GRAPHICSCOMPONENT_H
 #define MINISH_GRAPHICSCOMPONENT_H
 
+#include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Transformable.hpp>
 #include <SFML/Graphics/VertexArray.hpp>
@@ -36,6 +37,11 @@ namespace minish
             virtual void render(sf::RenderTarget& target);
 
             /*!
+        	\brief Class method that sets the color of the component.
+        	*/
+            void setColor(sf::Color& color);
+
+            /*!
         	\brief Sets the size of the graphics component on screen.
         	*/
             void setSize(sf::Vector2u& size);
@@ -69,6 +75,11 @@ namespace minish
         	\brief Pointer to the component's texture.
         	*/
             sf::Texture* m_texture;
+
+            /*!
+            \brief The color of the component.
+            */
+            sf::Color m_color;
 
             /*!
         	\brief The texture rect of the component.

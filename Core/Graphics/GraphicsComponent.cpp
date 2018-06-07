@@ -20,9 +20,16 @@ namespace minish
         target.draw(*this);
     }
 
+    void GraphicsComponent::setColor(sf::Color& color)
+    {
+        m_color = color;
+        m_update_flag = true;
+    }
+
     void GraphicsComponent::setSize(sf::Vector2u& size)
     {
         m_size = size;
+        m_update_flag = true;
     }
 
     void GraphicsComponent::setTexture(sf::Texture& texture)
@@ -50,6 +57,13 @@ namespace minish
             m_vertices[1].texCoords = sf::Vector2f(m_texture_rect.left + m_texture_rect.width, m_texture_rect.top);
             m_vertices[2].texCoords = sf::Vector2f(m_texture_rect.left + m_texture_rect.width, m_texture_rect.top + m_texture_rect.height);
             m_vertices[3].texCoords = sf::Vector2f(m_texture_rect.left, m_texture_rect.top + m_texture_rect.height);
+
+            m_vertices[0].color = m_color;
+            m_vertices[1].color = m_color;
+            m_vertices[2].color = m_color;
+            m_vertices[3].color = m_color;
+
+            m_update_flag = false;
         };
     }
 
