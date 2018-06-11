@@ -13,8 +13,8 @@ namespace minish
 		return m_entity;
 	}
 
-	void Component::setEntity(Entity* entity)
+	void Component::setEntity(Entity& entity)
 	{
-		m_entity = entity;
+		m_entity = &entity;
 	}
 }

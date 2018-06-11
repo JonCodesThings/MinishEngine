@@ -8,6 +8,7 @@ namespace minish
 
     enum class TASK_STATE
     {
+        UNINITIALIZED,
         NOT_UPDATED,
         UPDATING,
         UPDATED,
@@ -15,6 +16,8 @@ namespace minish
         ABORTED,
         FAILED
     };
+
+    class Application;
 
     /*!
     * \brief Abstract class used for task based parallelism.
@@ -27,6 +30,11 @@ namespace minish
         	\brief Virtual destructor.
         	*/
             virtual ~Task() {};
+
+            /*!
+            \brief Pure virtual class method to initialise the task and create any child tasks.
+            */
+            virtual void init(Application& application) = 0;
 
             /*!
         	\brief Class member that returns the status of the task.
@@ -52,7 +60,7 @@ namespace minish
             /*!
         	\brief Stores the state of the task.
         	*/
-           TASK_STATE m_state = TASK_STATE::NOT_UPDATED;
+           TASK_STATE m_state = TASK_STATE::UNINITIALIZED;
 
             /*!
         	\brief A list of the task's children.

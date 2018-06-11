@@ -1,5 +1,7 @@
 #include "Task.h"
 
+#include "Core/System/Application.h"
+
 namespace minish
 {
     TASK_STATE Task::getTaskState()
