@@ -23,9 +23,9 @@ namespace minish
             */
             const AABB& getAABB();
 
-            sf::Vector2f getPosition();
+            const sf::Vector2f& getPosition();
 
-            sf::Vector2u getSize();
+            const sf::Vector2u& getSize();
 
             /*!
             \brief Class method that sets the AABB.
@@ -41,11 +41,17 @@ namespace minish
             \brief Class method that sets the size of the AABB.
             */
             void setSize(sf::Vector2u& size);
+
+            virtual void update(const float dt) {};
         protected:
             /*!
             \brief AABB rect.
             */
             AABB m_AABB;
+
+            sf::Vector2f m_position;
+            
+            sf::Vector2u m_size;
     };
 }
 
