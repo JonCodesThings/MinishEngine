@@ -10,7 +10,6 @@ namespace minish
     */    
     class Action
     {
-        friend class InputManager;
         public:
             /*!
             \brief Virtual destructor for abstract class.
