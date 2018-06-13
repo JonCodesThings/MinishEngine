@@ -23,14 +23,20 @@ namespace minish
             */
             const AABB& getAABB();
 
+            const sf::Vector2f& getAcceleration();
+
             const sf::Vector2f& getPosition();
 
             const sf::Vector2u& getSize();
+
+            const sf::Vector2f& getVelocity();
 
             /*!
             \brief Class method that sets the AABB.
             */
             void setAABB(AABB& aabb);
+
+            void setAcceleration(sf::Vector2f& acceleration);
 
             /*!
             \brief Class method that sets the position of the AABB.
@@ -42,14 +48,16 @@ namespace minish
             */
             void setSize(sf::Vector2u& size);
 
-            virtual void update(const float dt) {};
+            void setVelocity(sf::Vector2f& velocity);
+
+            virtual void update(const float dt);
         protected:
             /*!
             \brief AABB rect.
             */
             AABB m_AABB;
 
-            sf::Vector2f m_position;
+            sf::Vector2f m_acceleration, m_position, m_velocity;
             
             sf::Vector2u m_size;
     };
