@@ -2,9 +2,22 @@ PROJECT_OUT := minish
 SRC_FILES := $(wildcard */*/*.cpp)
 OBJ_FILES = $(wildcard *.o)
 
-all: static dynamic
+COMPILER = g++
+COMPILER_FLAGS = -Wall
+LINKER_FLAGS = -fPIC -Wall -c
+INCLUDE = .
+VPATH = Core/Audio/ Core/Entity/ Core/Graphics/ Core/Input/ Core/Physics/ Core/System/ Core/Tiles/
 
-static: objects
+%.o : %.cpp
+	$(COMPILER) $(COMPILER_FLAGS) $< -c -I$(INCLUDE)
+
+all: $(PROJECT_OUT)
+
+$(PROJECT_OUT) : $(patsubst %.cpp, %.o, $(wildcard */*/*.cpp))
+	ar rcs $(PROJECT_OUT).a *.o
+	rm -f *.o
+
+static: $(OBJ_FILES)
 	ar rcs $(PROJECT_OUT).a $(OBJ_FILES)
 
 dynamic: objects
@@ -13,7 +26,3 @@ dynamic: objects
 .PHONY: clean objects
 clean:
 	rm -f *.o *.a *.so
-
-objects: clean
-	g++ -fPIC -c -I. $(SRC_FILES) -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-system
-	$(eval OBJ_FILES := *.o)
