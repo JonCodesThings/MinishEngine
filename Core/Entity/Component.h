@@ -1,10 +1,7 @@
 #ifndef MINISH_COMPONENT_H
 #define MINISH_COMPONENT_H
 
-namespace sf
-{
-	class RenderTarget;
-}
+#include "Core/Graphics/Frame.h"
 
 namespace minish
 {
