@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 
+#include "Core/Entity/Entity.h"
+
 namespace minish
 {
     GraphicsComponent::GraphicsComponent() : m_update_flag(true), m_texture(nullptr), m_texture_rect(), m_size(1, 1)
@@ -62,6 +64,11 @@ namespace minish
             m_vertices[1].color = m_color;
             m_vertices[2].color = m_color;
             m_vertices[3].color = m_color;
+
+            getEntity()->getDataComponent().setData("graphics_color", m_color);
+            getEntity()->getDataComponent().setData("graphics_size", m_size);
+            getEntity()->getDataComponent().setData("graphics_texture", m_texture);
+            getEntity()->getDataComponent().setData("graphics_texture_rect", m_texture_rect);
 
             m_update_flag = false;
         };
