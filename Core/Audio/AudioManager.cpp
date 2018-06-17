@@ -32,7 +32,7 @@ namespace minish
     {
         std::unordered_map<std::string, std::string>::iterator it = m_music.find(name);
 
-        if (!m_music_player.Playing && it == m_music.end())
+        if (!(m_music_player.getStatus() == sf::SoundSource::Status::Playing) && it == m_music.end())
         {
             m_music_player.stop();
             m_music_player.openFromFile(m_music[name]);
@@ -41,7 +41,7 @@ namespace minish
 
     void AudioManager::playSound(std::string& name)
     {
-        std::unordered_map<std::string, sf::SoundBuffer>::iterator it = m_buffers.find(name);
+        //std::unordered_map<std::string, sf::SoundBuffer>::iterator it = m_buffers.find(name);
 
         for (auto& sound_ : m_sound_player)
         {

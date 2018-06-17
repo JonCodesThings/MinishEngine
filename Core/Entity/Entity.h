@@ -6,8 +6,6 @@
 
 namespace minish
 {
-    static int ENTITY_COUNT = 0;
-
     /*!
     * \brief Class to represent Entities with Components.
     * \author Jonathan Duncanson
@@ -36,6 +34,8 @@ namespace minish
             Component* m_components[4] { nullptr };
             DataComponent m_data;
             unsigned int m_id;
+
+            static unsigned int ENTITY_COUNT;
     };
 }
 

@@ -34,7 +34,8 @@ namespace minish
             /*!
         	\brief Class member that sets the data value in the requested id.
         	*/
-            void setData(std::string data_id, Data& data);
+            template <class T>
+            void setData(std::string data_id, T& data);
 
             /*!
         	\brief Dummy class member that does nothing.
@@ -46,6 +47,21 @@ namespace minish
         	*/
             std::unordered_map<std::string, Data> m_data;
     };
+
+    template<>
+    void DataComponent::setData<int>(std::string data_id, int& data);
+
+    template<>
+    void DataComponent::setData<float>(std::string data_id, float& data);
+
+    template<>
+    void DataComponent::setData<double>(std::string data_id, double& data);
+
+    template<>
+    void DataComponent::setData<bool>(std::string data_id, bool& data);
+
+    template<>
+    void DataComponent::setData<char>(std::string data_id, char& data);
 }
 
 #endif

@@ -62,7 +62,7 @@ namespace minish
             setControllerAxisStates();
 
             //checks for any changes in button states and updates the button states as needed
-            for (int button = 0; button < sf::Joystick::getButtonCount(0); button++)
+            for (unsigned int button = 0; button < sf::Joystick::getButtonCount(0); button++)
             {
 				m_prev_controller_buttons[button] = m_controller_buttons[button];
 

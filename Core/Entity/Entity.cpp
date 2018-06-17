@@ -2,6 +2,8 @@
 
 namespace minish
 {
+    unsigned int Entity::ENTITY_COUNT = 0;
+
     Entity::Entity() : m_id(ENTITY_COUNT)
     {
         ENTITY_COUNT++;

@@ -135,7 +135,7 @@ namespace minish
             /*!
         	\brief Variables used to sync threads and subsystems.
         	*/
-            int m_threadsync, m_tasksync;
+            unsigned int m_threadsync, m_tasksync;
 
             /*!
         	\brief Variables used for multi-resolution support and to store deltatime.

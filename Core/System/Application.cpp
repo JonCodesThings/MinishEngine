@@ -10,7 +10,7 @@ namespace minish
 {
     Application::Application(unsigned int thread_count, const sf::Vector2u& window_dimensions, const sf::Vector2u& target_dimensions, std::string app_title) 
     : 
-    m_running(true), m_tasksync(0), m_threadsync(0), m_target_aspect_ratio(((float)target_dimensions.x / (float)target_dimensions.y))
+    m_running(true), m_threadsync(0), m_tasksync(0), m_target_aspect_ratio(((float)target_dimensions.x / (float)target_dimensions.y))
     {
         m_threads.resize(thread_count - 1); //takes into account main execution thread
         m_wnd.create(sf::VideoMode(window_dimensions.x, window_dimensions.y), app_title, sf::Style::Close);
@@ -142,6 +142,7 @@ namespace minish
                 return task_;
             }
         }
+        return nullptr;
     }
 
     void Application::post_render()

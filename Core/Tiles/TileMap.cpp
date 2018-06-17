@@ -48,9 +48,9 @@ namespace minish
 
         m_AABB.reserve(AABB_count);
 
-        for (int height = 0; height < m_map_size.x; height++)
+        for (unsigned int height = 0; height < m_map_size.x; height++)
         {
-            for (int width = 0; width < m_map_size.y; width++)
+            for (unsigned int width = 0; width < m_map_size.y; width++)
             {
                 Tile* tile_data = m_tileset.getTile(m_tilemap.at(width + height * m_map_size.x));
 

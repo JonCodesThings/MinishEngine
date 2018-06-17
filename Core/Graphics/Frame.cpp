@@ -45,7 +45,7 @@ namespace minish
         m_vertices[1].texCoords = sf::Vector2f(m_frame.getSize().x, 0);
         m_vertices[2].texCoords = sf::Vector2f(m_frame.getSize().x, m_frame.getSize().y);
         m_vertices[3].texCoords = sf::Vector2f(0, m_frame.getSize().y);
-
+        return true;
     }
 
     void Frame::post_render()

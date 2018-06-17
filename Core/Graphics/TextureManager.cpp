@@ -8,8 +8,12 @@ namespace minish
 
         if (it == m_textures.end())
         {
-            sf::Texture texture;
-            return texture;
+            it = m_textures.find("blank");
+            if (it == m_textures.end())
+            {
+                 m_textures.insert((std::pair<std::string, sf::Texture>(name, sf::Texture())));
+            }
+            return m_textures["blank"];
         }
 
         return m_textures[name];
