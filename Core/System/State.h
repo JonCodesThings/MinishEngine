@@ -28,7 +28,7 @@ namespace minish
             /*!
             \brief Default destructor, calls shutdown class method to free resources.
             */
-            ~State();
+            virtual ~State();
 
             /*!
             \brief Returns the state's id.

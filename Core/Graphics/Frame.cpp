@@ -18,6 +18,9 @@ namespace minish
         m_frame.draw(drawable);
     }
 
+    void Frame::deinit()
+    {}
+
     sf::RenderTarget& Frame::getRenderTarget()
     {
         return m_frame;

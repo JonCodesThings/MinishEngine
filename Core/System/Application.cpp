@@ -93,6 +93,7 @@ namespace minish
                 m_running = false;
             }
         }
+        m_frame.deinit();
         shutdown();
     }
 

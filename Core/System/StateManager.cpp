@@ -58,6 +58,7 @@ namespace minish
         {
             if ((*m_states_iter)->getID() == id)
             {
+                (*m_states_iter)->shutdown();
                 m_states.erase(m_states_iter);
                 return;
             }
