@@ -28,7 +28,7 @@ namespace minish
 			/*!
         	\brief Virtual class method called to render a component. Empty by default.
         	*/
-			virtual void render(sf::RenderTarget& target) {};
+			virtual void render(Frame& target) {};
 
 			/*!
         	\brief Pure virtual class method called when a component is updated.

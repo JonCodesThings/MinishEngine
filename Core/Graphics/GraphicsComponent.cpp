@@ -15,9 +15,9 @@ namespace minish
         m_vertices.resize(4);
     }
 
-    void GraphicsComponent::render(sf::RenderTarget& target)
+    void GraphicsComponent::render(Frame& target)
     {
-        target.draw(*this);
+        target.blit(*this);
     }
 
     void GraphicsComponent::setColor(sf::Color& color)

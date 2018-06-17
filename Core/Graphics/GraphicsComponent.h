@@ -8,6 +8,7 @@
 #include <SFML/System/Vector2.hpp>
 
 #include "Core/Entity/Component.h"
+#include "Core/Graphics/Frame.h"
 #include "Core/Physics/AABB.h"
 
 namespace minish
@@ -34,7 +35,7 @@ namespace minish
             /*!
         	\brief Class method that pauses the animation and puts it back to the first frame.
         	*/
-            virtual void render(sf::RenderTarget& target);
+            virtual void render(Frame& target);
 
             /*!
         	\brief Class method that sets the color of the component.
