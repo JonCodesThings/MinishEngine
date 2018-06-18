@@ -25,6 +25,8 @@ namespace minish
 
         if (it == m_data.end())
         {
+            minish::Data new_data;
+            new_data.custom_data = (void*)&data;
             m_data.insert(std::pair<std::string, Data>(data_id, data));
         }
         else if (it != m_data.end())

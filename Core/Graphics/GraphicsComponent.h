@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Drawable.hpp>
-#include <SFML/Graphics/Transformable.hpp>
+#include <SFML/Graphics/Transform.hpp>
 #include <SFML/Graphics/VertexArray.hpp>
 #include <SFML/System/Vector2.hpp>
 
@@ -17,7 +17,7 @@ namespace minish
     * \brief Class for graphical representations of entities.
     * \author Jonathan Duncanson
     */
-    class GraphicsComponent : public Component, public sf::Drawable, public sf::Transformable
+    class GraphicsComponent : public Component, public sf::Drawable
     {
         public:
             /*!
@@ -41,6 +41,21 @@ namespace minish
         	\brief Class method that sets the color of the component.
         	*/
             void setColor(sf::Color& color);
+
+            /*!
+        	\brief Class method that sets the position of the component.
+        	*/
+            void setPosition(sf::Vector2f& position);
+
+            /*!
+        	\brief Class method that sets the rotation of the component.
+        	*/
+            void setRotation(float rotation);
+
+            /*!
+        	\brief Class method that sets the scale of the component.
+        	*/
+            void setScale(sf::Vector2f& scale);
 
             /*!
         	\brief Sets the size of the graphics component on screen.
@@ -70,7 +85,22 @@ namespace minish
             /*!
         	\brief Flag to determine if VertexArray needs updating.
         	*/
-            bool m_update_flag;
+            bool m_transform_update_flag, m_vertex_update_flag;
+
+            /*!
+            \brief The rotation of the component.
+            */
+            float m_rotation;
+
+            /*!
+            \brief The position and scale factor of the component.
+            */
+            sf::Vector2f m_position, m_scale;
+
+            /*!
+            \brief The component's transformation matrix.
+            */
+            sf::Transform m_transform;
 
             /*!
         	\brief Pointer to the component's texture.
