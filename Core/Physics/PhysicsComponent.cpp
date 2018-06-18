@@ -34,9 +34,7 @@ namespace minish
         m_AABB = aabb;
         if (getEntity() != nullptr)
         {
-            minish::Data data;
-            data.custom_data = (void*)&m_AABB;
-            getEntity()->getDataComponent().setData("AABB", data);
+            getEntity()->getDataComponent().setData("AABB", m_AABB);
         }
     }
 
@@ -45,9 +43,7 @@ namespace minish
         m_acceleration = acceleration;
         if (getEntity() != nullptr)
         {
-            minish::Data data;
-            data.custom_data = (void*)&m_acceleration;
-            getEntity()->getDataComponent().setData("physics_acceleration", data);
+            getEntity()->getDataComponent().setData("physics_acceleration", m_acceleration);
         }
     }
 
@@ -58,9 +54,7 @@ namespace minish
         m_AABB.top = m_position.y;
         if (getEntity() != nullptr)
         {
-            minish::Data data;
-            data.custom_data = (void*)&m_position;
-            getEntity()->getDataComponent().setData("AABB_position", data);
+            getEntity()->getDataComponent().setData("AABB_position", m_position);
         }
     }
 
@@ -71,9 +65,7 @@ namespace minish
         m_AABB.height = m_size.y;
         if (getEntity() != nullptr)
         {
-            minish::Data data;
-            data.custom_data = (void*)&m_size;
-            getEntity()->getDataComponent().setData("AABB_size", data);
+            getEntity()->getDataComponent().setData("AABB_size", m_size);
         }
     }
 
@@ -82,9 +74,7 @@ namespace minish
         m_velocity = velocity;
         if (getEntity() != nullptr)
         {
-            minish::Data data;
-            data.custom_data = (void*)&m_velocity;
-            getEntity()->getDataComponent().setData("physics_velocity", data);
+            getEntity()->getDataComponent().setData("physics_velocity", m_velocity);
         }
     }
 

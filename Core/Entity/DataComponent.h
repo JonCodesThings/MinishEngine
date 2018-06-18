@@ -64,4 +64,6 @@ namespace minish
     void DataComponent::setData<char>(std::string data_id, char& data);
 }
 
+#include "DataComponent.tmpl"
+
 #endif
