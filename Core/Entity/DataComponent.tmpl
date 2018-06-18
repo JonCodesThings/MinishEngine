@@ -1,4 +1,5 @@
-
+namespace minish
+{
     template<class T>
     void DataComponent::setData(std::string data_id, T& data)
     {
@@ -8,7 +9,7 @@
         {
             minish::Data new_data;
             new_data.custom_data = (void*)&data;
-            m_data.insert(std::pair<std::string, Data>(data_id, data));
+            m_data.insert(std::pair<std::string, Data>(data_id, new_data));
         }
         else if (it != m_data.end())
         {
@@ -100,3 +101,4 @@
             m_data[data_id].character = data;
         }
     }
+}
