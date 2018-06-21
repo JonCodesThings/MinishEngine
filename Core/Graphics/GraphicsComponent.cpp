@@ -4,13 +4,16 @@
 
 #include "Core/Entity/Entity.h"
 
+#include <iostream>
+
 namespace minish
 {
     GraphicsComponent::GraphicsComponent() : 
     m_transform_update_flag(true), m_vertex_update_flag(true), m_rotation(0.0f), m_position(0.0f, 0.0f), m_scale(1.0f, 1.0f), 
-    m_texture(nullptr), m_texture_rect(), m_size(1, 1)
+    m_texture(nullptr), m_color(0, 0, 0), m_texture_rect(), m_size(1, 1)
     {
         m_vertices.resize(4);
+        m_vertices.setPrimitiveType(sf::Quads);
     }
 
     GraphicsComponent::GraphicsComponent(sf::Texture& texture, sf::IntRect& texture_rect, sf::Vector2u& size) :
@@ -18,11 +21,12 @@ namespace minish
     m_texture(&texture), m_texture_rect(texture_rect),  m_size(size)
     {
         m_vertices.resize(4);
+        m_vertices.setPrimitiveType(sf::Quads);
     }
 
-    void GraphicsComponent::render(Frame& target)
+    void GraphicsComponent::render(sf::RenderTarget& target)
     {
-        target.blit(*this);
+        target.draw(*this);
     }
 
     void GraphicsComponent::setColor(sf::Color& color)
@@ -76,9 +80,12 @@ namespace minish
             m_transform.rotate(m_rotation);
             m_transform.translate(m_position);
 
-            getEntity()->getDataComponent().setData("graphics_scale", m_scale);
-            getEntity()->getDataComponent().setData("graphics_rotation", m_rotation);
-            getEntity()->getDataComponent().setData("graphics_position", m_position);
+            if (getEntity() != nullptr)
+            {
+                getEntity()->getDataComponent().setData("graphics_scale", m_scale);
+                getEntity()->getDataComponent().setData("graphics_rotation", m_rotation);
+                getEntity()->getDataComponent().setData("graphics_position", m_position);
+            }
 
             m_transform_update_flag = false;
         }
@@ -100,10 +107,13 @@ namespace minish
             m_vertices[2].color = m_color;
             m_vertices[3].color = m_color;
 
-            getEntity()->getDataComponent().setData("graphics_color", m_color);
-            getEntity()->getDataComponent().setData("graphics_size", m_size);
-            getEntity()->getDataComponent().setData("graphics_texture", m_texture);
-            getEntity()->getDataComponent().setData("graphics_texture_rect", m_texture_rect);
+            if (getEntity() != nullptr)
+            {
+                getEntity()->getDataComponent().setData("graphics_color", m_color);
+                getEntity()->getDataComponent().setData("graphics_size", m_size);
+                getEntity()->getDataComponent().setData("graphics_texture", m_texture);
+                getEntity()->getDataComponent().setData("graphics_texture_rect", m_texture_rect);
+            }
 
             m_vertex_update_flag = false;
         };

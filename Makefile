@@ -3,7 +3,7 @@ SRC_FILES := $(wildcard */*/*.cpp)
 OBJ_FILES = $(wildcard *.o)
 
 COMPILER = g++
-COMPILER_FLAGS = -Wall
+COMPILER_FLAGS = -Wall -g
 LINKER_FLAGS = -fPIC -Wall -c
 INCLUDE = .
 VPATH = Core/Audio/ Core/Entity/ Core/Graphics/ Core/Input/ Core/Physics/ Core/System/ Core/Tiles/

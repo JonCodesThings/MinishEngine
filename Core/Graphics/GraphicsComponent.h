@@ -35,7 +35,7 @@ namespace minish
             /*!
         	\brief Class method that pauses the animation and puts it back to the first frame.
         	*/
-            virtual void render(Frame& target);
+            virtual void render(sf::RenderTarget& target);
 
             /*!
         	\brief Class method that sets the color of the component.

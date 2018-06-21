@@ -1,7 +1,6 @@
 #include "Frame.h"
 
 #include <SFML/Graphics/RenderWindow.hpp>
-#include <iostream>
 
 namespace minish
 {
@@ -15,7 +14,7 @@ namespace minish
 
     void Frame::blit(const sf::Drawable& drawable, const sf::RenderStates states)
     {
-        m_frame.draw(drawable);
+        m_frame.draw(drawable, states);
     }
 
     void Frame::deinit()
