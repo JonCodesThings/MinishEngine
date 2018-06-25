@@ -31,12 +31,12 @@ namespace minish
         	\brief Pure virtual class method called when a component is updated.
         	*/
 			virtual void update(const float dt) = 0;
-		private:
+		protected:
 			/*!
         	\brief Sets the entity the component is attached to.
         	*/
 			virtual void setEntity(Entity& entity);
-
+		private:
 			/*!
         	\brief Pointer to the component's entity.
         	*/

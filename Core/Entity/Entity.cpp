@@ -23,6 +23,7 @@ namespace minish
             if (component_ == nullptr)
             {
                 component_ = component;
+                component_->setEntity(*this);
                 return;
             }
         }

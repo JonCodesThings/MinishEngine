@@ -7,13 +7,24 @@ namespace minish
 
         if (it == m_data.end())
         {
-            minish::Data new_data;
-            new_data.custom_data = (void*)&data;
-            m_data.insert(std::pair<std::string, Data>(data_id, new_data));
+            registerData(data_id, data);
+            return;
         }
-        else if (it != m_data.end())
-        {
-            m_data[data_id].custom_data = (void*)&data;
-        }
+
+        *(T*)m_data[data_id].custom_data = data;
+        //m_data[data_id].custom_data = (void*)&data;
+    }
+
+    template <class T>
+    void DataComponent::registerData(std::string data_id, T& data)
+    {
+        std::unordered_map<std::string, Data>::iterator it = m_data.find(data_id);
+
+        if (!(it == m_data.end()))
+            return;
+
+        minish::Data new_data;
+        new_data.custom_data = (void*)&data;
+        m_data.insert(std::pair<std::string, Data>(data_id, new_data));
     }
 }

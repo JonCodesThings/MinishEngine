@@ -119,6 +119,18 @@ namespace minish
         };
     }
 
+    void GraphicsComponent::setEntity(Entity& entity)
+    {
+        Component::setEntity(entity);
+        getEntity()->getDataComponent().registerData("graphics_scale", m_scale);
+        getEntity()->getDataComponent().registerData("graphics_rotation", m_rotation);
+        getEntity()->getDataComponent().registerData("graphics_position", m_position);
+        getEntity()->getDataComponent().registerData("graphics_color", m_color);
+        getEntity()->getDataComponent().registerData("graphics_size", m_size);
+        getEntity()->getDataComponent().registerData("graphics_texture", m_texture);
+        getEntity()->getDataComponent().registerData("graphics_texture_rect", m_texture_rect);
+    }
+
     void GraphicsComponent::draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
         states.transform *= m_transform;

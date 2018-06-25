@@ -11,7 +11,7 @@ VPATH = Core/Audio/ Core/Entity/ Core/Graphics/ Core/Input/ Core/Physics/ Core/S
 %.o : %.cpp
 	$(COMPILER) $(COMPILER_FLAGS) $< -c -I$(INCLUDE)
 
-all: $(PROJECT_OUT)
+all: clean $(PROJECT_OUT)
 
 $(PROJECT_OUT) : $(patsubst %.cpp, %.o, $(wildcard */*/*.cpp))
 	ar rcs $(PROJECT_OUT).a *.o

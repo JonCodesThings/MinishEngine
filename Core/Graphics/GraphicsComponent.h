@@ -78,6 +78,11 @@ namespace minish
             virtual void update(const float dt);
         private:
             /*!
+            \brief Override of base Component setEntity member function. Registers the component's data with the entity.
+            */
+            virtual void setEntity(Entity& entity);
+
+            /*!
         	\brief SFML draw function.
         	*/
             virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;

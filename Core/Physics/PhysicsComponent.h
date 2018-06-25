@@ -60,6 +60,11 @@ namespace minish
             sf::Vector2f m_acceleration, m_position, m_velocity;
             
             sf::Vector2u m_size;
+        private:
+            /*!
+            \brief Override of base Component setEntity member function. Registers the component's data with the entity.
+            */
+            virtual void setEntity(Entity& entity);
     };
 }
 

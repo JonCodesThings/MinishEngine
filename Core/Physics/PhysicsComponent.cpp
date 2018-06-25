@@ -83,4 +83,14 @@ namespace minish
         m_velocity += m_acceleration;
         m_position += m_velocity;
     }
+
+    void PhysicsComponent::setEntity(Entity& entity)
+    {
+        Component::setEntity(entity);
+        getEntity()->getDataComponent().registerData("AABB", m_AABB);
+        getEntity()->getDataComponent().registerData("AABB_position", m_position);
+        getEntity()->getDataComponent().registerData("AABB_size", m_size);
+        getEntity()->getDataComponent().registerData("physics_acceleration", m_acceleration);
+        getEntity()->getDataComponent().registerData("physics_velocity", m_velocity);
+    }
 }

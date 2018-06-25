@@ -32,6 +32,12 @@ namespace minish
             Data getData(std::string data_id);
 
             /*!
+            \brief Class member that registers the location of data associated with the component.
+            */
+            template <class T>
+            void registerData(std::string, T& data);
+
+            /*!
         	\brief Class member that sets the data value in the requested id.
         	*/
             template <class T>
