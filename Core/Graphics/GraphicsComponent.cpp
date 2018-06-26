@@ -24,6 +24,41 @@ namespace minish
         m_vertices.setPrimitiveType(sf::Quads);
     }
 
+    const sf::Color& GraphicsComponent::getColor()
+    {
+        return m_color;
+    }
+
+    const sf::Vector2f& GraphicsComponent::getPosition()
+    {
+        return m_position;
+    }
+
+    const float GraphicsComponent::getRotation()
+    {
+        return m_rotation;
+    }
+
+    const sf::Vector2f& GraphicsComponent::getScale()
+    {
+        return m_scale;
+    }
+
+    const sf::Vector2u& GraphicsComponent::getSize()
+    {
+        return m_size;
+    }
+
+    const sf::Texture* GraphicsComponent::getTexture()
+    {
+        return m_texture;
+    }
+
+    const sf::IntRect& GraphicsComponent::getTextureRect()
+    {
+        return m_texture_rect;
+    }
+
     void GraphicsComponent::render(sf::RenderTarget& target)
     {
         target.draw(*this);
@@ -79,7 +114,7 @@ namespace minish
             m_transform.scale(m_scale);
             m_transform.rotate(m_rotation);
             m_transform.translate(m_position);
-
+            
             if (getEntity() != nullptr)
             {
                 getEntity()->getDataComponent().setData("graphics_scale", m_scale);
@@ -116,7 +151,7 @@ namespace minish
             }
 
             m_vertex_update_flag = false;
-        };
+        }
     }
 
     void GraphicsComponent::setEntity(Entity& entity)

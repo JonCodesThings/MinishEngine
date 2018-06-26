@@ -32,6 +32,20 @@ namespace minish
 
             virtual ~GraphicsComponent() {};
 
+            const sf::Color& getColor();
+
+            const sf::Vector2f& getPosition();
+
+            const float getRotation();
+
+            const sf::Vector2f& getScale();
+
+            const sf::Vector2u& getSize();
+
+            const sf::Texture* getTexture();
+
+            const sf::IntRect& getTextureRect();
+
             /*!
         	\brief Class method that pauses the animation and puts it back to the first frame.
         	*/
