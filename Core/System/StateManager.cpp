@@ -73,11 +73,12 @@ namespace minish
         }
     }
 
-    void StateManager::update(const float dt)
+    bool StateManager::update(const float dt)
     {
         if (m_current_state)
         {
-            m_current_state->update(dt);
+            return m_current_state->update(dt);
         }
+        return false;
     }
 }

@@ -1,30 +1,30 @@
 namespace minish
 {
-    template<class T>
-    void DataComponent::setData(std::string data_id, T& data)
-    {
-        std::unordered_map<std::string, Data>::iterator it = m_data.find(data_id);
-
-        if (it == m_data.end())
-        {
-            registerData(data_id, data);
-            return;
-        }
-
-        *(T*)m_data[data_id].custom_data = data;
-        //m_data[data_id].custom_data = (void*)&data;
-    }
 
     template <class T>
-    void DataComponent::registerData(std::string data_id, T& data)
+    bool DataComponent::registerData(std::string data_id, T& data)
     {
-        std::unordered_map<std::string, Data>::iterator it = m_data.find(data_id);
+        std::unordered_map<std::string, void*>::iterator it = m_data.find(data_id);
 
         if (!(it == m_data.end()))
-            return;
+            return false;
 
-        minish::Data new_data;
-        new_data.custom_data = (void*)&data;
-        m_data.insert(std::pair<std::string, Data>(data_id, new_data));
+        m_data.insert(std::pair<std::string, void*>(data_id, (void*)&data));
+        return true;
+    }
+
+    template<class T>
+    bool DataComponent::setData(std::string data_id, T& data)
+    {
+        std::unordered_map<std::string, void*>::iterator it = m_data.find(data_id);
+
+        if (it == m_data.end())
+            return false;
+
+        if ((T*)m_data[data_id] == nullptr)
+            return false;
+
+        *(T*)m_data[data_id] = data;
+        return true;
     }
 }

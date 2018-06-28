@@ -63,7 +63,7 @@ namespace minish
             /*!
             \brief Pure virtual class method used to update state objects.
             */
-            virtual void update(const float dt) = 0;
+            virtual bool update(const float dt) = 0;
 
 		protected:
 

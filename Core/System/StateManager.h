@@ -48,7 +48,7 @@ namespace minish
             /*!
             \brief Updates the current state.
             */
-            void update(const float dt);
+            bool update(const float dt);
         private:
             /*!
             \brief Vector of pointers to different states.
