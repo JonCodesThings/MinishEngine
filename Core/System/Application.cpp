@@ -75,7 +75,7 @@ namespace minish
     void Application::run()
     {
         startup();
-        m_deltaTimer.restart();
+        m_dt = m_deltaTimer.restart().asSeconds();
         while(m_running)
         {
             toggleTaskFlags();
