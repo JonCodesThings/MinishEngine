@@ -80,8 +80,8 @@ namespace minish
 
     void PhysicsComponent::update(const float dt)
     {
-        m_velocity += m_acceleration;
-        m_position += m_velocity;
+        m_velocity += m_acceleration * dt;
+        m_position += m_velocity * dt;
     }
 
     void PhysicsComponent::setEntity(Entity& entity)
