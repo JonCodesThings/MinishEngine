@@ -82,6 +82,8 @@ namespace minish
     {
         m_velocity += m_acceleration * dt;
         m_position += m_velocity * dt;
+        m_AABB.left = m_position.x;
+        m_AABB.top = m_position.y;
     }
 
     void PhysicsComponent::setEntity(Entity& entity)
