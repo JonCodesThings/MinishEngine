@@ -18,9 +18,9 @@ namespace minish
             Animation();
 
             /*!
-        	\brief Constructor that initializes values for frame size, total frames in the animation and the speed of the animation.
+        	\brief Constructor that initializes values for starting frame, frame size, total frames in the animation and the speed of the animation.
         	*/
-            Animation(sf::IntRect& frame_size, const int total_frames, const float animation_speed);
+            Animation(sf::Vector2i& frame_begin, sf::Vector2i& frame_size, const int total_frames, const float animation_speed);
 
             /*!
         	\brief Class method that pauses the animation at the current frame.
@@ -38,9 +38,14 @@ namespace minish
             void setAnimationSpeed(const float speed);
 
             /*!
+        	\brief Class method that sets the position of the animation's starting frame.
+        	*/
+            void setAnimationStart(sf::Vector2i& frame_begin);
+
+            /*!
         	\brief Class method that sets the size of the frame.
         	*/
-            void setFrameSize(sf::IntRect& frame_size);
+            void setFrameSize(sf::Vector2i& frame_size);
 
             /*!
         	\brief Class method that sets the total number of frames.
@@ -55,12 +60,17 @@ namespace minish
             /*!
         	\brief Class method that updates the animation.
         	*/
-            const sf::IntRect update(const float dt);
+            const sf::IntRect& update(const float dt);
         private:
             /*!
-        	\brief Rect that stores the size of a frame.
+        	\brief Rect that stores the current frame.
         	*/
-            sf::IntRect m_frame_size;
+            sf::IntRect m_frame;
+
+            /*!
+        	\brief Stores the frame's position and size.
+        	*/
+            sf::Vector2i m_frame_begin, m_frame_size; 
 
             /*!
         	\brief Stores total frames and the current frame of animation.

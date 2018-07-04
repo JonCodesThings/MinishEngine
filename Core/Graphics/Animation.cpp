@@ -3,11 +3,12 @@
 namespace minish
 {
     Animation::Animation() : 
-    m_frame_size(0, 0, 0, 0), m_total_frames(0), m_current_frame(0), m_timer(0.0f), m_animation_speed(1.0f), m_playing(false)
+    m_frame_begin(0, 0), m_frame_size(0, 0), m_total_frames(0), m_current_frame(0), m_timer(0.0f), m_animation_speed(1.0f), m_playing(false)
     {}
 
-    Animation::Animation(sf::IntRect& frame_size, const int total_frames, const float animation_speed):
-    m_frame_size(frame_size), m_total_frames(total_frames), m_current_frame(0), m_timer(0.0f), m_animation_speed(animation_speed), m_playing(false)
+    Animation::Animation(sf::Vector2i& frame_begin, sf::Vector2i& frame_size, const int total_frames, const float animation_speed):
+    m_frame_begin(frame_begin), m_frame_size(frame_size), m_total_frames(total_frames), m_current_frame(0), 
+    m_timer(0.0f), m_animation_speed(animation_speed), m_playing(false)
     {}
 
     void Animation::pause()
@@ -25,9 +26,17 @@ namespace minish
         m_animation_speed = animation_speed;
     }
 
-    void Animation::setFrameSize(sf::IntRect& frame_size)
+    void Animation::setAnimationStart(sf::Vector2i& frame_begin)
+    {
+        m_frame_begin = frame_begin;
+        m_frame.top = m_frame_begin.y;
+    }
+
+    void Animation::setFrameSize(sf::Vector2i& frame_size)
     {
         m_frame_size = frame_size;
+        m_frame.width = m_frame_size.x;
+        m_frame.height = m_frame_size.y;
     }
 
     void Animation::setTotalFrames(const int total_frames)
@@ -41,7 +50,7 @@ namespace minish
         m_current_frame = 0;
     }
 
-    const sf::IntRect Animation::update(float dt)
+    const sf::IntRect& Animation::update(float dt)
     {
         if (m_playing)
         {
@@ -56,6 +65,7 @@ namespace minish
                 }
             }
         }
-        return sf::IntRect(m_frame_size.left + (m_frame_size.width * m_current_frame), m_frame_size.top, m_frame_size.width, m_frame_size.height);
+        m_frame.left = m_frame_begin.x + (m_frame_size.x * m_current_frame);
+        return m_frame;
     }
 }
