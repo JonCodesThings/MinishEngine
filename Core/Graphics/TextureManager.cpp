@@ -2,7 +2,7 @@
 
 namespace minish
 {
-    sf::Texture& TextureManager::getTexture(std::string& name)
+    sf::Texture& TextureManager::getTexture(const std::string& name)
     {
         std::unordered_map<std::string, sf::Texture>::iterator it = m_textures.find(name);
 
@@ -19,7 +19,7 @@ namespace minish
         return m_textures[name];
     }
 
-    bool TextureManager::loadTexture(std::string& name, std::string filepath)
+    bool TextureManager::loadTexture(const std::string& name, const std::string filepath)
     {
         std::unordered_map<std::string, sf::Texture>::iterator it = m_textures.find(name);
 
@@ -36,7 +36,7 @@ namespace minish
         return false;
     }
 
-    void TextureManager::removeTexture(std::string& name)
+    void TextureManager::removeTexture(const std::string& name)
     {
         m_textures.erase(name);
     }

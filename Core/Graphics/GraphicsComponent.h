@@ -84,7 +84,7 @@ namespace minish
             /*!
         	\brief Sets the texture rect of the graphics component.
         	*/
-            void setTextureRect(sf::IntRect& texture_rect);
+            void setTextureRect(const sf::IntRect& texture_rect);
 
             /*!
         	\brief Updates the graphics component.

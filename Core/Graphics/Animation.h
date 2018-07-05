@@ -20,7 +20,9 @@ namespace minish
             /*!
         	\brief Constructor that initializes values for starting frame, frame size, total frames in the animation and the speed of the animation.
         	*/
-            Animation(sf::Vector2i& frame_begin, sf::Vector2i& frame_size, const int total_frames, const float animation_speed);
+            Animation(const sf::Vector2i& frame_begin, const sf::Vector2i& frame_size, const int total_frames, const float animation_speed);
+
+            const sf::IntRect& getCurrentFrame();
 
             /*!
         	\brief Class method that pauses the animation at the current frame.

@@ -100,7 +100,7 @@ namespace minish
         m_vertex_update_flag = true;
     }
 
-    void GraphicsComponent::setTextureRect(sf::IntRect& texture_rect)
+    void GraphicsComponent::setTextureRect(const sf::IntRect& texture_rect)
     {
         m_texture_rect = texture_rect;
         m_vertex_update_flag = true;
