@@ -8,7 +8,7 @@
 
 namespace minish
 {
-    Application::Application(unsigned int thread_count, const sf::Vector2u& window_dimensions, const sf::Vector2u& target_dimensions, std::string app_title) 
+    Application::Application(unsigned int thread_count, const sf::Vector2u& window_dimensions, const sf::Vector2u& target_dimensions, const std::string& app_title) 
     : 
     m_running(true), m_threadsync(0), m_tasksync(0), m_target_aspect_ratio(((float)target_dimensions.x / (float)target_dimensions.y))
     {

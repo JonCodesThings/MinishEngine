@@ -39,17 +39,17 @@ namespace minish
             /*!
             \brief Returns a pointer to the tile with the given id. Returns nullptr if it can't find it.
             */
-            Tile* const getTile(const unsigned int tile_id);
+            const Tile* getTile(const unsigned int tile_id) const;
 
             /*!
             \brief Returns the number of tiles in the tileset.
             */
-            unsigned int getTileCount();
+            const unsigned int getTileCount() const;
 
             /*!
             \brief Returns a const pointer to the texture used by the tileset. Will return nullptr if one hasn't been set yet.
             */
-            sf::Texture* const getTexture();
+            sf::Texture* const getTexture() const;
 
             /*!
             \brief Class method to remove a tile from the tileset.

@@ -24,9 +24,9 @@ namespace minish
             /*!
             \brief Generates the tilemap. Returns true if successful. Returns false if a required component is not set.
             */
-            bool generateTileMap();
+            const bool generateTileMap();
 
-            std::vector<sf::FloatRect>& getAABBs();
+            const std::vector<sf::FloatRect>& getAABBs() const;
 
             /*!
             \brief Renders the tilemap.
@@ -41,12 +41,12 @@ namespace minish
             /*!
             \brief Sets the size of the tilemap.
             */
-            void setMapSize(sf::Vector2u& tilemap_size);
+            void setMapSize(const sf::Vector2u& tilemap_size);
 
             /*!
             \brief Sets the tileset of the tilemap.
             */
-            void setTileSet(TileSet& tileset);
+            void setTileSet(const TileSet& tileset);
 
             /*!
             \brief Sets the size of one tile.
@@ -63,7 +63,7 @@ namespace minish
             /*!
             \brief Sets the actual tilemap data.
             */
-            void setTileMap(std::vector<unsigned int>& tilemap);
+            void setTileMap(const std::vector<unsigned int>& tilemap);
         private:
             /*!
             \brief Required SFML rendering function.

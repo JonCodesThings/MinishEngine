@@ -36,7 +36,7 @@ namespace minish
             */
             void addParent(UIElement& element);
 
-			sf::Vector2u& getSize();
+			const sf::Vector2u& getSize() const;
 
             /*!
             \brief Renders an element and all of its children.

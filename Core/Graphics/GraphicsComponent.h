@@ -32,19 +32,19 @@ namespace minish
 
             virtual ~GraphicsComponent() {};
 
-            const sf::Color& getColor();
+            const sf::Color& getColor() const;
 
-            const sf::Vector2f& getPosition();
+            const sf::Vector2f& getPosition() const;
 
-            const float getRotation();
+            const float getRotation() const;
 
-            const sf::Vector2f& getScale();
+            const sf::Vector2f& getScale() const;
 
-            const sf::Vector2u& getSize();
+            const sf::Vector2u& getSize() const;
 
-            const sf::Texture* getTexture();
+            const sf::Texture* getTexture() const;
 
-            const sf::IntRect& getTextureRect();
+            const sf::IntRect& getTextureRect() const;
 
             /*!
         	\brief Class method that pauses the animation and puts it back to the first frame.
@@ -54,27 +54,27 @@ namespace minish
             /*!
         	\brief Class method that sets the color of the component.
         	*/
-            void setColor(sf::Color& color);
+            void setColor(const sf::Color& color);
 
             /*!
         	\brief Class method that sets the position of the component.
         	*/
-            void setPosition(sf::Vector2f& position);
+            void setPosition(const sf::Vector2f& position);
 
             /*!
         	\brief Class method that sets the rotation of the component.
         	*/
-            void setRotation(float rotation);
+            void setRotation(const float rotation);
 
             /*!
         	\brief Class method that sets the scale of the component.
         	*/
-            void setScale(sf::Vector2f& scale);
+            void setScale(const sf::Vector2f& scale);
 
             /*!
         	\brief Sets the size of the graphics component on screen.
         	*/
-            void setSize(sf::Vector2u& size);
+            void setSize(const sf::Vector2u& size);
 
             /*!
         	\brief Sets the texture of the graphics component.

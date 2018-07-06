@@ -20,7 +20,7 @@ namespace minish
     void Frame::deinit()
     {}
 
-    sf::RenderTarget& Frame::getRenderTarget()
+    const sf::RenderTarget& Frame::getRenderTarget()
     {
         return m_frame;
     }

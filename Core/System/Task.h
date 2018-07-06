@@ -39,7 +39,7 @@ namespace minish
             /*!
         	\brief Class member that returns the status of the task.
         	*/
-            TASK_STATE getTaskState();
+            const TASK_STATE& getTaskState() const;
 
             /*!
         	\brief Class member that resets the task state back to NOT_UPDATED.

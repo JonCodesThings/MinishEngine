@@ -33,12 +33,12 @@ namespace minish
             /*!
             \brief Class method that changes the current state.
             */
-            void changeState(std::string& id);
+            void changeState(const std::string& id);
 
             /*!
             \brief Class method that removes a state from the manager.
             */
-            void removeState(std::string& id);
+            void removeState(const std::string& id);
 
             /*!
             \brief Renders the current state.
@@ -48,7 +48,7 @@ namespace minish
             /*!
             \brief Updates the current state.
             */
-            bool update(const float dt);
+            const bool update(const float dt);
         private:
             /*!
             \brief Vector of pointers to different states.

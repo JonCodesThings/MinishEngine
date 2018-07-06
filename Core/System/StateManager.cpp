@@ -29,7 +29,7 @@ namespace minish
         }
     }
 
-    void StateManager::changeState(std::string& id)
+    void StateManager::changeState(const std::string& id)
     { 
         for (auto& state_ : m_states)
         {
@@ -52,7 +52,7 @@ namespace minish
         }
     }
 
-    void StateManager::removeState(std::string& id)
+    void StateManager::removeState(const std::string& id)
     {
         for (auto m_states_iter = m_states.begin(); m_states_iter != m_states.end(); m_states_iter++)
         {
@@ -73,7 +73,7 @@ namespace minish
         }
     }
 
-    bool StateManager::update(const float dt)
+    const bool StateManager::update(const float dt)
     {
         if (m_current_state)
         {

@@ -10,42 +10,42 @@ namespace minish
     {}
 
 
-    float InputManager::getControllerAxis(const int code)
+    const float InputManager::getControllerAxis(const int code) const
     {
         return m_controller_axis[code];
     }
 
-    sf::Vector2i InputManager::getMousePosition()
+    const sf::Vector2i& InputManager::getMousePosition() const
     {
         return m_mouse_position;
     }
 
-    bool InputManager::isControllerButtonPressed(const int code)
+    const bool InputManager::isControllerButtonPressed(const int code) const
     {
         return m_controller_buttons[code];
     }
 
-	bool InputManager::isControllerButtonReleased(const int code)
+	const bool InputManager::isControllerButtonReleased(const int code) const
 	{
 		return !m_controller_buttons[code] && m_prev_controller_buttons[code];
 	}
 
-    bool InputManager::isKeyPressed(const int code)
+    const bool InputManager::isKeyPressed(const int code) const
     {
         return m_keys[code];
     }
 
-	bool InputManager::isKeyReleased(const int code)
+	const bool InputManager::isKeyReleased(const int code) const
 	{
 		return !m_keys[code] && m_prev_keys[code];
 	}
 
-    bool InputManager::isMouseButtonPressed(const int code)
+    const bool InputManager::isMouseButtonPressed(const int code) const
     {
         return m_mouse_buttons[code];
     }
 
-	bool InputManager::isMouseButtonReleased(const int code)
+	const bool InputManager::isMouseButtonReleased(const int code) const
 	{
 		return !m_mouse_buttons[code] && m_prev_mouse_buttons[code];
 	}

@@ -4,7 +4,7 @@
 
 namespace minish
 {
-    bool TileMap::generateTileMap()
+    const bool TileMap::generateTileMap()
     {
         if (m_generated)
         {
@@ -52,7 +52,7 @@ namespace minish
         {
             for (unsigned int width = 0; width < m_map_size.y; width++)
             {
-                Tile* tile_data = m_tileset.getTile(m_tilemap.at(width + height * m_map_size.x));
+                const Tile* tile_data = m_tileset.getTile(m_tilemap.at(width + height * m_map_size.x));
 
                 sf::Vertex* current_tile = &m_vertices[(width + height * m_map_size.x) * 4];
 
@@ -77,7 +77,7 @@ namespace minish
         return m_generated;
     }
 
-    std::vector<sf::FloatRect>& TileMap::getAABBs()
+    const std::vector<sf::FloatRect>& TileMap::getAABBs() const
     {
         return m_AABB;
     }
@@ -93,12 +93,12 @@ namespace minish
         m_map_size.y = tilemap_height;
     }
 
-    void TileMap::setMapSize(sf::Vector2u& tilemap_size)
+    void TileMap::setMapSize(const sf::Vector2u& tilemap_size)
     {
         m_map_size = tilemap_size;
     }
 
-    void TileMap::setTileSet(TileSet& tileset)
+    void TileMap::setTileSet(const TileSet& tileset)
     {
         m_tileset = tileset;
         m_texture = tileset.getTexture();
@@ -115,7 +115,7 @@ namespace minish
         m_tile_size = tile_size;
     }
 
-    void TileMap::setTileMap(std::vector<unsigned int>& tilemap)
+    void TileMap::setTileMap(const std::vector<unsigned int>& tilemap)
     {
         m_tilemap = tilemap;
     }

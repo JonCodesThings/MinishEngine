@@ -23,7 +23,7 @@ namespace minish
             /*!
             \brief Default constructor, passes in reference to window and string id for state switching purposes.
             */
-            State(minish::Frame& frame, std::string id, InputManager& input);
+            State(minish::Frame& frame, const std::string& id, InputManager& input);
 
             /*!
             \brief Default destructor, calls shutdown class method to free resources.
@@ -33,27 +33,27 @@ namespace minish
             /*!
             \brief Returns the state's id.
             */
-            std::string getID();
+            const std::string& getID() const;
 
             /*!
             \brief Pure virtual class method used to initialise resources for the state.
             */
-            virtual bool init() = 0;
+            virtual const bool init() = 0;
 
             /*!
             \brief Pure virtual class method used to deinitialise resources for the state.
             */
-            virtual bool deinit() = 0;
+            virtual const bool deinit() = 0;
 
             /*!
             \brief Pure virtual class method used to start the state for the first time.
             */
-            virtual bool startup() = 0;
+            virtual const bool startup() = 0;
 
             /*!
             \brief Pure virtual class method used to free state resources. Should only be called on object destruction.
             */
-            virtual bool shutdown() = 0;
+            virtual const bool shutdown() = 0;
 
             /*!
             \brief Pure virtual class method used to render state objects.
@@ -63,7 +63,7 @@ namespace minish
             /*!
             \brief Pure virtual class method used to update state objects.
             */
-            virtual bool update(const float dt) = 0;
+            virtual const bool update(const float dt) = 0;
 
 		protected:
 

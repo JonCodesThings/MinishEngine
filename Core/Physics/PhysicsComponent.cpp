@@ -4,27 +4,27 @@
 
 namespace minish
 {
-    const AABB& PhysicsComponent::getAABB()
+    const AABB& PhysicsComponent::getAABB() const
     {
         return m_AABB;
     }
 
-    const sf::Vector2f& PhysicsComponent::getAcceleration()
+    const sf::Vector2f& PhysicsComponent::getAcceleration() const
     {
         return m_acceleration;
     }
 
-    const sf::Vector2f& PhysicsComponent::getPosition()
+    const sf::Vector2f& PhysicsComponent::getPosition() const
     {
         return m_position;
     }
 
-    const sf::Vector2u& PhysicsComponent::getSize()
+    const sf::Vector2u& PhysicsComponent::getSize() const
     {
         return m_size;
     }
 
-    const sf::Vector2f& PhysicsComponent::getVelocity()
+    const sf::Vector2f& PhysicsComponent::getVelocity() const
     {
         return m_velocity;
     }

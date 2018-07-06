@@ -21,15 +21,15 @@ namespace minish
             /*!
             \brief Class method that returns the AABB.
             */
-            const AABB& getAABB();
+            const AABB& getAABB() const;
 
-            const sf::Vector2f& getAcceleration();
+            const sf::Vector2f& getAcceleration() const;
 
-            const sf::Vector2f& getPosition();
+            const sf::Vector2f& getPosition() const;
 
-            const sf::Vector2u& getSize();
+            const sf::Vector2u& getSize() const;
 
-            const sf::Vector2f& getVelocity();
+            const sf::Vector2f& getVelocity() const;
 
             /*!
             \brief Class method that sets the AABB.

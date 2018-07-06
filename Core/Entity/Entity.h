@@ -21,7 +21,7 @@ namespace minish
 
             DataComponent& getDataComponent();
 
-            const unsigned int getID();
+            const unsigned int getID() const;
 
             /*!
         	\brief Class member that removes a component from the entity.

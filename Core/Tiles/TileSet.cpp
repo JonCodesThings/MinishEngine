@@ -16,7 +16,7 @@ namespace minish
         
     }
 
-    Tile* const TileSet::getTile(const unsigned int tile_id)
+    const Tile* TileSet::getTile(const unsigned int tile_id) const
     {
         for (auto& tile_ : m_tiles)
         {
@@ -28,12 +28,12 @@ namespace minish
         return nullptr;
     }
 
-    unsigned int TileSet::getTileCount()
+    const unsigned int TileSet::getTileCount() const
     {
         return m_tiles.size();
     }
 
-    sf::Texture* const TileSet::getTexture()
+    sf::Texture* const TileSet::getTexture() const
     {
         return m_texture;
     }

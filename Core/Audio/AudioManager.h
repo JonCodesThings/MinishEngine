@@ -21,32 +21,32 @@ namespace minish
             /*!
         	\brief Class method that adds the music filepath to the music map.
         	*/
-            bool addMusic(std::string& name, std::string& filepath);
+            bool addMusic(const std::string& name, const std::string& filepath);
 
             /*!
         	\brief Class method that loads the sound into memory to the sounds map.
         	*/
-            bool loadSound(std::string& name, std::string& filepath);
+            bool loadSound(const std::string& name, const std::string& filepath);
 
             /*!
         	\brief Class method that plays the given music track.
         	*/
-            void playMusic(std::string& name);
+            void playMusic(const std::string& name);
 
             /*!
         	\brief Class method that plays the given sound.
         	*/
-            void playSound(std::string& name);
+            void playSound(const std::string& name);
 
             /*!
         	\brief Class method that removes the given music from the music map.
         	*/
-            void removeMusic(std::string& name);
+            void removeMusic(const std::string& name);
 
             /*!
         	\brief Class method that removes the given sound from the sounds map.
         	*/
-            void removeSound(std::string& name);
+            void removeSound(const std::string& name);
         private:
             /*!
         	\brief Unordered map that stores SoundBuffers.

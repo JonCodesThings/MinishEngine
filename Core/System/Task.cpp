@@ -4,7 +4,7 @@
 
 namespace minish
 {
-    TASK_STATE Task::getTaskState()
+    const TASK_STATE& Task::getTaskState() const
     {
         return m_state;
     }

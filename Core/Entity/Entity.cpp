@@ -30,7 +30,7 @@ namespace minish
         return;
     }
 
-    const unsigned int Entity::getID()
+    const unsigned int Entity::getID() const
     {
         return m_id;
     }

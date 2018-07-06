@@ -21,9 +21,9 @@ namespace minish
             /*!
             \brief Sets the text's font.
             */
-            void setFont(sf::Font& font);
+            void setFont(const sf::Font& font);
 
-			void setPosition(sf::Vector2f position);
+			void setPosition(const sf::Vector2f& position);
 
 			/*!
 			\brief Sets the text's font size in pixels.
@@ -33,7 +33,7 @@ namespace minish
             /*!
             \brief Sets the text's string.
             */
-            void setTextString(std::string& text_string);
+            void setTextString(const std::string& text_string);
         private:
 			/*!
 			\brief SFML draw function.

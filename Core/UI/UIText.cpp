@@ -4,7 +4,7 @@
 
 namespace minish
 {
-    void UIText::setFont(sf::Font& font)
+    void UIText::setFont(const sf::Font& font)
     {
         m_font = font;
 		m_text.setFont(m_font);
@@ -21,13 +21,13 @@ namespace minish
 		m_text.setCharacterSize(size);
 	}
 
-    void UIText::setTextString(std::string& text_string)
+    void UIText::setTextString(const std::string& text_string)
     {
         m_text.setString(text_string);
 		m_text.setFillColor(sf::Color::Red);
     }
 
-	void UIText::setPosition(sf::Vector2f position)
+	void UIText::setPosition(const sf::Vector2f& position)
 	{
 		m_text.setPosition(position);
 	}

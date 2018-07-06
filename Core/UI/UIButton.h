@@ -19,7 +19,7 @@ namespace minish
             /*!
             \brief Returns the button's AABB.
             */
-            AABB& getAABB();
+            const AABB& getAABB();
 
             /*!
             \brief Bind's an action to the button.

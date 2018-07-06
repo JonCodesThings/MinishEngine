@@ -10,7 +10,7 @@ namespace minish
 		m_vertices.resize(4);
 	}
 
-    AABB& UIButton::getAABB()
+    const AABB& UIButton::getAABB()
     {
 		if (m_AABB.left != getPosition().x || m_AABB.top != getPosition().y)
 		{

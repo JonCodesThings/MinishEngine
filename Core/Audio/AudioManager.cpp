@@ -2,7 +2,7 @@
 
 namespace minish
 {
-    bool AudioManager::addMusic(std::string& name, std::string& filepath)
+    bool AudioManager::addMusic(const std::string& name, const  std::string& filepath)
     {
         std::unordered_map<std::string, std::string>::iterator it = m_music.find(name);
 
@@ -15,7 +15,7 @@ namespace minish
         return false;
     }
 
-    bool AudioManager::loadSound(std::string& name, std::string& filepath)
+    bool AudioManager::loadSound(const std::string& name, const std::string& filepath)
     {
         std::unordered_map<std::string, sf::SoundBuffer>::iterator it = m_buffers.find(name);
         
@@ -28,7 +28,7 @@ namespace minish
         return false;
     }
 
-    void AudioManager::playMusic(std::string& name)
+    void AudioManager::playMusic(const std::string& name)
     {
         std::unordered_map<std::string, std::string>::iterator it = m_music.find(name);
 
@@ -39,7 +39,7 @@ namespace minish
         }
     }
 
-    void AudioManager::playSound(std::string& name)
+    void AudioManager::playSound(const std::string& name)
     {
         //std::unordered_map<std::string, sf::SoundBuffer>::iterator it = m_buffers.find(name);
 
@@ -54,12 +54,12 @@ namespace minish
         }
     }
 
-    void AudioManager::removeMusic(std::string& name)
+    void AudioManager::removeMusic(const std::string& name)
     {
         m_music.erase(name);
     }
 
-    void AudioManager::removeSound(std::string& name)
+    void AudioManager::removeSound(const std::string& name)
     {
         m_buffers.erase(name);
     }

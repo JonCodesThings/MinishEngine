@@ -22,8 +22,17 @@ namespace minish
         	*/
             Animation(const sf::Vector2i& frame_begin, const sf::Vector2i& frame_size, const int total_frames, const float animation_speed);
 
-            const sf::IntRect& getCurrentFrame();
+            const float getAnimationSpeed() const;
 
+            const sf::Vector2i& getAnimationStart() const;
+
+            const sf::IntRect& getCurrentFrame() const;
+
+            const int getFrameCount() const;
+
+            const sf::Vector2i& getFrameSize() const;
+
+            const bool getPlaying() const;
             /*!
         	\brief Class method that pauses the animation at the current frame.
         	*/
@@ -42,12 +51,12 @@ namespace minish
             /*!
         	\brief Class method that sets the position of the animation's starting frame.
         	*/
-            void setAnimationStart(sf::Vector2i& frame_begin);
+            void setAnimationStart(const sf::Vector2i& frame_begin);
 
             /*!
         	\brief Class method that sets the size of the frame.
         	*/
-            void setFrameSize(sf::Vector2i& frame_size);
+            void setFrameSize(const sf::Vector2i& frame_size);
 
             /*!
         	\brief Class method that sets the total number of frames.

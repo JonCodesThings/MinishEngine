@@ -18,7 +18,7 @@ namespace minish
             /*!
         	\brief Class member that returns data from the component. Returns nullptr if there is no data for the requested id.
         	*/
-            const void* const getData(std::string data_id);
+            const void* const getData(std::string data_id) const;
 
             /*!
             \brief Class member that registers the location of data associated with the component.

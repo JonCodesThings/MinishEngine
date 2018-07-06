@@ -24,37 +24,37 @@ namespace minish
         m_vertices.setPrimitiveType(sf::Quads);
     }
 
-    const sf::Color& GraphicsComponent::getColor()
+    const sf::Color& GraphicsComponent::getColor() const
     {
         return m_color;
     }
 
-    const sf::Vector2f& GraphicsComponent::getPosition()
+    const sf::Vector2f& GraphicsComponent::getPosition() const
     {
         return m_position;
     }
 
-    const float GraphicsComponent::getRotation()
+    const float GraphicsComponent::getRotation() const
     {
         return m_rotation;
     }
 
-    const sf::Vector2f& GraphicsComponent::getScale()
+    const sf::Vector2f& GraphicsComponent::getScale() const
     {
         return m_scale;
     }
 
-    const sf::Vector2u& GraphicsComponent::getSize()
+    const sf::Vector2u& GraphicsComponent::getSize() const
     {
         return m_size;
     }
 
-    const sf::Texture* GraphicsComponent::getTexture()
+    const sf::Texture* GraphicsComponent::getTexture() const
     {
         return m_texture;
     }
 
-    const sf::IntRect& GraphicsComponent::getTextureRect()
+    const sf::IntRect& GraphicsComponent::getTextureRect() const
     {
         return m_texture_rect;
     }
@@ -64,31 +64,31 @@ namespace minish
         target.draw(*this);
     }
 
-    void GraphicsComponent::setColor(sf::Color& color)
+    void GraphicsComponent::setColor(const sf::Color& color)
     {
         m_color = color;
         m_vertex_update_flag = true;
     }
 
-    void GraphicsComponent::setPosition(sf::Vector2f& position)
+    void GraphicsComponent::setPosition(const sf::Vector2f& position)
     {
         m_position = position;
         m_transform_update_flag = true;
     }
 
-    void GraphicsComponent::setRotation(float rotation)
+    void GraphicsComponent::setRotation(const float rotation)
     {
         m_rotation = rotation;
         m_transform_update_flag = true;
     }
 
-    void GraphicsComponent::setScale(sf::Vector2f& scale)
+    void GraphicsComponent::setScale(const sf::Vector2f& scale)
     {
         m_scale = scale;
         m_transform_update_flag = true;
     }
 
-    void GraphicsComponent::setSize(sf::Vector2u& size)
+    void GraphicsComponent::setSize(const sf::Vector2u& size)
     {
         m_size = size;
         m_vertex_update_flag = true;

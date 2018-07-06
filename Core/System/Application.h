@@ -25,7 +25,7 @@ namespace minish
             /*!
         	\brief Default constructor. Sets the number of threads, window dimensions, target dimensions and window title.
         	*/  
-            Application(unsigned int thread_count, const sf::Vector2u& window_dimensions, const sf::Vector2u& target_dimensions, std::string app_title);
+            Application(unsigned int thread_count, const sf::Vector2u& window_dimensions, const sf::Vector2u& target_dimensions, const std::string& app_title);
 
             /*!
         	\brief Class member that adds a threadable subsystem.
@@ -60,7 +60,7 @@ namespace minish
             /*!
         	\brief Pure virtual class member that runs update functions on non-threadable subsystems and the state manager.
         	*/ 
-            virtual bool update(const float dt) = 0;
+            virtual const bool update(const float dt) = 0;
         protected:
             /*!
         	\brief Class member that runs update functions on threadable tasks and makes sure all tasks are updated.

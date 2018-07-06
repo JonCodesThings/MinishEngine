@@ -11,9 +11,34 @@ namespace minish
     m_timer(0.0f), m_animation_speed(animation_speed), m_playing(false)
     {}
 
-    const sf::IntRect& Animation::getCurrentFrame()
+    const float Animation::getAnimationSpeed() const
+    {
+        return m_animation_speed;
+    }
+
+    const sf::Vector2i& Animation::getAnimationStart() const
+    {
+        return m_frame_begin;
+    }
+
+    const sf::IntRect& Animation::getCurrentFrame() const
     {
         return m_frame;
+    }
+
+    const int Animation::getFrameCount() const
+    {
+        return m_total_frames;
+    }
+
+    const sf::Vector2i& Animation::getFrameSize() const
+    {
+        return m_frame_size;
+    }
+
+    const bool Animation::getPlaying() const
+    {
+        return m_playing;
     }
 
     void Animation::pause()
@@ -35,13 +60,13 @@ namespace minish
         m_animation_speed = animation_speed;
     }
 
-    void Animation::setAnimationStart(sf::Vector2i& frame_begin)
+    void Animation::setAnimationStart(const sf::Vector2i& frame_begin)
     {
         m_frame_begin = frame_begin;
         m_frame.top = m_frame_begin.y;
     }
 
-    void Animation::setFrameSize(sf::Vector2i& frame_size)
+    void Animation::setFrameSize(const sf::Vector2i& frame_size)
     {
         m_frame_size = frame_size;
         m_frame.width = m_frame_size.x;

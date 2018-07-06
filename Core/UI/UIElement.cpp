@@ -25,7 +25,7 @@ namespace minish
         m_parent = &element;
     }
 
-	sf::Vector2u& UIElement::getSize()
+	const sf::Vector2u& UIElement::getSize() const
 	{
 		return m_size;
 	}

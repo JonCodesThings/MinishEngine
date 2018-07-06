@@ -2,9 +2,9 @@
 
 namespace minish
 {
-    const void* const DataComponent::getData(std::string data_id)
+    const void* const DataComponent::getData(std::string data_id) const
     {
-        std::unordered_map<std::string, void*>::iterator it = m_data.find(data_id);
+        std::unordered_map<std::string, void*>::const_iterator it = m_data.find(data_id);
 
         if (it == m_data.end())
         {
@@ -12,7 +12,7 @@ namespace minish
         }
         else
         {
-            return m_data[data_id];
+            return m_data.at(data_id);
         }
     }
 }

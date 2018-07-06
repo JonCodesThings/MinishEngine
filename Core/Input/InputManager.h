@@ -25,39 +25,39 @@ namespace minish
             /*!
             \brief Class method to return the given controller axis' position.
             */
-            float getControllerAxis(const int code);
+            const float getControllerAxis(const int code) const;
 
             /*!
             \brief Class method to return the mouse's position.
             */
-            sf::Vector2i getMousePosition();
+            const sf::Vector2i& getMousePosition() const;
 
             /*!
             \brief Class method to return the state of a controller button.
             */
-            bool isControllerButtonPressed(const int code);
+            const bool isControllerButtonPressed(const int code) const;
 
-			bool isControllerButtonReleased(const int code);
+			const bool isControllerButtonReleased(const int code) const;
 
             /*!
             \brief Class method to return the state of a key.
             */
-            bool isKeyPressed(const int code);
+            const bool isKeyPressed(const int code) const;
 
 			/*!
 			\brief Class method to return if a key has been released.
 			*/
-			bool isKeyReleased(const int code);
+			const bool isKeyReleased(const int code) const;
 
             /*!
             \brief Class method to return the state of a mouse button.
             */
-            bool isMouseButtonPressed(const int code);
+            const bool isMouseButtonPressed(const int code) const;
 
 			/*!
 			\brief Class method to return if a mouse button has been released.
 			*/
-			bool isMouseButtonReleased(const int code);
+			const bool isMouseButtonReleased(const int code) const;
 
             /*!
             \brief Updates the class member variables with data from SFML.
