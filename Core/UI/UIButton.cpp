@@ -36,6 +36,14 @@ namespace minish
             m_action->onAction();
     }
 
+	void UIButton::setColor(const sf::Color& color)
+	{
+		m_vertices[0].color = color;
+		m_vertices[1].color = color;
+		m_vertices[2].color = color;
+		m_vertices[3].color = color;
+	}
+
 	void UIButton::setSize(const sf::Vector2u& size)
 	{
 		UIElement::setSize(size);
@@ -44,10 +52,10 @@ namespace minish
 		m_vertices[2].position = sf::Vector2f(0 + size.x, 0 + size.y);
 		m_vertices[3].position = sf::Vector2f(0, 0 + size.y);
 
-		m_vertices[0].color = sf::Color(255, 0, 0);
-		m_vertices[1].color = sf::Color(255, 0, 0);
-		m_vertices[2].color = sf::Color(255, 0, 0);
-		m_vertices[3].color = sf::Color(255, 0, 0);
+		m_vertices[0].color = sf::Color(0, 0, 0);
+		m_vertices[1].color = sf::Color(0, 0, 0);
+		m_vertices[2].color = sf::Color(0, 0, 0);
+		m_vertices[3].color = sf::Color(0, 0, 0);
 	}
 
     void UIButton::unbindAction()

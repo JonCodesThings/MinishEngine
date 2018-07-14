@@ -31,6 +31,11 @@ namespace minish
             */
             void onAction();
 
+            /*!
+            \brief Set's the color of the button.
+            */
+           void setColor(const sf::Color& color);
+
 			void setSize(const sf::Vector2u& size);
 
             /*!
