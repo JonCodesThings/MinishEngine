@@ -16,7 +16,7 @@ namespace minish
     {
         public:
 
-			void render(sf::RenderTarget& target, sf::RenderStates states=sf::RenderStates::Default);
+			void render(minish::Frame& target, sf::RenderStates states=sf::RenderStates::Default);
 
             /*!
             \brief Sets the text's font.

@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 
+#include <iostream>
+
 namespace minish
 {
 	UIElement::~UIElement()
@@ -48,11 +50,10 @@ namespace minish
     }
 
 
-    void UIElement::render(sf::RenderTarget& target, sf::RenderStates states)
+    void UIElement::render(minish::Frame& target, sf::RenderStates states)
     {
-        target.draw(*this, states);
+        target.blit(*this, states);
 		states.transform *= getTransform();
-
         for (auto& child_ : m_children)
         {
             child_->render(target, states);

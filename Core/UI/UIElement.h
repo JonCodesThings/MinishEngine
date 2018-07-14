@@ -7,6 +7,8 @@
 #include <SFML/Graphics/Transformable.hpp>
 #include <SFML/Graphics/VertexArray.hpp>
 
+#include "Core/Graphics/Frame.h"
+
 namespace sf
 {
     class RenderWindow;
@@ -22,9 +24,9 @@ namespace minish
     {
         public:
             /*!
-            \brief Default destructor.
+            \brief Virtual destructor.
             */
-            ~UIElement();
+            virtual ~UIElement();
 
             /*!
             \brief Add a child element.
@@ -41,7 +43,7 @@ namespace minish
             /*!
             \brief Renders an element and all of its children.
             */
-            virtual void render(sf::RenderTarget& target, sf::RenderStates states=sf::RenderStates::Default);
+            virtual void render(minish::Frame& frame, sf::RenderStates states=sf::RenderStates::Default);
 
             /*!
             \brief Sets the size of the element.

@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 
+#include <iostream>
+
 namespace minish
 {
     void UIText::setFont(const sf::Font& font)
@@ -10,9 +12,9 @@ namespace minish
 		m_text.setFont(m_font);
     }
 
-	void UIText::render(sf::RenderTarget& target, sf::RenderStates states)
+	void UIText::render(minish::Frame& target, sf::RenderStates states)
 	{
-		target.draw(m_text, states);
+		target.blit(m_text, states);
 		UIElement::render(target, states);
 	}
 
@@ -24,7 +26,7 @@ namespace minish
     void UIText::setTextString(const std::string& text_string)
     {
         m_text.setString(text_string);
-		m_text.setFillColor(sf::Color::Red);
+		m_text.setFillColor(sf::Color::Black);
     }
 
 	void UIText::setPosition(const sf::Vector2f& position)
