@@ -79,7 +79,7 @@ namespace minish
             /*!
         	\brief Sets the texture of the graphics component.
         	*/
-            void setTexture(sf::Texture& texture);
+            void setTexture(const sf::Texture& texture);
 
             /*!
         	\brief Sets the texture rect of the graphics component.
@@ -124,7 +124,7 @@ namespace minish
             /*!
         	\brief Pointer to the component's texture.
         	*/
-            sf::Texture* m_texture;
+            const sf::Texture* m_texture;
 
             /*!
             \brief The color of the component.

@@ -94,7 +94,7 @@ namespace minish
         m_vertex_update_flag = true;
     }
 
-    void GraphicsComponent::setTexture(sf::Texture& texture)
+    void GraphicsComponent::setTexture(const sf::Texture& texture)
     {
         m_texture = &texture;
         m_vertex_update_flag = true;
