@@ -19,6 +19,7 @@ namespace minish
         }
 
         m_states.push_back(&state);
+        state.setStateManager(*this);
         
         state.startup();
 

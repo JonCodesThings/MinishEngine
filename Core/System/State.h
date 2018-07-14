@@ -13,12 +13,14 @@ namespace sf
 
 namespace minish
 {
+    class StateManager;
     /*!
     * \brief Abstact class for gamestate management.
     * \author Jonathan Duncanson
     */
     class State
     {
+        friend class StateManager;
         public:
             /*!
             \brief Default constructor, passes in reference to window and string id for state switching purposes.
@@ -66,6 +68,7 @@ namespace minish
             virtual const bool update(const float dt) = 0;
 
 		protected:
+            void changeManagerState(const std::string& id);
 
 			/*!
 			\brief Pointer to frame instance.
@@ -74,11 +77,14 @@ namespace minish
 
 			InputManager* m_input;
         private:
+            void setStateManager(StateManager& state_manager);
 
             /*!
             \brief String used to identify the state.
             */
             std::string m_id;
+
+            StateManager* m_state_manager;
     };
 }
 

@@ -25,6 +25,11 @@ namespace minish
         return m_frame;
     }
 
+    const sf::RenderWindow& Frame::getRenderWindow()
+    {
+        return *m_hwnd;
+    }
+
     bool Frame::init(const sf::Vector2u& size, sf::RenderWindow& hwnd)
     {
         m_vertices.setPrimitiveType(sf::PrimitiveType::Quads);
