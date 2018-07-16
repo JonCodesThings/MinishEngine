@@ -1,5 +1,5 @@
 MinishEngine
 
-A small SFML-based engine project
+A small SFML-based micro game engine project
 
 For license see LICENSE.md
