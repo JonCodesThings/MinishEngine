@@ -2,7 +2,7 @@
 
 namespace minish
 {
-    const void* const DataComponent::getData(std::string data_id) const
+    const void* const DataComponent::getData(const std::string& data_id) const
     {
         std::unordered_map<std::string, void*>::const_iterator it = m_data.find(data_id);
 

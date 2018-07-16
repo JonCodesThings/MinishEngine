@@ -18,19 +18,19 @@ namespace minish
             /*!
         	\brief Class member that returns data from the component. Returns nullptr if there is no data for the requested id.
         	*/
-            const void* const getData(std::string data_id) const;
+            const void* const getData(const std::string& data_id) const;
 
             /*!
             \brief Class member that registers the location of data associated with the component.
             */
             template <class T>
-            bool registerData(std::string data_id, T& data);
+            bool registerData(const std::string& data_id, T& data);
 
             /*!
         	\brief Class member that sets the data value in the requested id.
         	*/
             template <class T>
-            bool setData(std::string data_id, T& data);
+            bool setData(const std::string& data_id, const T& data);
 
             /*!
         	\brief Dummy class member that does nothing.

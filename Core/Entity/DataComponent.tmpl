@@ -2,7 +2,7 @@ namespace minish
 {
 
     template <class T>
-    bool DataComponent::registerData(std::string data_id, T& data)
+    bool DataComponent::registerData(const std::string& data_id, T& data)
     {
         std::unordered_map<std::string, void*>::iterator it = m_data.find(data_id);
 
@@ -14,7 +14,7 @@ namespace minish
     }
 
     template<class T>
-    bool DataComponent::setData(std::string data_id, T& data)
+    bool DataComponent::setData(const std::string& data_id, const T& data)
     {
         std::unordered_map<std::string, void*>::iterator it = m_data.find(data_id);
 
