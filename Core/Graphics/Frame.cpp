@@ -30,6 +30,11 @@ namespace minish
         return *m_hwnd;
     }
 
+    const sf::View& Frame::getView() const
+    {
+        return m_frame.getView();
+    }
+
     bool Frame::init(const sf::Vector2u& size, sf::RenderWindow& hwnd)
     {
         m_vertices.setPrimitiveType(sf::PrimitiveType::Quads);
@@ -60,6 +65,11 @@ namespace minish
     void Frame::pre_render()
     {
         m_frame.clear(sf::Color::White);
+    }
+
+    void Frame::setView(const sf::View& view)
+    {
+        m_frame.setView(view);
     }
 
     void Frame::draw(sf::RenderTarget& target, sf::RenderStates states) const
