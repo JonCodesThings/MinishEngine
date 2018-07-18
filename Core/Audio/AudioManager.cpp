@@ -45,7 +45,7 @@ namespace minish
 
         for (auto& sound_ : m_sound_player)
         {
-            if (sound_.Stopped)
+            if (sound_.Paused)
             {
                 sound_.setBuffer(m_buffers[name]);
                 sound_.play();
