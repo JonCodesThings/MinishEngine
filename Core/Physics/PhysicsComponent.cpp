@@ -29,7 +29,7 @@ namespace minish
         return m_velocity;
     }
 
-    void PhysicsComponent::setAABB(AABB& aabb)
+    void PhysicsComponent::setAABB(const AABB& aabb)
     {
         m_AABB = aabb;
         if (getEntity() != nullptr)
@@ -38,7 +38,7 @@ namespace minish
         }
     }
 
-    void PhysicsComponent::setAcceleration(sf::Vector2f& acceleration)
+    void PhysicsComponent::setAcceleration(const sf::Vector2f& acceleration)
     {
         m_acceleration = acceleration;
         if (getEntity() != nullptr)
@@ -47,7 +47,7 @@ namespace minish
         }
     }
 
-    void PhysicsComponent::setPosition(sf::Vector2f& position)
+    void PhysicsComponent::setPosition(const sf::Vector2f& position)
     {
         m_position = position;
         m_AABB.left = m_position.x;
@@ -58,7 +58,7 @@ namespace minish
         }
     }
 
-    void PhysicsComponent::setSize(sf::Vector2u& size)
+    void PhysicsComponent::setSize(const sf::Vector2u& size)
     {
         m_size = size;
         m_AABB.width = m_size.x;
@@ -69,7 +69,7 @@ namespace minish
         }
     }
 
-    void PhysicsComponent::setVelocity(sf::Vector2f& velocity)
+    void PhysicsComponent::setVelocity(const sf::Vector2f& velocity)
     {
         m_velocity = velocity;
         if (getEntity() != nullptr)

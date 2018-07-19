@@ -34,21 +34,21 @@ namespace minish
             /*!
             \brief Class method that sets the AABB.
             */
-            void setAABB(AABB& aabb);
+            void setAABB(const AABB& aabb);
 
-            void setAcceleration(sf::Vector2f& acceleration);
+            void setAcceleration(const sf::Vector2f& acceleration);
 
             /*!
             \brief Class method that sets the position of the AABB.
             */
-            void setPosition(sf::Vector2f& position);
+            void setPosition(const sf::Vector2f& position);
 
             /*!
             \brief Class method that sets the size of the AABB.
             */
-            void setSize(sf::Vector2u& size);
+            void setSize(const sf::Vector2u& size);
 
-            void setVelocity(sf::Vector2f& velocity);
+            void setVelocity(const sf::Vector2f& velocity);
 
             virtual void update(const float dt);
         protected:
