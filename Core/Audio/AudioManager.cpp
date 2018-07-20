@@ -31,8 +31,11 @@ namespace minish
     void AudioManager::playMusic(const std::string& name)
     {
         std::unordered_map<std::string, std::string>::iterator it = m_music.find(name);
+        
+        if (it == m_music.end())
+            return;
 
-        if (!(m_music_player.getStatus() == sf::SoundSource::Status::Playing) && it == m_music.end())
+        if (!(m_music_player.getStatus() == sf::SoundSource::Status::Playing))
         {
             m_music_player.stop();
             m_music_player.openFromFile(m_music[name]);
@@ -41,11 +44,14 @@ namespace minish
 
     void AudioManager::playSound(const std::string& name)
     {
-        //std::unordered_map<std::string, sf::SoundBuffer>::iterator it = m_buffers.find(name);
+        std::unordered_map<std::string, sf::SoundBuffer>::iterator it = m_buffers.find(name);
+
+        if (it == m_buffers.end())
+            return;
 
         for (auto& sound_ : m_sound_player)
         {
-            if (sound_.Paused)
+            if (sound_.getStatus() == sf::SoundSource::Stopped)
             {
                 sound_.setBuffer(m_buffers[name]);
                 sound_.play();
