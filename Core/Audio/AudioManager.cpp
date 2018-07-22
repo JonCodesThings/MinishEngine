@@ -39,6 +39,7 @@ namespace minish
         {
             m_music_player.stop();
             m_music_player.openFromFile(m_music[name]);
+            m_music_player.play();
         }
     }
 
@@ -68,5 +69,20 @@ namespace minish
     void AudioManager::removeSound(const std::string& name)
     {
         m_buffers.erase(name);
+    }
+
+    void AudioManager::setMusicLoop(bool loop)
+    {
+        m_music_player.setLoop(loop);
+    }
+
+    void AudioManager::setMusicVolume(float volume)
+    {
+        m_music_player.setVolume(volume);
+    }
+
+    void AudioManager::stopMusic()
+    {
+        m_music_player.stop();
     }
 }

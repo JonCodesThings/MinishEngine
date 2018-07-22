@@ -47,6 +47,21 @@ namespace minish
         	\brief Class method that removes the given sound from the sounds map.
         	*/
             void removeSound(const std::string& name);
+
+            /*
+            \brief Class method that sets if music loops.
+            */
+           void setMusicLoop(bool loop);
+
+            /*!
+            \brief Class method that sets the volume of music.
+            */
+            void setMusicVolume(float volume);
+
+            /*
+            \brief Class method to stop music playback.
+            */
+            void stopMusic();
         private:
             /*!
         	\brief Unordered map that stores SoundBuffers.
