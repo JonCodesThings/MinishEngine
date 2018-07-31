@@ -1,4 +1,5 @@
 #include "State.h"
+#include "Application.h"
 #include "StateManager.h"
 
 namespace minish
@@ -20,8 +21,14 @@ namespace minish
         m_state_manager->changeState(id);
     }
 
+    void State::resizeApplicationWindow(const sf::Vector2u& window_dimensions)
+    {
+        m_application->resizeWindow(window_dimensions);
+    }
+
     void State::setStateManager(StateManager& state_manager)
     {
         m_state_manager = &state_manager;
+        m_application = &(m_state_manager->getApplication());
     }
 }

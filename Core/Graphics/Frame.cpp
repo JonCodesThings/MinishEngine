@@ -25,7 +25,7 @@ namespace minish
         return m_frame;
     }
 
-    const sf::RenderWindow& Frame::getRenderWindow()
+    sf::RenderWindow& Frame::getRenderWindow()
     {
         return *m_hwnd;
     }

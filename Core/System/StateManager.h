@@ -11,6 +11,7 @@ namespace sf
 
 namespace minish
 {
+    class Application;
     class State;
 
     /*!
@@ -21,9 +22,9 @@ namespace minish
     {
         public:
 			/*!
-			\brief Default constructor.
+			\brief Constructor.
 			*/
-			StateManager();
+			StateManager(Application& application);
 
             /*!
             \brief Class method that adds a state to the manager.
@@ -34,6 +35,11 @@ namespace minish
             \brief Class method that changes the current state.
             */
             void changeState(const std::string& id);
+
+            /*!
+            \brief Class method to return the reference to the base application.
+            */
+           Application& getApplication();
 
             /*!
             \brief Class method that removes a state from the manager.
@@ -59,6 +65,11 @@ namespace minish
             \brief Pointer to the current state.
             */
             State* m_current_state = nullptr;
+
+            /*!
+            \brief Pointer to the application.
+            */
+           Application& m_application;
     };
 }
 

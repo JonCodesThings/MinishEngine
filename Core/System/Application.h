@@ -43,6 +43,11 @@ namespace minish
             virtual void render() = 0;
 
             /*!
+            \brief Class member that resizes the window and adjusts the position of the frame accordingly.
+            */
+            void resizeWindow(const sf::Vector2u& window_dimensions);
+
+            /*!
         	\brief Class member that runs the core application loop.
         	*/ 
             void run();
@@ -141,6 +146,8 @@ namespace minish
         	\brief Variables used for multi-resolution support and to store deltatime.
         	*/
             float m_target_aspect_ratio, m_dt;
+
+            sf::Vector2u m_target_dimensions;
     };
 }
 

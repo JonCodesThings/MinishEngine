@@ -13,6 +13,7 @@ namespace sf
 
 namespace minish
 {
+    class Application;
     class StateManager;
     /*!
     * \brief Abstact class for gamestate management.
@@ -70,6 +71,8 @@ namespace minish
 		protected:
             void changeManagerState(const std::string& id);
 
+            void resizeApplicationWindow(const sf::Vector2u& window_dimensions);
+
 			/*!
 			\brief Pointer to frame instance.
 			*/
@@ -85,6 +88,8 @@ namespace minish
             std::string m_id;
 
             StateManager* m_state_manager;
+
+            Application* m_application;
     };
 }
 

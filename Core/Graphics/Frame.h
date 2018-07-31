@@ -18,7 +18,7 @@ namespace minish
             void deinit();
             void blit(const sf::Drawable& drawable, const sf::RenderStates states=sf::RenderStates::Default);
             const sf::RenderTarget& getRenderTarget();
-            const sf::RenderWindow& getRenderWindow();
+            sf::RenderWindow& getRenderWindow();
             const sf::View& getView() const;
             bool init(const sf::Vector2u& size, sf::RenderWindow& hwnd);
             void post_render();

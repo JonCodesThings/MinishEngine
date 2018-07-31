@@ -10,41 +10,13 @@ namespace minish
 {
     Application::Application(unsigned int thread_count, const sf::Vector2u& window_dimensions, const sf::Vector2u& target_dimensions, const std::string& app_title) 
     : 
-    m_running(true), m_threadsync(0), m_tasksync(0), m_target_aspect_ratio(((float)target_dimensions.x / (float)target_dimensions.y))
+    m_state_manager(*this), m_running(true), m_threadsync(0), m_tasksync(0), 
+    m_target_aspect_ratio(((float)target_dimensions.x / (float)target_dimensions.y)), m_target_dimensions(target_dimensions)
     {
         m_threads.resize(thread_count - 1); //takes into account main execution thread
         m_wnd.create(sf::VideoMode(window_dimensions.x, window_dimensions.y), app_title, sf::Style::Close);
         m_frame.init(target_dimensions, m_wnd);
-        if (window_dimensions == target_dimensions)
-        {
-            m_frame.setPosition(0, 0);
-        }
-        else if (((float)window_dimensions.x / (float)window_dimensions.y) == m_target_aspect_ratio)
-        {
-            m_frame.setPosition(0, 0);
-            m_frame.setScale(((float)window_dimensions.x / (float)target_dimensions.x), ((float)window_dimensions.y / (float)target_dimensions.y));
-        }
-        else
-        {
-            float actual_aspect = ((float)window_dimensions.x / (float)window_dimensions.y);
-            if (actual_aspect > m_target_aspect_ratio)
-            {
-                if (actual_aspect < 1.59f)
-                {
-                    float x_pos = ((float)window_dimensions.x - ((float)window_dimensions.y * (float)4/3)) / 2;
-                    m_frame.setPosition(x_pos, 0);
-                }
-                else
-                {
-                    float y_pos = ((float)window_dimensions.y - ((float)window_dimensions.x * m_target_aspect_ratio)) /2;
-                    m_frame.setPosition(0, y_pos);
-                }
-            }
-            else
-            {
-               //TODO
-            }
-        }
+        resizeWindow(window_dimensions);
     }
 
     void Application::addTask(Task& task)
@@ -70,6 +42,48 @@ namespace minish
                 return;
             }
         }
+    }
+
+    void Application::resizeWindow(const sf::Vector2u& window_dimensions)
+    {
+        m_wnd.setSize(window_dimensions);
+        m_frame.setView(sf::View(m_frame.getView().getCenter(), sf::Vector2f(m_target_dimensions)));
+        m_frame.setScale(1.0f, 1.0f);
+        m_frame.setPosition(0, 0);
+        sf::View window_view;
+
+        if (((float)window_dimensions.x / (float)window_dimensions.y) == m_target_aspect_ratio)
+        {
+            window_view.setSize(sf::Vector2f(m_frame.getRenderTarget().getSize().x, m_frame.getRenderTarget().getSize().y));
+            window_view.setViewport(sf::FloatRect(0.0f, 0.0f, 1.0f, 1.0f));
+        }
+        else
+        {
+            float actual_aspect = ((float)window_dimensions.x / (float)window_dimensions.y);
+            if (actual_aspect > m_target_aspect_ratio)
+            {
+                if (m_target_aspect_ratio == 4.0f/3.0f)
+                {
+                    if (actual_aspect == 16.0f/9.0f)
+                        window_view.setViewport(sf::FloatRect(0.1f, 0.0f, 0.8f, 1.0f));
+                    else
+                        window_view.setViewport(sf::FloatRect(0.1f, 0.0f, 0.8f, 1.0f));
+                }
+                else
+                {
+                    if (actual_aspect == 4.0f/3.0f)
+                        window_view.setViewport(sf::FloatRect(0.1f, 0.0f, 0.8f, 1.0f));
+                }
+            }
+            else
+            {
+               
+            }
+            
+        }
+        
+        window_view.setCenter(sf::Vector2f(m_frame.getRenderTarget().getSize().x / 2, m_frame.getRenderTarget().getSize().y / 2));
+        m_wnd.setView(window_view);
     }
 
     void Application::run()

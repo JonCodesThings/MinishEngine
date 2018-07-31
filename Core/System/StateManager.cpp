@@ -3,7 +3,7 @@
 
 namespace minish
 {
-	StateManager::StateManager() : m_current_state(nullptr)
+	StateManager::StateManager(Application& application) : m_current_state(nullptr), m_application(application)
 	{
 
 	}
@@ -51,6 +51,11 @@ namespace minish
                 }
             }
         }
+    }
+
+    Application& StateManager::getApplication()
+    {
+        return m_application;
     }
 
     void StateManager::removeState(const std::string& id)
