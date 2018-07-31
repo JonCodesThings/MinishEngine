@@ -51,10 +51,9 @@ namespace minish
         m_frame.setScale(1.0f, 1.0f);
         m_frame.setPosition(0, 0);
         sf::View window_view;
-
+        window_view.setSize(sf::Vector2f(m_frame.getRenderTarget().getSize().x, m_frame.getRenderTarget().getSize().y));
         if (((float)window_dimensions.x / (float)window_dimensions.y) == m_target_aspect_ratio)
         {
-            window_view.setSize(sf::Vector2f(m_frame.getRenderTarget().getSize().x, m_frame.getRenderTarget().getSize().y));
             window_view.setViewport(sf::FloatRect(0.0f, 0.0f, 1.0f, 1.0f));
         }
         else
@@ -65,7 +64,7 @@ namespace minish
                 if (m_target_aspect_ratio == 4.0f/3.0f)
                 {
                     if (actual_aspect == 16.0f/9.0f)
-                        window_view.setViewport(sf::FloatRect(0.1f, 0.0f, 0.8f, 1.0f));
+                        window_view.setViewport(sf::FloatRect(0.125f, 0.0f, 0.75f, 1.0f));
                     else
                         window_view.setViewport(sf::FloatRect(0.1f, 0.0f, 0.8f, 1.0f));
                 }
