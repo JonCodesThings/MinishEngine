@@ -13,6 +13,7 @@ namespace sf
 
 namespace minish
 {
+    struct ApplicationSystem;
     class Application;
     class StateManager;
     /*!
@@ -26,7 +27,7 @@ namespace minish
             /*!
             \brief Default constructor, passes in reference to window and string id for state switching purposes.
             */
-            State(minish::Frame& frame, const std::string& id, InputManager& input);
+            State(ApplicationSystem& application_system, const std::string& id);
 
             /*!
             \brief Default destructor, calls shutdown class method to free resources.
@@ -73,12 +74,7 @@ namespace minish
 
             void resizeApplicationWindow(const sf::Vector2u& window_dimensions);
 
-			/*!
-			\brief Pointer to frame instance.
-			*/
-		    Frame* m_frame;
-
-			InputManager* m_input;
+            ApplicationSystem& m_application_system;
         private:
             void setStateManager(StateManager& state_manager);
 

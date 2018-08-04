@@ -9,12 +9,48 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Clock.hpp>
 
+#include <Core/Audio/AudioManager.h>
 #include <Core/Graphics/Frame.h>
+#include <Core/Graphics/TextureManager.h>
+#include <Core/Input/InputHandler.h>
+#include <Core/Input/InputManager.h>
+
 #include "StateManager.h"
 #include "Task.h"
 
 namespace minish
 {
+    struct ApplicationSystem
+    {
+        ApplicationSystem(sf::RenderWindow& wnd) : m_input_manager(&wnd) {};
+        ~ApplicationSystem() {};        
+        /*
+        \brief Audio manager.
+        */
+        AudioManager m_audio_manager;
+
+        /*
+        \brief Application frame.
+        */
+        Frame m_frame;
+
+        /*
+        \brief Input manager.
+        */
+        InputManager m_input_manager;
+
+        /*
+        \brief Rebindable input handler.
+        */
+        InputHandler m_input_handler;
+
+        /*
+        \brief Texture manager.
+        */
+        TextureManager m_texture_manager;
+
+    };
+
     /*!
     * \brief Abstract class used to represent the game application itself.
     * \author Jonathan Duncanson
@@ -31,6 +67,8 @@ namespace minish
         	\brief Class member that adds a threadable subsystem.
         	*/  
             void addTask(Task& task);
+
+            ApplicationSystem& getApplicationSystem();
 
             /*!
         	\brief Class member that removes a threadable subsystem.
@@ -76,20 +114,17 @@ namespace minish
         	*/ 
             void syncThreads();
 
+            ApplicationSystem m_application_system;
+
             /*!
         	\brief Application SFML window.
         	*/ 
             sf::RenderWindow m_wnd;
 
-            /*!
-        	\brief Application frame.
-        	*/ 
-            Frame m_frame;
-
-			/*!
-			\brief Gamestate manager.
-			*/
-			StateManager m_state_manager;
+        	/*!
+		    \brief Gamestate manager.
+		    */
+		    StateManager m_state_manager;
 
         private:
             /*!

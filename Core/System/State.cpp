@@ -4,7 +4,7 @@
 
 namespace minish
 {
-    State::State(Frame& frame, const std::string& id, InputManager& input) : m_frame(&frame), m_input(&input), m_id(id), m_state_manager(nullptr)
+    State::State(ApplicationSystem& application_system, const std::string& id) : m_application_system(application_system), m_id(id), m_state_manager(nullptr)
     {}
 
     State::~State()

@@ -10,12 +10,12 @@ namespace minish
 {
     Application::Application(unsigned int thread_count, const sf::Vector2u& window_dimensions, const sf::Vector2u& target_dimensions, const std::string& app_title) 
     : 
-    m_state_manager(*this), m_running(true), m_threadsync(0), m_tasksync(0), 
+    m_application_system(m_wnd), m_state_manager(*this), m_running(true), m_threadsync(0), m_tasksync(0), 
     m_target_aspect_ratio(((float)target_dimensions.x / (float)target_dimensions.y)), m_target_dimensions(target_dimensions)
     {
         m_threads.resize(thread_count - 1); //takes into account main execution thread
         m_wnd.create(sf::VideoMode(window_dimensions.x, window_dimensions.y), app_title, sf::Style::Close);
-        m_frame.init(target_dimensions, m_wnd);
+        m_application_system.m_frame.init(target_dimensions, m_wnd);
         resizeWindow(window_dimensions);
     }
 
@@ -29,6 +29,11 @@ namespace minish
             }
         }
         m_tasks.push_front(&task);
+    }
+
+    ApplicationSystem& Application::getApplicationSystem()
+    {
+        return m_application_system;
     }
 
     void Application::removeTask(Task& task)
@@ -47,11 +52,11 @@ namespace minish
     void Application::resizeWindow(const sf::Vector2u& window_dimensions)
     {
         m_wnd.setSize(window_dimensions);
-        m_frame.setView(sf::View(m_frame.getView().getCenter(), sf::Vector2f(m_target_dimensions)));
-        m_frame.setScale(1.0f, 1.0f);
-        m_frame.setPosition(0, 0);
+        m_application_system.m_frame.setView(sf::View(m_application_system.m_frame.getView().getCenter(), sf::Vector2f(m_target_dimensions)));
+        m_application_system.m_frame.setScale(1.0f, 1.0f);
+        m_application_system.m_frame.setPosition(0, 0);
         sf::View window_view;
-        window_view.setSize(sf::Vector2f(m_frame.getRenderTarget().getSize().x, m_frame.getRenderTarget().getSize().y));
+        window_view.setSize(sf::Vector2f(m_application_system.m_frame.getRenderTarget().getSize().x, m_application_system.m_frame.getRenderTarget().getSize().y));
         if (((float)window_dimensions.x / (float)window_dimensions.y) == m_target_aspect_ratio)
         {
             window_view.setViewport(sf::FloatRect(0.0f, 0.0f, 1.0f, 1.0f));
@@ -81,7 +86,7 @@ namespace minish
             
         }
         
-        window_view.setCenter(sf::Vector2f(m_frame.getRenderTarget().getSize().x / 2, m_frame.getRenderTarget().getSize().y / 2));
+        window_view.setCenter(sf::Vector2f(m_application_system.m_frame.getRenderTarget().getSize().x / 2, m_application_system.m_frame.getRenderTarget().getSize().y / 2));
         m_wnd.setView(window_view);
     }
 
@@ -106,7 +111,7 @@ namespace minish
                 m_running = false;
             }
         }
-        m_frame.deinit();
+        m_application_system.m_frame.deinit();
         shutdown();
     }
 
@@ -160,15 +165,15 @@ namespace minish
 
     void Application::post_render()
     {
-        m_frame.post_render();
-        m_wnd.draw(m_frame);
+        m_application_system.m_frame.post_render();
+        m_wnd.draw(m_application_system.m_frame);
 		m_wnd.display();
     }
 
     void Application::pre_render()
     {   
 		m_wnd.clear(sf::Color::Black);
-        m_frame.pre_render();
+        m_application_system.m_frame.pre_render();
     }
 
     void Application::toggleTaskFlags()
