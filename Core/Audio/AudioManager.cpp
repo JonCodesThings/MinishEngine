@@ -15,6 +15,11 @@ namespace minish
         return false;
     }
 
+    float AudioManager::getMusicVolume()
+    {
+        return m_music_player.getVolume();
+    }
+
     bool AudioManager::loadSound(const std::string& name, const std::string& filepath)
     {
         std::unordered_map<std::string, sf::SoundBuffer>::iterator it = m_buffers.find(name);

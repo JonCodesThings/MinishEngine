@@ -24,6 +24,11 @@ namespace minish
             bool addMusic(const std::string& name, const std::string& filepath);
 
             /*!
+            \brief Class method that sets the volume of music.
+            */
+            float getMusicVolume();
+
+            /*!
         	\brief Class method that loads the sound into memory to the sounds map.
         	*/
             bool loadSound(const std::string& name, const std::string& filepath);
