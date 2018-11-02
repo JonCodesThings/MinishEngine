@@ -114,14 +114,15 @@ namespace minish
             m_transform.scale(m_scale);
             m_transform.rotate(m_rotation);
             m_transform.translate(m_position);
-            
+
+#ifdef MINISH_EXPERIMENTAL
             if (getEntity() != nullptr)
             {
                 getEntity()->getDataComponent().setData("graphics_scale", m_scale);
                 getEntity()->getDataComponent().setData("graphics_rotation", m_rotation);
                 getEntity()->getDataComponent().setData("graphics_position", m_position);
             }
-
+#endif
             m_transform_update_flag = false;
         }
 
@@ -142,6 +143,7 @@ namespace minish
             m_vertices[2].color = m_color;
             m_vertices[3].color = m_color;
 
+#ifdef MINISH_EXPERIMENTAL
             if (getEntity() != nullptr)
             {
                 getEntity()->getDataComponent().setData("graphics_color", m_color);
@@ -149,7 +151,7 @@ namespace minish
                 getEntity()->getDataComponent().setData("graphics_texture", m_texture);
                 getEntity()->getDataComponent().setData("graphics_texture_rect", m_texture_rect);
             }
-
+#endif
             m_vertex_update_flag = false;
         }
     }
@@ -157,6 +159,7 @@ namespace minish
     void GraphicsComponent::setEntity(Entity& entity)
     {
         Component::setEntity(entity);
+#ifdef MINISH_EXPERIMENTAL
         getEntity()->getDataComponent().registerData("graphics_scale", m_scale);
         getEntity()->getDataComponent().registerData("graphics_rotation", m_rotation);
         getEntity()->getDataComponent().registerData("graphics_position", m_position);
@@ -164,6 +167,7 @@ namespace minish
         getEntity()->getDataComponent().registerData("graphics_size", m_size);
         getEntity()->getDataComponent().registerData("graphics_texture", m_texture);
         getEntity()->getDataComponent().registerData("graphics_texture_rect", m_texture_rect);
+#endif
     }
 
     void GraphicsComponent::draw(sf::RenderTarget& target, sf::RenderStates states) const

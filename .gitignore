@@ -1,2 +1,9 @@
-SFML-2.5.0/
+CMakeFiles/
 html/
+SFML-2.5.0/
+
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+*.a

@@ -35,10 +35,12 @@ namespace minish
         return m_id;
     }
 
+#ifdef MINISH_EXPERIMENTAL
     DataComponent& Entity::getDataComponent()
     {
         return m_data;
     }
+#endif
 
     void Entity::removeComponent(Component* component)
     {

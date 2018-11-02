@@ -7,6 +7,11 @@ include_directories(.)
 
 find_package(SFML COMPONENTS audio graphics system window)
 
+option(EXPERIMENTAL "Enable/Disable experimental bits of the engine" OFF)
+if (EXPERIMENTAL)
+	add_compile_options(-D MINISH_EXPERIMENTAL)
+endif()
+
 set (SOURCE_FILES
 	Core/Audio/AudioComponent.cpp
 	Core/Audio/AudioComponent.h
@@ -57,3 +62,4 @@ set (SOURCE_FILES
 	
 add_library(MinishEngine STATIC ${SOURCE_FILES})
 target_link_libraries(MinishEngine sfml-audio sfml graphics sfml-system sfml-window)
+set_target_properties(MinishEngine PROPERTIES PREFIX "")
