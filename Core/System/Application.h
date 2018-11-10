@@ -51,6 +51,94 @@ namespace minish
 
     };
 
+	/*!
+   * \brief Abstract class used to represent the game application itself.
+   * \author Jonathan Duncanson
+   */
+	class Application
+	{
+	public:
+		/*!
+		\brief Default constructor. Sets the number of threads, window dimensions, target dimensions and window title.
+		*/
+		Application(const float target_frame_time, const sf::Vector2u& window_dimensions, const sf::Vector2u& target_dimensions, const std::string& app_title);
+
+		ApplicationSystem& getApplicationSystem();
+
+		/*!
+		\brief Pure virtual class member for rendering.
+		*/
+		virtual void render(float update_difference) = 0;
+
+		/*!
+		\brief Class member that resizes the window and adjusts the position of the frame accordingly.
+		*/
+		void resizeWindow(const sf::Vector2u& window_dimensions);
+
+		/*!
+		\brief Class member that runs the core application loop.
+		*/
+		void run();
+
+		/*!
+		\brief Pure virtual class member that runs on application shutdown.
+		*/
+		virtual void shutdown() = 0;
+
+		/*!
+		\brief Pure virtual class member that runs on application startup.
+		*/
+		virtual void startup() = 0;
+
+		/*!
+		\brief Pure virtual class member that runs update functions on non-threadable subsystems and the state manager.
+		*/
+		virtual const bool update(const float dt) = 0;
+	protected:
+
+		ApplicationSystem m_application_system;
+
+		/*!
+		\brief Application SFML window.
+		*/
+		sf::RenderWindow m_wnd;
+
+		/*!
+		\brief Gamestate manager.
+		*/
+		StateManager m_state_manager;
+
+	private:
+
+		/*!
+		\brief Class member that is called after render().
+		*/
+		void post_render();
+
+		/*!
+		\brief Class member that is called before render().
+		*/
+		void pre_render();
+
+		/*!
+		\brief Timer used to measure delta time.
+		*/
+		sf::Clock m_deltaTimer;
+
+		/*!
+		\brief Boolean that stores whether or not the application is running.
+		*/
+		bool m_running;
+
+		/*!
+		\brief Variables used for multi-resolution support and to store deltatime.
+		*/
+		float m_target_aspect_ratio, m_dt, m_target_dt;
+
+		sf::Vector2u m_target_dimensions;
+	};
+
+#ifdef MINISH_EXPERIMENTAL
     /*!
     * \brief Abstract class used to represent the game application itself.
     * \author Jonathan Duncanson
@@ -184,6 +272,7 @@ namespace minish
 
             sf::Vector2u m_target_dimensions;
     };
+#endif
 }
 
 #endif

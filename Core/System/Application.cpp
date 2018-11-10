@@ -8,6 +8,17 @@
 
 namespace minish
 {
+	Application::Application(const float target_frame_time, const sf::Vector2u& window_dimensions, const sf::Vector2u& target_dimensions, const std::string& app_title)
+		:
+		m_application_system(m_wnd), m_state_manager(*this), m_running(true),
+		m_target_aspect_ratio(((float)target_dimensions.x / (float)target_dimensions.y)), m_target_dt(target_frame_time), m_target_dimensions(target_dimensions)
+	{
+		m_wnd.create(sf::VideoMode(window_dimensions.x, window_dimensions.y), app_title, sf::Style::Close);
+		m_application_system.m_frame.init(target_dimensions, m_wnd);
+		resizeWindow(window_dimensions);
+	}
+
+#ifdef MINISH_EXPERIMENTAL
     Application::Application(unsigned int thread_count, const sf::Vector2u& window_dimensions, const sf::Vector2u& target_dimensions, const std::string& app_title) 
     : 
     m_application_system(m_wnd), m_state_manager(*this), m_running(true), m_threadsync(0), m_tasksync(0), 
@@ -18,35 +29,11 @@ namespace minish
         m_application_system.m_frame.init(target_dimensions, m_wnd);
         resizeWindow(window_dimensions);
     }
-
-    void Application::addTask(Task& task)
-    {
-        for (auto& task_ : m_tasks)
-        {
-            if (task_ == &task)
-            {
-                return;
-            }
-        }
-        m_tasks.push_front(&task);
-    }
+#endif
 
     ApplicationSystem& Application::getApplicationSystem()
     {
         return m_application_system;
-    }
-
-    void Application::removeTask(Task& task)
-    {
-        std::forward_list<Task*>::iterator it;
-        while (it != m_tasks.end())
-        {
-            if (*it == &task)
-            {
-                m_tasks.erase_after(it);
-                return;
-            }
-        }
     }
 
     void Application::resizeWindow(const sf::Vector2u& window_dimensions)
@@ -94,13 +81,18 @@ namespace minish
     {
         startup();
         m_dt = m_deltaTimer.restart().asSeconds();
+		float lag = 0.0f;
         while(m_running)
         {
-            toggleTaskFlags();
-            m_running = update(m_dt);
-            syncThreads();
+			lag += m_dt;
+			while (lag >= m_target_dt)
+			{
+				m_running = update(m_dt);
+				lag -= m_target_dt;
+			}
+				
 			pre_render();
-            render();
+            render(lag / m_target_dt);
 			post_render();
             m_dt = m_deltaTimer.restart().asSeconds();
 
@@ -114,6 +106,58 @@ namespace minish
         m_application_system.m_frame.deinit();
         shutdown();
     }
+
+#ifdef MINISH_EXPERIMENTAL
+
+	void Application::run()
+	{
+		startup();
+		m_dt = m_deltaTimer.restart().asSeconds();
+		while (m_running)
+		{
+			toggleTaskFlags();
+			m_running = update(m_dt);
+			syncThreads();
+			pre_render();
+			render();
+			post_render();
+			m_dt = m_deltaTimer.restart().asSeconds();
+
+			sf::Event ev;
+			if (m_wnd.pollEvent(ev) && ev.type == sf::Event::Closed)
+			{
+				m_wnd.close();
+				m_running = false;
+			}
+		}
+		m_application_system.m_frame.deinit();
+		shutdown();
+	}
+
+	void Application::addTask(Task& task)
+	{
+		for (auto& task_ : m_tasks)
+		{
+			if (task_ == &task)
+			{
+				return;
+			}
+		}
+		m_tasks.push_front(&task);
+	}
+
+	void Application::removeTask(Task& task)
+	{
+		std::forward_list<Task*>::iterator it;
+		while (it != m_tasks.end())
+		{
+			if (*it == &task)
+			{
+				m_tasks.erase_after(it);
+				return;
+			}
+		}
+	}
 
     void Application::syncTasks()
     {
@@ -163,6 +207,16 @@ namespace minish
         return nullptr;
     }
 
+	void Application::toggleTaskFlags()
+	{
+		for (auto& task_ : m_tasks)
+		{
+			task_->resetTaskState();
+		}
+	}
+
+#endif
+
     void Application::post_render()
     {
         m_application_system.m_frame.post_render();
@@ -174,13 +228,5 @@ namespace minish
     {   
 		m_wnd.clear(sf::Color::Black);
         m_application_system.m_frame.pre_render();
-    }
-
-    void Application::toggleTaskFlags()
-    {
-        for (auto& task_ : m_tasks)
-        {
-            task_->resetTaskState();
-        }
     }
 }
