@@ -49,7 +49,7 @@ namespace minish
             /*!
             \brief Renders the current state.
             */
-            void render();
+            void render(float update_difference);
 
             /*!
             \brief Updates the current state.

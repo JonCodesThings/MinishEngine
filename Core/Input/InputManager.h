@@ -2,6 +2,7 @@
 #define MINISH_INPUTMANAGER_H
 
 #include <SFML/System/Vector2.hpp>
+#include <SFML/Window/Event.hpp>
 
 namespace sf
 {
@@ -22,6 +23,16 @@ namespace minish
             */
             InputManager(sf::RenderWindow* hwnd);
 
+			void appendTextInput(const sf::Event& ev);
+
+			void clearTextInput();
+
+			void disableTextInput();
+
+			void enableTextInput();
+
+			void setFocus(const bool focus);
+
             /*!
             \brief Class method to return the given controller axis' position.
             */
@@ -31,6 +42,8 @@ namespace minish
             \brief Class method to return the mouse's position.
             */
             const sf::Vector2i& getMousePosition() const;
+
+			const std::string& getTextInput() const;
 
             /*!
             \brief Class method to return the state of a controller button.
@@ -58,6 +71,8 @@ namespace minish
 			\brief Class method to return if a mouse button has been released.
 			*/
 			const bool isMouseButtonReleased(const int code) const;
+
+			const bool isTextInputEnabled() const;
 
             /*!
             \brief Updates the class member variables with data from SFML.
@@ -128,6 +143,10 @@ namespace minish
             \brief Stores axis positions of the controller.
             */
             float m_controller_axis[8]{0.0f};
+
+			bool m_text_input_flag, m_focus;
+
+			std::string m_text_input;
 
             /*!
             \brief Stores a pointer to the application window.

@@ -62,7 +62,7 @@ namespace minish
             /*!
             \brief Pure virtual class method used to render state objects.
             */
-            virtual void render() = 0;
+            virtual void render(float update_difference) = 0;
 
             /*!
             \brief Pure virtual class method used to update state objects.

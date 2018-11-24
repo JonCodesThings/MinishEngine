@@ -71,11 +71,11 @@ namespace minish
         }
     }
 
-    void StateManager::render()
+    void StateManager::render(float update_difference)
     {
         if (m_current_state)
         {
-            m_current_state->render();
+            m_current_state->render(update_difference);
         }
     }
 

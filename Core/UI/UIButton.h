@@ -22,24 +22,24 @@ namespace minish
             const AABB& getAABB();
 
             /*!
-            \brief Bind's an action to the button.
+            \brief Binds an action to the button.
             */
             void bindAction(Action& action);
 
             /*!
-            \brief Call's the bound action's onAction() class method.
+            \brief Calls the bound action's onAction() class method.
             */
             void onAction();
 
             /*!
-            \brief Set's the color of the button.
+            \brief Sets the color of the button.
             */
            void setColor(const sf::Color& color);
 
 			void setSize(const sf::Vector2u& size);
 
             /*!
-            \brief Bind's the action from the button.
+            \brief Binds the action from the button.
             */
             void unbindAction();
         private:

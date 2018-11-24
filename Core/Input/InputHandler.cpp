@@ -2,6 +2,8 @@
 #include "InputHandler.h"
 #include "InputManager.h"
 
+#include <iostream>
+
 namespace minish
 {
     void InputHandler::bindActionToControllerAxis(Action& action, const int code)

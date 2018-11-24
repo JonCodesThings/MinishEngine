@@ -4,11 +4,47 @@
 #include <SFML/Window/Mouse.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
+#include <iostream>
+
 namespace minish
 {
-    InputManager::InputManager(sf::RenderWindow* hwnd) : m_hwnd(hwnd)
+    InputManager::InputManager(sf::RenderWindow* hwnd) : m_hwnd(hwnd), m_focus(true)
     {}
 
+	void InputManager::appendTextInput(const sf::Event& ev)
+	{
+		switch (ev.type)
+		{
+		case sf::Event::TextEntered:
+			if (ev.text.unicode != 8)
+			{
+				m_text_input.push_back(ev.text.unicode);
+			}
+			else
+			{
+				if (m_text_input.size() > 0)
+					m_text_input.erase(m_text_input.size() - 1);
+			}
+		default:
+			break;
+		}
+	}
+
+	void InputManager::clearTextInput()
+	{
+		m_text_input.clear();
+	}
+
+	void InputManager::disableTextInput()
+	{
+		m_text_input_flag = false;
+	}
+
+	void InputManager::enableTextInput()
+	{
+		clearTextInput();
+		m_text_input_flag = true;
+	}
 
     const float InputManager::getControllerAxis(const int code) const
     {
@@ -19,6 +55,11 @@ namespace minish
     {
         return m_mouse_position;
     }
+
+	const std::string& InputManager::getTextInput() const
+	{
+		return m_text_input;
+	}
 
     const bool InputManager::isControllerButtonPressed(const int code) const
     {
@@ -50,61 +91,67 @@ namespace minish
 		return !m_mouse_buttons[code] && m_prev_mouse_buttons[code];
 	}
 
+	const bool InputManager::isTextInputEnabled() const
+	{
+		return m_text_input_flag;
+	}
+
     void InputManager::update()
     {
-        //updates the joystick states
-        sf::Joystick::update();
+		if (m_focus)
+		{
+			//updates the joystick states
+			sf::Joystick::update();
 
-        //checks if the primary joystick is connected
-        if (sf::Joystick::isConnected(0))
-        {
-            //updates the controller axis states
-            setControllerAxisStates();
+			//checks if the primary joystick is connected
+			if (sf::Joystick::isConnected(0))
+			{
+				//updates the controller axis states
+				setControllerAxisStates();
 
-            //checks for any changes in button states and updates the button states as needed
-            for (unsigned int button = 0; button < sf::Joystick::getButtonCount(0); button++)
-            {
-				m_prev_controller_buttons[button] = m_controller_buttons[button];
+				//checks for any changes in button states and updates the button states as needed
+				for (unsigned int button = 0; button < sf::Joystick::getButtonCount(0); button++)
+				{
+					m_prev_controller_buttons[button] = m_controller_buttons[button];
 
-                if (sf::Joystick::isButtonPressed(0, button) != m_controller_buttons[button])
-				{	
-                    m_controller_buttons[button] = sf::Joystick::isButtonPressed(0, button);
-                }
-            }
-        }
+					if (sf::Joystick::isButtonPressed(0, button) != m_controller_buttons[button])
+					{
+						m_controller_buttons[button] = sf::Joystick::isButtonPressed(0, button);
+					}
+				}
+			}
 
-        //checks the key states and updates them as needed
-        for (int key = 0; key < 128; key++)
-        {
-			m_prev_keys[key] = m_keys[key];
+			//checks the key states and updates them as needed
+			for (int key = 0; key < 128; key++)
+			{
+				m_prev_keys[key] = m_keys[key];
 
-            if (sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(key)) != m_keys[key])
-            {
-                setKeyState(key, sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(key)));
-            }
-        }
+				if (sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(key)) != m_keys[key])
+				{
+					setKeyState(key, sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(key)));
+				}
+			}
 
-        //checks there is a handle to the window and updates the mouse position as needed
-        if (m_hwnd != nullptr)
-        {
-            if (sf::Mouse::getPosition(*m_hwnd) != m_mouse_position)
-            {
-                m_mouse_position = sf::Mouse::getPosition(*m_hwnd);
-            }
-        }
+			//checks there is a handle to the window and updates the mouse position as needed
+			if (m_hwnd != nullptr)
+			{
+				if (sf::Mouse::getPosition(*m_hwnd) != m_mouse_position)
+				{
+					m_mouse_position = sf::Mouse::getPosition(*m_hwnd);
+				}
+			}
 
-        //updates the mouse button states as needed
-        for (int mouse_button = 0; mouse_button < 5; mouse_button++)
-        {
-			m_prev_mouse_buttons[mouse_button] = m_mouse_buttons[mouse_button];
+			//updates the mouse button states as needed
+			for (int mouse_button = 0; mouse_button < 5; mouse_button++)
+			{
+				m_prev_mouse_buttons[mouse_button] = m_mouse_buttons[mouse_button];
 
-            if (sf::Mouse::isButtonPressed(static_cast<sf::Mouse::Button>(mouse_button)) != m_mouse_buttons[mouse_button])
-            {
-                m_mouse_buttons[mouse_button] = sf::Mouse::isButtonPressed(static_cast<sf::Mouse::Button>(mouse_button));
-            }
-        }
-
-        
+				if (sf::Mouse::isButtonPressed(static_cast<sf::Mouse::Button>(mouse_button)) != m_mouse_buttons[mouse_button])
+				{
+					m_mouse_buttons[mouse_button] = sf::Mouse::isButtonPressed(static_cast<sf::Mouse::Button>(mouse_button));
+				}
+			}
+		} 
     }
 
 
@@ -139,4 +186,9 @@ namespace minish
     {
         m_mouse_position = position;
     }
+
+	void InputManager::setFocus(const bool focus)
+	{
+		m_focus = focus;
+	}
 }

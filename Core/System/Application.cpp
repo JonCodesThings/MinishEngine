@@ -87,7 +87,7 @@ namespace minish
 			lag += m_dt;
 			while (lag >= m_target_dt)
 			{
-				m_running = update(m_dt);
+				m_running = update(m_target_dt);
 				lag -= m_target_dt;
 			}
 				
@@ -97,11 +97,28 @@ namespace minish
             m_dt = m_deltaTimer.restart().asSeconds();
 
             sf::Event ev;
-            if (m_wnd.pollEvent(ev) && ev.type == sf::Event::Closed)
-            {
-                m_wnd.close();
-                m_running = false;
-            }
+			while (m_wnd.pollEvent(ev))
+			{
+				switch (ev.type)
+				{
+				case sf::Event::Closed:
+					m_wnd.close();
+					m_running = false;
+					break;
+				case sf::Event::TextEntered:
+					if (m_application_system.m_input_manager.isTextInputEnabled())
+						m_application_system.m_input_manager.appendTextInput(ev);
+					break;
+				case sf::Event::LostFocus:
+					m_application_system.m_input_manager.setFocus(false);
+					break;
+				case sf::Event::GainedFocus:
+					m_application_system.m_input_manager.setFocus(true);
+					break;
+				default:
+					break;
+				}
+			}
         }
         m_application_system.m_frame.deinit();
         shutdown();
