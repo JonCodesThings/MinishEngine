@@ -2,8 +2,6 @@
 #include "InputHandler.h"
 #include "InputManager.h"
 
-#include <iostream>
-
 namespace minish
 {
     void InputHandler::bindActionToControllerAxis(Action& action, const int code)
@@ -159,6 +157,20 @@ namespace minish
 						m_keys_released[key]->onAction();
 				}
             }
+
+			for (int button = 0; button < 5; button++)
+			{
+				if (m_input_manager->isMouseButtonPressed(button))
+				{
+					if (m_mouse_buttons_pressed[button])
+						m_mouse_buttons_pressed[button]->onAction();
+				}
+				if (m_input_manager->isMouseButtonReleased(button))
+				{
+					if (m_mouse_buttons_released[button])
+						m_mouse_buttons_released[button]->onAction();
+				}
+			}
         }
     }
 }
