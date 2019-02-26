@@ -40,6 +40,7 @@ namespace minish
         m_wnd.setSize(window_dimensions);
 		sf::View view;
 		view.setCenter(sf::Vector2f(m_target_dimensions.x / 2.0f, m_target_dimensions.y / 2.0f));
+		view.setSize((float)m_target_dimensions.x, (float)m_target_dimensions.y);
         if (((float)window_dimensions.x / (float)window_dimensions.y) == m_target_aspect_ratio)
         {
             view.setViewport(sf::FloatRect(0.0f, 0.0f, 1.0f, 1.0f));
