@@ -14,7 +14,6 @@ namespace minish
 		m_target_aspect_ratio(((float)target_dimensions.x / (float)target_dimensions.y)), m_target_dt(target_frame_time), m_target_dimensions(target_dimensions)
 	{
 		m_wnd.create(sf::VideoMode(window_dimensions.x, window_dimensions.y), app_title, sf::Style::Close);
-		m_application_system.m_frame.init(target_dimensions, m_wnd);
 		resizeWindow(window_dimensions);
 	}
 
@@ -39,14 +38,11 @@ namespace minish
     void Application::resizeWindow(const sf::Vector2u& window_dimensions)
     {
         m_wnd.setSize(window_dimensions);
-        m_application_system.m_frame.setView(sf::View(m_application_system.m_frame.getView().getCenter(), sf::Vector2f(m_target_dimensions)));
-        m_application_system.m_frame.setScale(1.0f, 1.0f);
-        m_application_system.m_frame.setPosition(0, 0);
-        sf::View window_view;
-        window_view.setSize(sf::Vector2f(m_application_system.m_frame.getRenderTarget().getSize().x, m_application_system.m_frame.getRenderTarget().getSize().y));
+		sf::View view;
+		view.setCenter(sf::Vector2f(m_target_dimensions.x / 2.0f, m_target_dimensions.y / 2.0f));
         if (((float)window_dimensions.x / (float)window_dimensions.y) == m_target_aspect_ratio)
         {
-            window_view.setViewport(sf::FloatRect(0.0f, 0.0f, 1.0f, 1.0f));
+            view.setViewport(sf::FloatRect(0.0f, 0.0f, 1.0f, 1.0f));
         }
         else
         {
@@ -56,14 +52,14 @@ namespace minish
                 if (m_target_aspect_ratio == 4.0f/3.0f)
                 {
                     if (actual_aspect == 16.0f/9.0f)
-                        window_view.setViewport(sf::FloatRect(0.125f, 0.0f, 0.75f, 1.0f));
+                        view.setViewport(sf::FloatRect(0.125f, 0.0f, 0.75f, 1.0f));
                     else
-                        window_view.setViewport(sf::FloatRect(0.1f, 0.0f, 0.8f, 1.0f));
+						view.setViewport(sf::FloatRect(0.1f, 0.0f, 0.8f, 1.0f));
                 }
                 else
                 {
                     if (actual_aspect == 4.0f/3.0f)
-                        window_view.setViewport(sf::FloatRect(0.1f, 0.0f, 0.8f, 1.0f));
+						view.setViewport(sf::FloatRect(0.1f, 0.0f, 0.8f, 1.0f));
                 }
             }
             else
@@ -72,9 +68,7 @@ namespace minish
             }
             
         }
-        
-        window_view.setCenter(sf::Vector2f(m_application_system.m_frame.getRenderTarget().getSize().x / 2, m_application_system.m_frame.getRenderTarget().getSize().y / 2));
-        m_wnd.setView(window_view);
+        m_wnd.setView(view);
     }
 
     void Application::run()
@@ -120,7 +114,6 @@ namespace minish
 				}
 			}
         }
-        m_application_system.m_frame.deinit();
         shutdown();
     }
 
@@ -237,7 +230,6 @@ namespace minish
     void Application::post_render()
     {
         m_application_system.m_frame.post_render();
-        m_wnd.draw(m_application_system.m_frame);
 		m_wnd.display();
     }
 

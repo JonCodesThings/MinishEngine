@@ -22,7 +22,7 @@ namespace minish
 {
     struct ApplicationSystem
     {
-        ApplicationSystem(sf::RenderWindow& wnd) : m_input_manager(&wnd) {};
+        ApplicationSystem(sf::RenderWindow& wnd) : m_frame(wnd), m_input_manager(&wnd) {};
         ~ApplicationSystem() {};        
         /*
         \brief Audio manager.
