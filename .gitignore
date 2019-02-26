@@ -2,6 +2,17 @@ CMakeFiles/
 html/
 SFML-2.5.0/
 
+#Visual Studio generated folders and files
+.vs/
+Debug/
+Release/
+Win32/
+x64/
+*.sln
+*.vcxproj
+*.filters
+
+
 CMakeCache.txt
 cmake_install.cmake
 Makefile
