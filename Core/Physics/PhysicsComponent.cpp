@@ -4,6 +4,16 @@
 
 namespace minish
 {
+	void PhysicsComponent::addAcceleration(const sf::Vector2f& acceleration)
+	{
+		m_acceleration += acceleration;
+	}
+
+	void PhysicsComponent::addVelocity(const sf::Vector2f& velocity)
+	{
+		m_velocity += velocity;
+	}
+
     const AABB& PhysicsComponent::getAABB() const
     {
         return m_AABB;

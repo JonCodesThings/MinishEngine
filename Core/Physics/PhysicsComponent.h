@@ -18,6 +18,10 @@ namespace minish
             */
             virtual ~PhysicsComponent() {};
 
+			void addAcceleration(const sf::Vector2f& acceleration);
+
+			void addVelocity(const sf::Vector2f& velocity);
+
             /*!
             \brief Class method that returns the AABB.
             */
