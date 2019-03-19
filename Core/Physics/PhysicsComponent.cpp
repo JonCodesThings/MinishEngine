@@ -64,8 +64,8 @@ namespace minish
     void PhysicsComponent::setPosition(const sf::Vector2f& position)
     {
         m_position = position;
-        m_AABB.left = m_position.x;
-        m_AABB.top = m_position.y;
+        m_AABB.left = m_position.x - ((float)m_size.x) / 2.0f;
+        m_AABB.top = m_position.y - ((float)m_size.y) / 2.0f;
 #ifdef MINISH_EXPERIMENTAL
         if (getEntity() != nullptr)
         {
@@ -102,8 +102,8 @@ namespace minish
     {
         m_velocity += m_acceleration * dt;
         m_position += m_velocity * dt;
-        m_AABB.left = m_position.x;
-        m_AABB.top = m_position.y;
+        m_AABB.left = m_position.x - m_size.x / 2.0f;
+        m_AABB.top = m_position.y - m_size.y / 2.0f;
     }
 
     void PhysicsComponent::setEntity(Entity& entity)
