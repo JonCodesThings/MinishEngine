@@ -32,7 +32,7 @@ namespace minish
             /*!
         	\brief Array of pointers to components associated with the entity.
         	*/
-            Component* m_components[4] { nullptr };
+            Component* m_components[8] { nullptr };
 
             unsigned int m_id;
 

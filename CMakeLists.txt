@@ -31,15 +31,20 @@ set (SOURCE_FILES
 	Core/Graphics/GraphicsComponent.h
 	Core/Graphics/TextureManager.cpp
 	Core/Graphics/TextureManager.h
-	Core/Input/InputComponent.h
 	Core/Input/InputHandler.cpp
 	Core/Input/InputHandler.h
 	Core/Input/InputManager.cpp
 	Core/Input/InputManager.h
 	Core/Physics/AABB.cpp
 	Core/Physics/AABB.h
+	Core/Physics/PhysicsBody.cpp
+	Core/Physics/PhysicsBody.h
+	Core/Physics/PhysicsCollider.cpp
+	Core/Physics/PhysicsCollider.h
 	Core/Physics/PhysicsComponent.cpp
 	Core/Physics/PhysicsComponent.h
+	Core/Physics/PhysicsEnvironment.cpp
+	Core/Physics/PhysicsEnvironment.h
 	Core/System/Action.h
 	Core/System/Application.cpp
 	Core/System/Application.h
