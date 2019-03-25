@@ -85,11 +85,6 @@ namespace minish
         	\brief Sets the texture rect of the graphics component.
         	*/
             void setTextureRect(const sf::IntRect& texture_rect);
-
-            /*!
-        	\brief Updates the graphics component.
-        	*/
-            virtual void update(const float dt);
         private:
             /*!
             \brief Override of base Component setEntity member function. Registers the component's data with the entity.

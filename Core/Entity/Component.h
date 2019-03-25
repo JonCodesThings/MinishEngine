@@ -21,11 +21,6 @@ namespace minish
 			virtual ~Component();
 
 			Entity* const getEntity();
-
-			/*!
-        	\brief Pure virtual class method called when a component is updated.
-        	*/
-			virtual void update(const float dt) = 0;
 		protected:
 			/*!
         	\brief Sets the entity the component is attached to.

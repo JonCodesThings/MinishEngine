@@ -53,8 +53,6 @@ namespace minish
             void setSize(const sf::Vector2u& size);
 
             void setVelocity(const sf::Vector2f& velocity);
-
-            virtual void update(const float dt);
         protected:
             /*!
             \brief AABB rect.

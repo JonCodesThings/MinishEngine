@@ -33,11 +33,6 @@ namespace minish
         \brief Class member that sets the current audio manager.
         */
         void setAudioManager(AudioManager& audio_manager);
-
-        /*!
-        \brief Updates the audio component.
-        */
-        virtual void update(const float dt);
     private:
         AudioManager* m_audio_manager;
     };

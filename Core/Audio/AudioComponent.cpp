@@ -20,6 +20,4 @@ namespace minish
     {
         m_audio_manager = &audio_manager;
     }
-
-    void AudioComponent::update(const float dt) {}
 }

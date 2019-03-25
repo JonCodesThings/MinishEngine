@@ -98,13 +98,13 @@ namespace minish
 #endif
     }
 
-    void PhysicsComponent::update(const float dt)
-    {
-        m_velocity += m_acceleration * dt;
-        m_position += m_velocity * dt;
-        m_AABB.left = m_position.x - m_size.x / 2.0f;
-        m_AABB.top = m_position.y - m_size.y / 2.0f;
-    }
+    //void PhysicsComponent::update(const float dt)
+    //{
+    //    m_velocity += m_acceleration * dt;
+    //    m_position += m_velocity * dt;
+    //    m_AABB.left = m_position.x - m_size.x / 2.0f;
+    //    m_AABB.top = m_position.y - m_size.y / 2.0f;
+    //}
 
     void PhysicsComponent::setEntity(Entity& entity)
     {

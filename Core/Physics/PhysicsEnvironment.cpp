@@ -5,7 +5,9 @@
 namespace minish
 {
 	PhysicsEnvironment::PhysicsEnvironment(const sf::Vector2f& gravity) : m_gravity(gravity)
-	{}
+	{
+		m_bodies.reserve(64);
+	}
 
 	PhysicsEnvironment::~PhysicsEnvironment()
 	{}
@@ -16,12 +18,12 @@ namespace minish
 		return &m_bodies.back();
 	}
 
-	void PhysicsEnvironment::unregisterBody(PhysicsBody* const body)
+	void PhysicsEnvironment::unregisterBody(PhysicsBody* body)
 	{
 		auto pos = m_bodies.end();
 		for (auto it = m_bodies.begin(); it != m_bodies.end(); it++)
 		{
-			if (&(*it) == body)
+			if (&*it == body)
 			{
 				pos = it;
 				break;
@@ -35,9 +37,23 @@ namespace minish
 
 	void PhysicsEnvironment::update(const float dt)
 	{
-		for (auto it = m_bodies.begin(); it != m_bodies.end(); it++)
+		for (auto& it = m_bodies.begin(); it != m_bodies.end(); it++)
 		{
-			(*it).update(dt);
+			it->update(dt);
+		}
+
+		for (auto& a = m_bodies.begin(); a != m_bodies.end(); a++)
+		{
+			for (auto& b = m_bodies.begin(); b != m_bodies.end(); b++)
+			{
+				if (&*a != &*b)
+				{
+					if (a->getCollider() && b->getCollider())
+					{
+						checkCollision(*a->getCollider(), *b->getCollider());
+					}
+				}
+			}
 		}
 	}
 
@@ -60,16 +76,16 @@ namespace minish
 		std::vector<sf::Vector2f> a_axes;
 		std::vector<sf::Vector2f> b_axes;
 
-		a_axes.reserve(a.getPointList().size());
-		b_axes.reserve(b.getPointList().size());
+		a_axes.reserve(a.getTransformedPointList().size());
+		b_axes.reserve(b.getTransformedPointList().size());
 		
-		getAxes(a_axes, a.getPointList().size());
-		getAxes(b_axes, b.getPointList().size());
+		getAxes(a.getTransformedPointList(), a_axes, a.getTransformedPointList().size());
+		getAxes(b.getTransformedPointList(), b_axes, b.getTransformedPointList().size());
 
-		if (!checkAxes(a_axes, a.getPointList(), b.getPointList()))
+		if (!checkAxes(a_axes, a.getTransformedPointList(), b.getTransformedPointList()))
 			return false;
 
-		if (!checkAxes(b_axes, a.getPointList(), b.getPointList()))
+		if (!checkAxes(b_axes, a.getTransformedPointList(), b.getTransformedPointList()))
 			return false;
 
 		if (a.m_collision_callback)
@@ -86,26 +102,30 @@ namespace minish
 		if (a.y < b.x || b.y < a.x)
 			return false;
 
-		return false;
+		return true;
 	}
 
-	void PhysicsEnvironment::getAxes(std::vector<sf::Vector2f>& axes_vec, unsigned int axes)
+	void PhysicsEnvironment::getAxes(const std::vector<sf::Vector2f>& points, std::vector<sf::Vector2f>& axes_vec, unsigned int axes)
 	{
 		for (unsigned int i = 0; i < axes; i++)
 		{
-			sf::Vector2f point1 = axes_vec[i];
+			sf::Vector2f point1 = points[i];
 
-			if (i + 1 == axes)
-				i = 0;
+			int next = i + 1;
+			if (next == axes)
+				next = 0;
 
-			sf::Vector2f point2 = axes_vec[i];
+			sf::Vector2f point2 = points[next];
 
 			sf::Vector2f edge = point1 - point2;
 
-			sf::Vector2f axis = (edge.x / edge.y) * sf::Vector2f(1.0f, 1.0f);
+			sf::Vector2f axis = sf::Vector2f(-edge.x, edge.y);
 
-			axis.x /= axis.x;
-			axis.y /= axis.y;
+			if (axis.x != 0.0f)
+				axis.x /= axis.x;
+
+			if (axis.y != 0.0f)
+				axis.y /= axis.y;
 
 			axes_vec.push_back(axis);
 		}

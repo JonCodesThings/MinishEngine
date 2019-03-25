@@ -61,6 +61,53 @@ namespace minish
 
     void GraphicsComponent::render(sf::RenderTarget& target)
     {
+		if (m_transform_update_flag)
+		{
+			m_transform = sf::Transform::Identity;
+			m_transform.scale(m_scale);
+			m_transform.rotate(m_rotation, m_position);
+			m_transform.translate(m_position);
+
+#ifdef MINISH_EXPERIMENTAL
+			if (getEntity() != nullptr)
+			{
+				getEntity()->getDataComponent().setData("graphics_scale", m_scale);
+				getEntity()->getDataComponent().setData("graphics_rotation", m_rotation);
+				getEntity()->getDataComponent().setData("graphics_position", m_position);
+			}
+#endif
+			m_transform_update_flag = false;
+		}
+
+		if (m_vertex_update_flag)
+		{
+			m_vertices[0].position = sf::Vector2f(-((float)m_size.x / 2.0f), -((float)m_size.y / 2.0f));
+			m_vertices[1].position = sf::Vector2f(((float)m_size.x / 2.0f), -((float)m_size.y / 2.0f));
+			m_vertices[2].position = sf::Vector2f(((float)m_size.x / 2.0f), ((float)m_size.y / 2.0f));
+			m_vertices[3].position = sf::Vector2f(-((float)m_size.x / 2.0f), ((float)m_size.y / 2.0f));
+
+			m_vertices[0].texCoords = sf::Vector2f(m_texture_rect.left, m_texture_rect.top);
+			m_vertices[1].texCoords = sf::Vector2f(m_texture_rect.left + m_texture_rect.width, m_texture_rect.top);
+			m_vertices[2].texCoords = sf::Vector2f(m_texture_rect.left + m_texture_rect.width, m_texture_rect.top + m_texture_rect.height);
+			m_vertices[3].texCoords = sf::Vector2f(m_texture_rect.left, m_texture_rect.top + m_texture_rect.height);
+
+			m_vertices[0].color = m_color;
+			m_vertices[1].color = m_color;
+			m_vertices[2].color = m_color;
+			m_vertices[3].color = m_color;
+
+#ifdef MINISH_EXPERIMENTAL
+			if (getEntity() != nullptr)
+			{
+				getEntity()->getDataComponent().setData("graphics_color", m_color);
+				getEntity()->getDataComponent().setData("graphics_size", m_size);
+				getEntity()->getDataComponent().setData("graphics_texture", m_texture);
+				getEntity()->getDataComponent().setData("graphics_texture_rect", m_texture_rect);
+			}
+#endif
+			m_vertex_update_flag = false;
+		}
+
         target.draw(*this);
     }
 
@@ -104,56 +151,6 @@ namespace minish
     {
         m_texture_rect = texture_rect;
         m_vertex_update_flag = true;
-    }
-
-    void GraphicsComponent::update(const float dt)
-    {
-        if (m_transform_update_flag)
-        {
-            m_transform = sf::Transform::Identity;
-            m_transform.scale(m_scale);
-            m_transform.rotate(m_rotation, m_position);
-            m_transform.translate(m_position);
-
-#ifdef MINISH_EXPERIMENTAL
-            if (getEntity() != nullptr)
-            {
-                getEntity()->getDataComponent().setData("graphics_scale", m_scale);
-                getEntity()->getDataComponent().setData("graphics_rotation", m_rotation);
-                getEntity()->getDataComponent().setData("graphics_position", m_position);
-            }
-#endif
-            m_transform_update_flag = false;
-        }
-
-        if (m_vertex_update_flag)
-        {
-            m_vertices[0].position = sf::Vector2f(-((float)m_size.x / 2.0f), -((float)m_size.y / 2.0f));
-            m_vertices[1].position = sf::Vector2f(((float)m_size.x / 2.0f), -((float)m_size.y / 2.0f));
-            m_vertices[2].position = sf::Vector2f(((float)m_size.x / 2.0f), ((float)m_size.y / 2.0f));
-            m_vertices[3].position = sf::Vector2f(-((float)m_size.x / 2.0f), ((float)m_size.y / 2.0f));
-
-            m_vertices[0].texCoords = sf::Vector2f(m_texture_rect.left, m_texture_rect.top);
-            m_vertices[1].texCoords = sf::Vector2f(m_texture_rect.left + m_texture_rect.width, m_texture_rect.top);
-            m_vertices[2].texCoords = sf::Vector2f(m_texture_rect.left + m_texture_rect.width, m_texture_rect.top + m_texture_rect.height);
-            m_vertices[3].texCoords = sf::Vector2f(m_texture_rect.left, m_texture_rect.top + m_texture_rect.height);
-
-            m_vertices[0].color = m_color;
-            m_vertices[1].color = m_color;
-            m_vertices[2].color = m_color;
-            m_vertices[3].color = m_color;
-
-#ifdef MINISH_EXPERIMENTAL
-            if (getEntity() != nullptr)
-            {
-                getEntity()->getDataComponent().setData("graphics_color", m_color);
-                getEntity()->getDataComponent().setData("graphics_size", m_size);
-                getEntity()->getDataComponent().setData("graphics_texture", m_texture);
-                getEntity()->getDataComponent().setData("graphics_texture_rect", m_texture_rect);
-            }
-#endif
-            m_vertex_update_flag = false;
-        }
     }
 
     void GraphicsComponent::setEntity(Entity& entity)
