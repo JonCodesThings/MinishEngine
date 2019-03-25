@@ -59,7 +59,7 @@ namespace minish
         return m_texture_rect;
     }
 
-    void GraphicsComponent::render(sf::RenderTarget& target)
+    void GraphicsComponent::render(sf::RenderTarget& target, sf::RenderStates states)
     {
 		if (m_transform_update_flag)
 		{

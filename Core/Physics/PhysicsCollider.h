@@ -20,7 +20,6 @@ namespace minish
 		const std::vector<sf::Vector2f>& getTransformedPointList() const;
 		void setCollisionCallback(void (*callback)());
 		void transformPoints(const sf::Transform& transform);
-		void update(const float dt) {}
 	protected:
 		void addPoint(const sf::Vector2f& point);
 		void removePoint(const sf::Vector2f& point);
