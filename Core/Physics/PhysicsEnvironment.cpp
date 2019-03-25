@@ -1,5 +1,7 @@
 #include "PhysicsEnvironment.h"
 
+#include <cstdlib>
+
 #include <SFML/System/Vector2.hpp>
 
 namespace minish
@@ -50,7 +52,7 @@ namespace minish
 				{
 					if (a->getCollider() && b->getCollider())
 					{
-						checkCollision(*a->getCollider(), *b->getCollider());
+							checkCollision(*a->getCollider(), *b->getCollider());
 					}
 				}
 			}
@@ -122,10 +124,9 @@ namespace minish
 			sf::Vector2f axis = sf::Vector2f(-edge.x, edge.y);
 
 			if (axis.x != 0.0f)
-				axis.x /= axis.x;
-
+				axis.x /= std::abs(axis.x);
 			if (axis.y != 0.0f)
-				axis.y /= axis.y;
+					axis.y /= std::abs(axis.y);
 
 			axes_vec.push_back(axis);
 		}
@@ -142,7 +143,7 @@ namespace minish
 
 			if (proj < min)
 				min = proj;
-			else if (proj > max)
+			if (proj > max)
 				max = proj;
 		}
 

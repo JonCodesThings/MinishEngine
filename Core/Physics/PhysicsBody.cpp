@@ -1,7 +1,5 @@
 #include "PhysicsBody.h"
 
-#include <iostream>
-
 namespace minish
 {
 	PhysicsBody::PhysicsBody(const sf::Vector2f& position, PhysicsBodyType type) : m_acceleration(0.0f, 0.0f), m_collider(nullptr), m_position(position), m_rotation(0.0f), m_transform(sf::Transform::Identity), m_update_flag(true), m_velocity(0.0f, 0.0f), m_type(type)
