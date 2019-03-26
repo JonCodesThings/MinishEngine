@@ -11,6 +11,7 @@ x64/
 *.sln
 *.vcxproj
 *.filters
+*.user
 
 
 CMakeCache.txt
