@@ -15,24 +15,65 @@ namespace minish
     */
     class Entity
     {
+		friend class Component;
         public:
             Entity();
             /*!
         	\brief Class member that adds a component to the entity.
         	*/
-            void addComponent(Component* component);
+            void addComponent(Component& component);
+
+			void addChild(Entity& entity);
 
             const unsigned int getID() const;
+
+			const sf::Vector2f& getPosition() const;
+
+			const float getRotation() const;
+
+			const sf::Vector2f& getScale() const;
+
+			const sf::Transform& getTransform() const;
 
             /*!
         	\brief Class member that removes a component from the entity.
         	*/
-            void removeComponent(Component* component);
+            void removeComponent(Component& component);
+
+			void removeChild(Entity& entity);
+
+			void setPosition(const sf::Vector2f& position);
+
+			void setRotation(const float rotation);
+
+			void setScale(const sf::Vector2f& scale);
         private:
+			void recalculateTransform();
+
+			void resetParent();
+
+			void setParent(Entity& entity);
+
             /*!
         	\brief Array of pointers to components associated with the entity.
         	*/
             Component* m_components[8] { nullptr };
+
+			Entity* m_children[8] { nullptr };
+
+			Entity* m_parent = nullptr;
+
+			sf::Transform m_transform;
+
+			/*!
+			\brief The rotation of the entity.
+			*/
+			float m_rotation;
+
+			/*!
+			\brief The position and scale factor of the entity.
+			*/
+			sf::Vector2f m_position, m_scale;
 
             unsigned int m_id;
 

@@ -32,7 +32,6 @@ namespace minish
 		const PhysicsCollider* const getCollider() const;
 		const sf::Vector2f& getPosition() const;
 		const float getRotation() const;
-		const sf::Transform& getTransform() const;
 		const sf::Vector2f& getVelocity() const;
 
 		//setters
@@ -44,7 +43,6 @@ namespace minish
 		//update
 		void update(const float dt);
 	private:
-		sf::Transform m_transform;
 		PhysicsCollider* m_collider;
 		sf::Vector2f m_acceleration, m_position, m_velocity;
 		float m_rotation;

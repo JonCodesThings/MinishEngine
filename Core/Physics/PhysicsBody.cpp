@@ -2,7 +2,7 @@
 
 namespace minish
 {
-	PhysicsBody::PhysicsBody(const sf::Vector2f& position, PhysicsBodyType type) : m_acceleration(0.0f, 0.0f), m_collider(nullptr), m_position(position), m_rotation(0.0f), m_transform(sf::Transform::Identity), m_update_flag(true), m_velocity(0.0f, 0.0f), m_type(type)
+	PhysicsBody::PhysicsBody(const sf::Vector2f& position, PhysicsBodyType type) : m_acceleration(0.0f, 0.0f), m_collider(nullptr), m_position(position), m_rotation(0.0f), m_update_flag(true), m_velocity(0.0f, 0.0f), m_type(type)
 	{}
 
 	PhysicsBody::~PhysicsBody()
@@ -25,6 +25,11 @@ namespace minish
 		return m_acceleration;
 	}
 
+	const PhysicsBodyType & PhysicsBody::getBodyType() const
+	{
+		return m_type;
+	}
+
 	const PhysicsCollider* const PhysicsBody::getCollider() const
 	{
 		return m_collider;
@@ -38,11 +43,6 @@ namespace minish
 	const float PhysicsBody::getRotation() const
 	{
 		return m_rotation;
-	}
-
-	const sf::Transform & PhysicsBody::getTransform() const
-	{
-		return m_transform;
 	}
 
 	const sf::Vector2f & PhysicsBody::getVelocity() const
@@ -88,12 +88,11 @@ namespace minish
 
 		if (m_update_flag)
 		{
-			m_transform = sf::Transform::Identity;
-			m_transform.rotate(m_rotation, m_position);
-			m_transform.translate(m_position);
+			getEntity()->setPosition(m_position);
+			getEntity()->setRotation(m_rotation);
 
 			if (m_collider)
-				m_collider->transformPoints(m_transform);
+				m_collider->transformPoints(getEntity()->getTransform());
 
 			m_update_flag = false;
 		}
